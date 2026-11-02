@@ -141,7 +141,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 120
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -432,7 +432,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: image-removebg-preview_15
+      name: Jax_Slash_1
       rect:
         serializedVersion: 2
         x: 114
@@ -454,11 +454,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: image-removebg-preview_16
+      name: Jax_Slash_2
       rect:
         serializedVersion: 2
         x: 218
-        y: 255
+        y: 256
         width: 125
         height: 69
       alignment: 0
@@ -476,7 +476,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: image-removebg-preview_17
+      name: Jax_Slash_0
       rect:
         serializedVersion: 2
         x: 11
@@ -498,7 +498,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: image-removebg-preview_18
+      name: Jax_Heavy_0
       rect:
         serializedVersion: 2
         x: 5
@@ -520,7 +520,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: image-removebg-preview_19
+      name: Jax_Heavy_1
       rect:
         serializedVersion: 2
         x: 94
@@ -542,7 +542,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: image-removebg-preview_20
+      name: Jax_Heavy_2
       rect:
         serializedVersion: 2
         x: 224
@@ -564,7 +564,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: image-removebg-preview_21
+      name: Jax_Combo_0
       rect:
         serializedVersion: 2
         x: 3
@@ -586,7 +586,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: image-removebg-preview_23
+      name: Jax_Combo_1
       rect:
         serializedVersion: 2
         x: 107
@@ -608,7 +608,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: image-removebg-preview_24
+      name: Jax_Combo_2
       rect:
         serializedVersion: 2
         x: 223
@@ -630,7 +630,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: image-removebg-preview_26
+      name: Jax_Rush_0
       rect:
         serializedVersion: 2
         x: 9
@@ -652,7 +652,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: image-removebg-preview_28
+      name: Jax_Rush_2
       rect:
         serializedVersion: 2
         x: 207
@@ -674,7 +674,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: image-removebg-preview_29
+      name: Jax_Rush_1
       rect:
         serializedVersion: 2
         x: 101
@@ -737,6 +737,18 @@ TextureImporter:
       Heavy_0: 4296832259876389077
       Heavy_1: -5059381527521186713
       Heavy_2: 2308676759794796549
+      Jax_Combo_0: -4782060873809666843
+      Jax_Combo_1: -2797068014931384748
+      Jax_Combo_2: -6767916492467018234
+      Jax_Heavy_0: -2559463083569719864
+      Jax_Heavy_1: 7502702223321754294
+      Jax_Heavy_2: 1157934379632732744
+      Jax_Rush_0: 950412700754098565
+      Jax_Rush_1: 2126753261180990793
+      Jax_Rush_2: 6727703766427087052
+      Jax_Slash_0: 4123767908748144363
+      Jax_Slash_1: 3710642153587395800
+      Jax_Slash_2: 5878465345187633930
       Slash_0: 3465280639480317682
       Slash_1: 4337046748960614032
       Slash_2: -5973860886773078451
@@ -746,21 +758,9 @@ TextureImporter:
       image-removebg-preview_0: 3310002292416464744
       image-removebg-preview_13: 2744027708782028073
       image-removebg-preview_14: -1571206061166195802
-      image-removebg-preview_15: 3710642153587395800
-      image-removebg-preview_16: 5878465345187633930
-      image-removebg-preview_17: 4123767908748144363
-      image-removebg-preview_18: -2559463083569719864
-      image-removebg-preview_19: 7502702223321754294
-      image-removebg-preview_20: 1157934379632732744
-      image-removebg-preview_21: -4782060873809666843
       image-removebg-preview_22: -4670076018837949243
-      image-removebg-preview_23: -2797068014931384748
-      image-removebg-preview_24: -6767916492467018234
       image-removebg-preview_25: -8513480128035147750
-      image-removebg-preview_26: 950412700754098565
       image-removebg-preview_27: 5741519513999596874
-      image-removebg-preview_28: 6727703766427087052
-      image-removebg-preview_29: 2126753261180990793
       image-removebg-preview_30: -1961395943485592742
       image-removebg-preview_8: 1289079217369458388
   mipmapLimitGroupName: 
