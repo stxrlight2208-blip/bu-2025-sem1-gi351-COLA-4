@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Movement Settings")]
     public float walkSpeed = 4f;
-    public float runSpeed = 6.5f; // ปรับความเร็ววิ่งให้เพิ่มขึ้นจากเดิมนิดหน่อย (เดิน 4 -> วิ่ง 6.5)
+    public float runSpeed = 6.5f; 
     public float jumpForce = 12f;
     
     [Header("Dash Settings")]
@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     [Header("References")]
     private Rigidbody2D rb;
     private Animator animator;
+    private PlayerHealth playerHealth; // <--- เพิ่มตัวแปรอ้างอิงระบบเลือด/อมตะ
 
     // สถานะการเคลื่อนไหว
     private float horizontalInput;
@@ -36,6 +37,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        playerHealth = GetComponent<PlayerHealth>(); // <--- ดึงคอมโพเนนต์ PlayerHealth มาใช้งาน
         
         // กำหนดค่าความสามารถตามตัวละคร
         ApplyCharacterStats();
@@ -51,6 +53,12 @@ public class PlayerController : MonoBehaviour
             {
                 isDashing = false;
                 rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+
+                // สั่งปิดสถานะอมตะเมื่อ Dash จบลง
+                if (playerHealth != null)
+                {
+                    playerHealth.isInvincible = false;
+                }
             }
             UpdateAnimations();
             return;
@@ -110,14 +118,11 @@ public class PlayerController : MonoBehaviour
     {
         if (animator == null) return;
 
-        // คำนวณความเร็วเดิน/วิ่ง
         float moveSpeed = Mathf.Abs(horizontalInput) * (isRunning ? 1.5f : 1f);
 
         animator.SetFloat("Speed", moveSpeed);
         animator.SetBool("IsGrounded", isGrounded);
         animator.SetBool("IsDashing", isDashing);
-        
-        // ส่งค่าความเร็วแกน Y (ถ้าค่าบวกแปลว่าพุ่งขึ้น, ค่าลบแปลว่าร่วงลง)
         animator.SetFloat("VerticalVelocity", rb.linearVelocity.y);
     }
 
@@ -132,6 +137,12 @@ public class PlayerController : MonoBehaviour
         canDash = false;
         dashTimer = dashTime;
         dashCooldownTimer = dashCooldown;
+
+        // สั่งเปิดสถานะอมตะทันทีที่เริ่มกด Dash (Q)
+        if (playerHealth != null)
+        {
+            playerHealth.isInvincible = true;
+        }
 
         float dir = transform.localScale.x > 0 ? 1f : -1f;
         rb.linearVelocity = new Vector2(dir * dashSpeed, 0f);
@@ -154,7 +165,7 @@ public class PlayerController : MonoBehaviour
         if (currentCharacter == CharacterType.BlueWarrior)
         {
             dashSpeed = 15f;
-            runSpeed = 6.5f; // วิ่งเร็วขึ้นกว่าเดินนิดหน่อยกำลังสวย
+            runSpeed = 6.5f;
         }
         else
         {
