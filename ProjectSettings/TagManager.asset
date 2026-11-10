@@ -43,6 +43,36 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: New Layer 1
+    uniqueID: 3033828185
+    locked: 0
+  - name: New Layer 2
+    uniqueID: 4179412793
+    locked: 0
+  - name: New Layer 3
+    uniqueID: 2740835279
+    locked: 0
+  - name: New Layer 4
+    uniqueID: 2886221639
+    locked: 0
+  - name: New Layer 5
+    uniqueID: 3336928231
+    locked: 0
+  - name: New Layer 6
+    uniqueID: 2106787581
+    locked: 0
+  - name: New Layer 7
+    uniqueID: 2543021713
+    locked: 0
+  - name: New Layer 8
+    uniqueID: 1150198117
+    locked: 0
+  - name: New Layer 9
+    uniqueID: 263586447
+    locked: 0
+  - name: New Layer 10
+    uniqueID: 2507798391
+    locked: 0
   m_RenderingLayers:
   - Default
   m_MigratedRenderPipelines: []
