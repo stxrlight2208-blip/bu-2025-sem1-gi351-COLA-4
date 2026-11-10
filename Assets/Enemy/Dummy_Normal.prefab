@@ -183,7 +183,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   maxHealth: 10
   moveSpeed: 2.5
-  detectionRange: 6
+  detectionRange: 10
   enemyDamage: 1
   attackCooldown: 1
   damageColor: {r: 1, g: 0, b: 0, a: 1}
