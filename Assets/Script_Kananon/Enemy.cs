@@ -1,3 +1,4 @@
+
 using System.Collections;
 using UnityEngine;
 
@@ -7,15 +8,16 @@ public class Enemy : MonoBehaviour
     public int maxHealth = 10;
     private int currentHealth;
 
-    [Header("Movement & AI (Follow Player)")]
-    public float moveSpeed = 2.5f;       // ความเร็วในการเดินตามผู้เล่น
-    public float detectionRange = 6f;    // ระยะที่ศัตรูเริ่มมองเห็นและเดินตามผู้เล่น
+    [Header("Movement & AI")]
+    public float moveSpeed = 2.5f;
+    public float detectionRange = 6f;
+
     private Transform playerTransform;
     private Rigidbody2D rb;
 
     [Header("Attack Player Settings")]
-    public int enemyDamage = 1;         
-    public float attackCooldown = 1.0f; 
+    public int enemyDamage = 1;
+    public float attackCooldown = 1f;
     private float lastAttackTime;
 
     [Header("Visual Effects")]
@@ -25,108 +27,168 @@ public class Enemy : MonoBehaviour
     public float flashDuration = 0.15f;
 
     [Header("Hit Cooldown")]
-    private float lastHitTime;
     public float hitCooldown = 0.3f;
+    private float lastHitTime = -999f;
+
+    [Header("Animation")]
+    private Animator animator;
+    public float deathAnimationDuration = 1f;
+
+    private bool isDead = false;
+    private Vector3 originalScale;
 
     void Start()
     {
         currentHealth = maxHealth;
+
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
-        
-        if (spriteRenderer != null)
-        {
-            originalColor = spriteRenderer.color;
-        }
+        animator = GetComponent<Animator>();
 
-        // ค้นหาตำแหน่งตัว Player อัตโนมัติจาก Tag หรือชื่อ
-        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        originalScale = transform.localScale;
+
+        if (spriteRenderer != null)
+            originalColor = spriteRenderer.color;
+
+        GameObject playerObj =
+            GameObject.FindGameObjectWithTag("Player");
+
+        if (playerObj == null)
+            playerObj = GameObject.Find("Player");
+
         if (playerObj != null)
-        {
             playerTransform = playerObj.transform;
-        }
-        else
-        {
-            GameObject namedPlayer = GameObject.Find("Player");
-            if (namedPlayer != null)
-            {
-                playerTransform = namedPlayer.transform;
-            }
-        }
     }
 
     void Update()
     {
-        if (playerTransform == null) return;
+        if (isDead || playerTransform == null)
+            return;
 
-        // คำนวณระยะห่างระหว่าง Enemy กับ Player
-        float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
+        float distance = Vector2.Distance(
+            transform.position,
+            playerTransform.position
+        );
 
-        // ถ้าผู้เล่นเข้ามาอยู่ในระยะตรวจจับ ให้เดินตาม
-        if (distanceToPlayer <= detectionRange)
+        if (distance <= detectionRange)
         {
             MoveTowardsPlayer();
         }
         else
         {
-            // ถ้าอยู่นอกระยะ ให้หยุดนิ่งอยู่กับที่
             if (rb != null)
-            {
-                rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
-            }
+                rb.linearVelocity = new Vector2(
+                    0f,
+                    rb.linearVelocity.y
+                );
+
+            SetMoving(false);
         }
     }
 
     void MoveTowardsPlayer()
     {
-        if (playerTransform == null || rb == null) return;
+        if (playerTransform == null || rb == null || isDead)
+            return;
 
-        // เช็คทิศทางว่า Player อยู่ซ้ายหรือขวา
-        float direction = playerTransform.position.x > transform.position.x ? 1f : -1f;
+        float direction =
+            playerTransform.position.x > transform.position.x
+            ? 1f : -1f;
 
-        // เคลื่อนที่เข้าหาผู้เล่น (รักษาความเร็วแกน Y ไว้สำหรับแรงโน้มถ่วง)
-        rb.linearVelocity = new Vector2(direction * moveSpeed, rb.linearVelocity.y);
+        rb.linearVelocity = new Vector2(
+            direction * moveSpeed,
+            rb.linearVelocity.y
+        );
 
-        // พลิกหน้า Sprite หันตามทิศทางที่เดิน
-        if (direction > 0)
-        {
-            transform.localScale = new Vector3(1f, 1f, 1f);
-        }
-        else if (direction < 0)
-        {
-            transform.localScale = new Vector3(-1f, 1f, 1f);
-        }
+        SetMoving(true);
+
+        transform.localScale = new Vector3(
+            Mathf.Abs(originalScale.x) * direction,
+            originalScale.y,
+            originalScale.z
+        );
     }
 
-    // --- ระบบตรวจสอบการชนเพื่อทำดาเมจใส่ Player ---
+    void SetMoving(bool moving)
+    {
+        if (animator != null)
+            animator.SetBool("IsMoving", moving);
+    }
+
+    void PlayAttackAnimation()
+    {
+        if (animator != null)
+            animator.SetTrigger("Attack");
+    }
+
     private void OnCollisionStay2D(Collision2D collision)
     {
+        if (isDead) return;
+
         CheckAndDamagePlayer(collision.gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        CheckTriggerObject(collision);
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        // เช็คกรณีโดนดาบของผู้เล่นฟัน
-        if (collision.gameObject.name == "AttackPoint" || collision.CompareTag("PlayerAttack"))
+        CheckTriggerObject(collision);
+    }
+
+    void CheckTriggerObject(Collider2D collision)
+    {
+        if (isDead || collision == null)
+            return;
+
+        // ค้นหา PlayerHitbox จาก Collider และ Parent
+        PlayerHitbox playerAttack =
+            collision.GetComponent<PlayerHitbox>();
+
+        if (playerAttack == null)
+            playerAttack =
+                collision.GetComponentInParent<PlayerHitbox>();
+
+        // ค้นหาจาก Rigidbody2D ที่ Collider ผูกอยู่ด้วย
+        if (playerAttack == null &&
+            collision.attachedRigidbody != null)
         {
+            playerAttack =
+                collision.attachedRigidbody.GetComponent<PlayerHitbox>();
+
+            if (playerAttack == null)
+                playerAttack =
+                    collision.attachedRigidbody
+                    .GetComponentInParent<PlayerHitbox>();
+        }
+
+        // ตรวจสอบว่าเป็น Collider สำหรับโจมตีหรือไม่
+        bool isPlayerAttack =
+            collision.gameObject.name == "AttackPoint" ||
+            collision.gameObject.tag == "PlayerAttack";
+
+        if (playerAttack != null || isPlayerAttack)
+        {
+            Debug.Log(
+                "Enemy ตรวจพบ Collider: " + collision.name
+            );
+
             if (Time.time - lastHitTime >= hitCooldown)
             {
                 lastHitTime = Time.time;
 
-                PlayerHitbox playerAttack = collision.GetComponent<PlayerHitbox>();
-                if (playerAttack == null)
-                {
-                    playerAttack = collision.GetComponentInParent<PlayerHitbox>();
-                }
+                int damage = 1;
 
-                int damageToTake = 1;
                 if (playerAttack != null)
-                {
-                    damageToTake = playerAttack.currentAttackDamage;
-                }
+                    damage = playerAttack.currentAttackDamage;
 
-                TakeDamage(damageToTake);
+                Debug.Log("Enemy รับดาเมจ: " + damage);
+
+                TakeDamage(damage);
             }
+
             return;
         }
 
@@ -135,17 +197,23 @@ public class Enemy : MonoBehaviour
 
     void CheckAndDamagePlayer(GameObject targetObj)
     {
-        PlayerHealth playerHealth = targetObj.GetComponent<PlayerHealth>();
+        if (isDead) return;
+
+        PlayerHealth playerHealth =
+            targetObj.GetComponent<PlayerHealth>();
+
         if (playerHealth == null)
-        {
-            playerHealth = targetObj.GetComponentInParent<PlayerHealth>();
-        }
+            playerHealth =
+                targetObj.GetComponentInParent<PlayerHealth>();
 
         if (playerHealth != null)
         {
             if (Time.time - lastAttackTime >= attackCooldown)
             {
                 lastAttackTime = Time.time;
+
+                PlayAttackAnimation();
+
                 playerHealth.TakeDamage(enemyDamage);
             }
         }
@@ -153,31 +221,68 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        if (isDead) return;
+
         currentHealth -= damage;
-        Debug.Log("Dummy โดนดาเมจ: " + damage + " | เลือดคงเหลือ: " + currentHealth);
+
+        Debug.Log(
+            "Enemy โดนดาเมจ: " + damage +
+            " | เลือดเหลือ: " + currentHealth
+        );
+
+        if (currentHealth <= 0)
+        {
+            Die();
+            return;
+        }
 
         if (spriteRenderer != null)
         {
             StopAllCoroutines();
             StartCoroutine(FlashRed());
         }
-
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
     }
 
     IEnumerator FlashRed()
     {
         spriteRenderer.color = damageColor;
+
         yield return new WaitForSeconds(flashDuration);
-        spriteRenderer.color = originalColor;
+
+        if (!isDead && spriteRenderer != null)
+            spriteRenderer.color = originalColor;
     }
 
     void Die()
     {
-        Debug.Log("Dummy ตายแล้ว!");
+        if (isDead) return;
+
+        isDead = true;
+
+        Debug.Log("Enemy ตายแล้ว!");
+
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.simulated = false;
+        }
+
+        Collider2D[] colliders =
+            GetComponents<Collider2D>();
+
+        foreach (Collider2D col in colliders)
+            col.enabled = false;
+
+        if (animator != null)
+            animator.SetTrigger("Death");
+
+        StartCoroutine(DestroyAfterDeath());
+    }
+
+    IEnumerator DestroyAfterDeath()
+    {
+        yield return new WaitForSeconds(deathAnimationDuration);
+
         Destroy(gameObject);
     }
 }
