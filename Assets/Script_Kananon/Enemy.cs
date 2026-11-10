@@ -11,13 +11,12 @@ public class Enemy : MonoBehaviour
     [Header("Movement & AI")]
     public float moveSpeed = 2.5f;
     public float detectionRange = 6f;
-
     private Transform playerTransform;
     private Rigidbody2D rb;
 
     [Header("Attack Player Settings")]
     public int enemyDamage = 1;
-    public float attackCooldown = 1f;
+    public float attackCooldown = 1.0f;
     private float lastAttackTime;
 
     [Header("Visual Effects")]
@@ -27,15 +26,14 @@ public class Enemy : MonoBehaviour
     public float flashDuration = 0.15f;
 
     [Header("Hit Cooldown")]
+    private float lastHitTime;
     public float hitCooldown = 0.3f;
-    private float lastHitTime = -999f;
 
     [Header("Animation")]
     private Animator animator;
     public float deathAnimationDuration = 1f;
 
     private bool isDead = false;
-    private Vector3 originalScale;
 
     void Start()
     {
@@ -45,19 +43,22 @@ public class Enemy : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
-        originalScale = transform.localScale;
-
         if (spriteRenderer != null)
             originalColor = spriteRenderer.color;
 
-        GameObject playerObj =
-            GameObject.FindGameObjectWithTag("Player");
-
-        if (playerObj == null)
-            playerObj = GameObject.Find("Player");
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
 
         if (playerObj != null)
+        {
             playerTransform = playerObj.transform;
+        }
+        else
+        {
+            GameObject namedPlayer = GameObject.Find("Player");
+
+            if (namedPlayer != null)
+                playerTransform = namedPlayer.transform;
+        }
     }
 
     void Update()
@@ -65,22 +66,17 @@ public class Enemy : MonoBehaviour
         if (isDead || playerTransform == null)
             return;
 
-        float distance = Vector2.Distance(
-            transform.position,
-            playerTransform.position
-        );
+        float distanceToPlayer =
+            Vector2.Distance(transform.position, playerTransform.position);
 
-        if (distance <= detectionRange)
+        if (distanceToPlayer <= detectionRange)
         {
             MoveTowardsPlayer();
         }
         else
         {
             if (rb != null)
-                rb.linearVelocity = new Vector2(
-                    0f,
-                    rb.linearVelocity.y
-                );
+                rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
 
             SetMoving(false);
         }
@@ -92,21 +88,17 @@ public class Enemy : MonoBehaviour
             return;
 
         float direction =
-            playerTransform.position.x > transform.position.x
-            ? 1f : -1f;
+            playerTransform.position.x > transform.position.x ? 1f : -1f;
 
-        rb.linearVelocity = new Vector2(
-            direction * moveSpeed,
-            rb.linearVelocity.y
-        );
+        rb.linearVelocity =
+            new Vector2(direction * moveSpeed, rb.linearVelocity.y);
 
         SetMoving(true);
 
-        transform.localScale = new Vector3(
-            Mathf.Abs(originalScale.x) * direction,
-            originalScale.y,
-            originalScale.z
-        );
+        if (direction > 0)
+            transform.localScale = new Vector3(1f, 1f, 1f);
+        else
+            transform.localScale = new Vector3(-1f, 1f, 1f);
     }
 
     void SetMoving(bool moving)
@@ -128,65 +120,32 @@ public class Enemy : MonoBehaviour
         CheckAndDamagePlayer(collision.gameObject);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        CheckTriggerObject(collision);
-    }
-
     private void OnTriggerStay2D(Collider2D collision)
     {
-        CheckTriggerObject(collision);
-    }
+        if (isDead) return;
 
-    void CheckTriggerObject(Collider2D collision)
-    {
-        if (isDead || collision == null)
-            return;
-
-        // ค้นหา PlayerHitbox จาก Collider และ Parent
-        PlayerHitbox playerAttack =
-            collision.GetComponent<PlayerHitbox>();
-
-        if (playerAttack == null)
-            playerAttack =
-                collision.GetComponentInParent<PlayerHitbox>();
-
-        // ค้นหาจาก Rigidbody2D ที่ Collider ผูกอยู่ด้วย
-        if (playerAttack == null &&
-            collision.attachedRigidbody != null)
+        if (collision.gameObject.name == "AttackPoint" ||
+            collision.CompareTag("PlayerAttack"))
         {
-            playerAttack =
-                collision.attachedRigidbody.GetComponent<PlayerHitbox>();
-
-            if (playerAttack == null)
-                playerAttack =
-                    collision.attachedRigidbody
-                    .GetComponentInParent<PlayerHitbox>();
-        }
-
-        // ตรวจสอบว่าเป็น Collider สำหรับโจมตีหรือไม่
-        bool isPlayerAttack =
-            collision.gameObject.name == "AttackPoint" ||
-            collision.gameObject.tag == "PlayerAttack";
-
-        if (playerAttack != null || isPlayerAttack)
-        {
-            Debug.Log(
-                "Enemy ตรวจพบ Collider: " + collision.name
-            );
-
             if (Time.time - lastHitTime >= hitCooldown)
             {
                 lastHitTime = Time.time;
 
-                int damage = 1;
+                PlayerHitbox playerAttack =
+                    collision.GetComponent<PlayerHitbox>();
+
+                if (playerAttack == null)
+                {
+                    playerAttack =
+                        collision.GetComponentInParent<PlayerHitbox>();
+                }
+
+                int damageToTake = 1;
 
                 if (playerAttack != null)
-                    damage = playerAttack.currentAttackDamage;
+                    damageToTake = playerAttack.currentAttackDamage;
 
-                Debug.Log("Enemy รับดาเมจ: " + damage);
-
-                TakeDamage(damage);
+                TakeDamage(damageToTake);
             }
 
             return;
@@ -203,8 +162,10 @@ public class Enemy : MonoBehaviour
             targetObj.GetComponent<PlayerHealth>();
 
         if (playerHealth == null)
+        {
             playerHealth =
                 targetObj.GetComponentInParent<PlayerHealth>();
+        }
 
         if (playerHealth != null)
         {
@@ -225,10 +186,8 @@ public class Enemy : MonoBehaviour
 
         currentHealth -= damage;
 
-        Debug.Log(
-            "Enemy โดนดาเมจ: " + damage +
-            " | เลือดเหลือ: " + currentHealth
-        );
+        Debug.Log("Enemy โดนดาเมจ: " + damage +
+                  " | เลือดคงเหลือ: " + currentHealth);
 
         if (currentHealth <= 0)
         {
