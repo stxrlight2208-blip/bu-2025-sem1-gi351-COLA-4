@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
     public int requiredComboHits = 3;
     [Range(0.1f, 0.9f)]
     public float finisherHealthPercent = 0.35f;
-    public float finisherInteractRange = 4.5f;  // ขยายระยะกด E ให้ติดง่ายขึ้น
+    public float finisherInteractRange = 4.5f;
     private int currentComboReceived = 0;
     private float lastComboHitTime = 0f;
     private bool isFinishable = false;
@@ -73,14 +73,12 @@ public class Enemy : MonoBehaviour
     {
         if (playerTransform == null) return;
 
-        // 1. หากกำลังมีฉาก QTE เกิดขึ้นในเกม ศัตรูทุกตัวต้องหยุดนิ่งและไม่โจมตีผู้เล่น
         if (FinisherManager.isQTEActive)
         {
             if (rb != null) rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
             return;
         }
 
-        // 2. หากศัตรูตัวนี้ติดสถานะ FINISH HIM! อยู่
         if (isFinishable)
         {
             if (rb != null) rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
@@ -90,11 +88,9 @@ public class Enemy : MonoBehaviour
                 finishSignObj.transform.localScale = new Vector3(transform.localScale.x >= 0 ? 1f : -1f, 1f, 1f);
             }
 
-            // เช็กระยะแนวราบ (แกน X) เพื่อไม่ให้ติดปัญหาความสูงต่างกัน
             float distX = Mathf.Abs(transform.position.x - playerTransform.position.x);
             if (distX <= finisherInteractRange && Input.GetKeyDown(KeyCode.E))
             {
-                // ถ้าในฉากยังไม่มี FinisherManager ให้สร้างขึ้นมาให้อัตโนมัติทันที!
                 if (FinisherManager.instance == null)
                 {
                     GameObject fmObj = new GameObject("FinisherManager_Auto");
@@ -105,6 +101,7 @@ public class Enemy : MonoBehaviour
                 FinisherManager.instance.StartFinisherQTE(
                     playerTransform.gameObject,
                     gameObject,
+                    isBoss: false,
                     onSuccess: () => Die(),
                     onFail: () => RecoverFromStun()
                 );
@@ -211,6 +208,7 @@ public class Enemy : MonoBehaviour
         lastComboHitTime = Time.time;
 
         currentHealth -= damage;
+        ComboCounterUI.RegisterHit(damage);
 
         bool isHeavyHit = damage >= 3;
         DamagePopup.Create(transform.position, damage, isHeavyHit);
@@ -270,7 +268,7 @@ public class Enemy : MonoBehaviour
         finishSignObj.transform.localPosition = new Vector3(0f, 1.3f, 0f);
 
         TextMesh tm = finishSignObj.AddComponent<TextMesh>();
-        tm.text = "[E] FINISH HIM!";
+        tm.text = "[E] FINISH";
         tm.fontSize = 55;
         tm.characterSize = 0.08f;
         tm.fontStyle = FontStyle.Bold;
