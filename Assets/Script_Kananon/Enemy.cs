@@ -1,4 +1,3 @@
-
 using System.Collections;
 using UnityEngine;
 
@@ -11,6 +10,7 @@ public class Enemy : MonoBehaviour
     [Header("Movement & AI")]
     public float moveSpeed = 2.5f;
     public float detectionRange = 6f;
+    public float attackRange = 1.2f; // ระยะที่จะหยุดเดินแล้วโจมตี Player
     private Transform playerTransform;
     private Rigidbody2D rb;
 
@@ -71,7 +71,22 @@ public class Enemy : MonoBehaviour
 
         if (distanceToPlayer <= detectionRange)
         {
-            MoveTowardsPlayer();
+            if (distanceToPlayer > attackRange)
+            {
+                // ยังอยู่ไกล ให้เดินเข้าหา Player
+                MoveTowardsPlayer();
+            }
+            else
+            {
+                // ถึงระยะประชิดแล้ว หยุดเดินแล้วเตรียมโจมตี
+                if (rb != null)
+                    rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+
+                SetMoving(false);
+
+                // เช็คเวลาและโจมตี Player
+                TryAttackPlayer();
+            }
         }
         else
         {
@@ -87,18 +102,48 @@ public class Enemy : MonoBehaviour
         if (playerTransform == null || rb == null || isDead)
             return;
 
-        float direction =
-            playerTransform.position.x > transform.position.x ? 1f : -1f;
+        float distanceX = playerTransform.position.x - transform.position.x;
 
-        rb.linearVelocity =
-            new Vector2(direction * moveSpeed, rb.linearVelocity.y);
+        // กำหนดระยะห่างขั้นต่ำที่จะให้ตัวละครทำการพลิกหน้า (Deadzone)
+        float flipThreshold = 0.2f;
+        float direction = 0f;
 
+        if (Mathf.Abs(distanceX) > 0.05f)
+        {
+            direction = distanceX > 0f ? 1f : -1f;
+        }
+
+        // ขยับตัวเดินเข้าหา
+        rb.linearVelocity = new Vector2(direction * moveSpeed, rb.linearVelocity.y);
         SetMoving(true);
 
-        if (direction > 0)
-            transform.localScale = new Vector3(0.5f, 0.5f, 1f);
-        else
-            transform.localScale = new Vector3(-0.5f, 0.5f, 1f);
+        // พลิกตัวเฉพาะเมื่อระยะห่างเกินค่า Threshold ที่กำหนด เพื่อกันอาการหัวสั่นเวลาประชิด
+        if (Mathf.Abs(distanceX) > flipThreshold)
+        {
+            if (direction > 0)
+                transform.localScale = new Vector3(0.5f, 0.5f, 1f);
+            else
+                transform.localScale = new Vector3(-0.5f, 0.5f, 1f);
+        }
+    }
+
+    void TryAttackPlayer()
+    {
+        PlayerHealth playerHealth = playerTransform.GetComponent<PlayerHealth>();
+        if (playerHealth == null)
+        {
+            playerHealth = playerTransform.GetComponentInParent<PlayerHealth>();
+        }
+
+        if (playerHealth != null)
+        {
+            if (Time.time - lastAttackTime >= attackCooldown)
+            {
+                lastAttackTime = Time.time;
+                PlayAttackAnimation();
+                playerHealth.TakeDamage(enemyDamage);
+            }
+        }
     }
 
     void SetMoving(bool moving)
@@ -113,17 +158,11 @@ public class Enemy : MonoBehaviour
             animator.SetTrigger("Attack");
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        if (isDead) return;
-
-        CheckAndDamagePlayer(collision.gameObject);
-    }
-
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (isDead) return;
 
+        // รองรับการโดนดาเมจจาก Player อาวุธ/Hitbox
         if (collision.gameObject.name == "AttackPoint" ||
             collision.CompareTag("PlayerAttack"))
         {
@@ -146,36 +185,6 @@ public class Enemy : MonoBehaviour
                     damageToTake = playerAttack.currentAttackDamage;
 
                 TakeDamage(damageToTake);
-            }
-
-            return;
-        }
-
-        CheckAndDamagePlayer(collision.gameObject);
-    }
-
-    void CheckAndDamagePlayer(GameObject targetObj)
-    {
-        if (isDead) return;
-
-        PlayerHealth playerHealth =
-            targetObj.GetComponent<PlayerHealth>();
-
-        if (playerHealth == null)
-        {
-            playerHealth =
-                targetObj.GetComponentInParent<PlayerHealth>();
-        }
-
-        if (playerHealth != null)
-        {
-            if (Time.time - lastAttackTime >= attackCooldown)
-            {
-                lastAttackTime = Time.time;
-
-                PlayAttackAnimation();
-
-                playerHealth.TakeDamage(enemyDamage);
             }
         }
     }
