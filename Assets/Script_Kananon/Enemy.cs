@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
     public float detectionRange = 6f;
     public float attackRange = 1.2f; // ระยะที่จะหยุดเดินแล้วโจมตี Player
     private Transform playerTransform;
-    private PlayerHealth playerHealth; // ⭐ เพิ่มตัวแปรเก็บสถานะเลือดผู้เล่น
+    private PlayerHealth playerHealth; // ตัวแปรเช็คเลือดผู้เล่น
     private Rigidbody2D rb;
 
     [Header("Attack Player Settings")]
@@ -52,7 +52,7 @@ public class Enemy : MonoBehaviour
         if (playerObj != null)
         {
             playerTransform = playerObj.transform;
-            playerHealth = playerObj.GetComponent<PlayerHealth>(); // ⭐ ดึงคอมโพเนนต์ PlayerHealth
+            playerHealth = playerObj.GetComponent<PlayerHealth>();
         }
         else
         {
@@ -61,14 +61,17 @@ public class Enemy : MonoBehaviour
             if (namedPlayer != null)
             {
                 playerTransform = namedPlayer.transform;
-                playerHealth = namedPlayer.GetComponent<PlayerHealth>(); // ⭐ ดึงคอมโพเนนต์ PlayerHealth
+                playerHealth = namedPlayer.GetComponent<PlayerHealth>();
             }
         }
     }
 
     void Update()
     {
-        // ⭐ ถ้าศัตรูตาย, หา Player ไม่เจอ, หรือตัว Player ตายแล้ว ให้หยุดการทำงานทันที
+        // ⭐ ล็อกตำแหน่งแกน Z ให้เสถียร ไม่ให้เหลื่อมมิติ
+        transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
+
+        // ถ้าศัตรูตาย หรือ Player ตายแล้ว (เลือด <= 0) ให้หยุดเดินทันที
         if (isDead || playerTransform == null || (playerHealth != null && playerHealth.currentHealth <= 0))
         {
             if (rb != null)
@@ -113,9 +116,14 @@ public class Enemy : MonoBehaviour
         if (playerTransform == null || rb == null || isDead)
             return;
 
-        float distanceX = playerTransform.position.x - transform.position.x;
+        if (playerHealth != null && playerHealth.currentHealth <= 0)
+        {
+            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+            SetMoving(false);
+            return;
+        }
 
-        // กำหนดระยะห่างขั้นต่ำที่จะให้ตัวละครทำการพลิกหน้า (Deadzone)
+        float distanceX = playerTransform.position.x - transform.position.x;
         float flipThreshold = 0.2f;
         float direction = 0f;
 
@@ -128,7 +136,6 @@ public class Enemy : MonoBehaviour
         rb.linearVelocity = new Vector2(direction * moveSpeed, rb.linearVelocity.y);
         SetMoving(true);
 
-        // พลิกตัวเฉพาะเมื่อระยะห่างเกินค่า Threshold ที่กำหนด เพื่อกันอาการหัวสั่นเวลาประชิด
         if (Mathf.Abs(distanceX) > flipThreshold)
         {
             if (direction > 0)
@@ -140,7 +147,6 @@ public class Enemy : MonoBehaviour
 
     void TryAttackPlayer()
     {
-        // ⭐ เช็คอีกชั้นว่าผู้เล่นตายไปแล้วหรือยัง ก่อนจะสั่งโจมตี
         if (playerHealth == null || playerHealth.currentHealth <= 0)
             return;
 
@@ -164,18 +170,37 @@ public class Enemy : MonoBehaviour
             animator.SetTrigger("Attack");
     }
 
+    // ⭐ เพิ่มระบบตรวจจับการชนกับ Enemy ตัวอื่น เพื่อผลักออกเบาๆ ไม่ให้ทับซ้อนติดกัน
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (isDead) return;
+
+        // เช็คว่าชนกับ Enemy ตัวอื่นไหม
+        if (collision.gameObject.CompareTag(gameObject.tag) || collision.gameObject.GetComponent<Enemy>() != null)
+        {
+            // คำนวณทิศทางที่ชน แล้วออกแรงผลักออกด้านข้าง (แกน X) เล็กน้อย
+            Vector2 pushDir = transform.position - collision.transform.position;
+            pushDir.y = 0f; // ไม่ผลักขึ้นฟ้า ผลักเฉพาะแนวราบ
+            pushDir.Normalize();
+
+            if (rb != null)
+            {
+                // เพิ่มแรงผลักเบาๆ ออกจากกัน
+                rb.AddForce(pushDir * 2f, ForceMode2D.Impulse);
+            }
+        }
+    }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (isDead) return;
 
-        // เช็คว่าชนโดน PlayerHitbox หรือมีสคริปต์ PlayerHitbox ติดอยู่ไหม
         PlayerHitbox playerAttack = collision.GetComponent<PlayerHitbox>();
         if (playerAttack == null)
         {
             playerAttack = collision.GetComponentInParent<PlayerHitbox>();
         }
 
-        // ถ้าเจอ PlayerHitbox และอยู่ในช่วงเวลาที่รับดาเมจได้
         if (playerAttack != null && playerAttack.attackCollider != null && playerAttack.attackCollider.enabled)
         {
             if (Time.time - lastHitTime >= hitCooldown)
@@ -184,14 +209,11 @@ public class Enemy : MonoBehaviour
 
                 int damageToTake = playerAttack.currentAttackDamage;
 
-                // สั่งลดเลือดศัตรูตามปกติ
                 TakeDamage(damageToTake);
 
-                // ⭐ สั่งบวกแต้มสไตล์เข้า StyleRankManager ทันทีที่ฟันโดน!
                 if (StyleRankManager.Instance != null)
                 {
                     float stylePoints = damageToTake * 25f;
-                    Debug.Log("🎯 ฟันโดน Enemy สำเร็จ! ส่งแต้มสไตล์: " + stylePoints);
                     StyleRankManager.Instance.AddStylePoints(stylePoints);
                 }
             }
@@ -203,9 +225,6 @@ public class Enemy : MonoBehaviour
         if (isDead) return;
 
         currentHealth -= damage;
-
-        Debug.Log("Enemy โดนดาเมจ: " + damage +
-                  " | เลือดคงเหลือ: " + currentHealth);
 
         if (currentHealth <= 0)
         {
@@ -236,16 +255,13 @@ public class Enemy : MonoBehaviour
 
         isDead = true;
 
-        Debug.Log("Enemy ตายแล้ว!");
-
         if (rb != null)
         {
             rb.linearVelocity = Vector2.zero;
             rb.simulated = false;
         }
 
-        Collider2D[] colliders =
-            GetComponents<Collider2D>();
+        Collider2D[] colliders = GetComponents<Collider2D>();
 
         foreach (Collider2D col in colliders)
             col.enabled = false;
