@@ -114,10 +114,10 @@ public class PlayerController : MonoBehaviour
 
         float currentSpeed = isRunning ? runSpeed : walkSpeed;
 
-        rb.linearVelocity = new Vector2(
-            horizontalInput * currentSpeed,
-            rb.linearVelocity.y
-        );
+        // แยกกำหนดความเร็ว X และ Y เพื่อไม่ให้กระทบแรงโน้มถ่วงแนวตั้งเวลาเดินผ่านรอยต่อ
+        Vector2 velocity = rb.linearVelocity;
+        velocity.x = horizontalInput * currentSpeed;
+        rb.linearVelocity = velocity;
     }
 
     void UpdateAnimations()
