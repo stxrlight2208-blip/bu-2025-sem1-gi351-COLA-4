@@ -3,24 +3,29 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     private Animator animator;
+    private PlayerHealth playerHealth;
     private float lastClickedTime = 0f;
-    public float comboResetTimer = 0.8f; // เวลารีเซ็ตคอมโบถ้ารอนานเกินไป
+    public float comboResetTimer = 0.8f;
     private int comboStep = 0;
 
     void Start()
     {
         animator = GetComponent<Animator>();
+        playerHealth = GetComponent<PlayerHealth>();
     }
 
     void Update()
     {
-        // คลิกซ้ายเพื่อออกท่าฟัน
+        if (playerHealth != null && playerHealth.currentHealth <= 0)
+        {
+            return;
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             AttackAction();
         }
 
-        // ถ้ารอนานเกินไป ให้รีเซ็ตกลับไปเริ่มฟันท่าแรกใหม่
         if (Time.time - lastClickedTime > comboResetTimer)
         {
             comboStep = 0;
@@ -34,20 +39,20 @@ public class PlayerAttack : MonoBehaviour
 
         if (comboStep == 1)
         {
-            animator.SetTrigger("Slash");   // เล่นท่า Ver_Slash
+            animator.SetTrigger("Slash");
         }
         else if (comboStep == 2)
         {
-            animator.SetTrigger("Upper");   // เล่นท่า Ver_Upper
+            animator.SetTrigger("Upper");
         }
         else if (comboStep == 3)
         {
-            animator.SetTrigger("Heavy");   // เล่นท่า Ver_Heavy
+            animator.SetTrigger("Heavy");
         }
         else if (comboStep >= 4)
         {
-            animator.SetTrigger("Combo");   // เล่นท่า Ver_Combo ปิดฉาก
-            comboStep = 0;                  // วนกลับมาเริ่มนับ 1 ใหม่
+            animator.SetTrigger("Combo");
+            comboStep = 0;
         }
     }
 }

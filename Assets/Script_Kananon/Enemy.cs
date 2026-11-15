@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     public float detectionRange = 6f;
     public float attackRange = 1.2f; // ระยะที่จะหยุดเดินแล้วโจมตี Player
     private Transform playerTransform;
+    private PlayerHealth playerHealth; // ⭐ เพิ่มตัวแปรเก็บสถานะเลือดผู้เล่น
     private Rigidbody2D rb;
 
     [Header("Attack Player Settings")]
@@ -51,20 +52,30 @@ public class Enemy : MonoBehaviour
         if (playerObj != null)
         {
             playerTransform = playerObj.transform;
+            playerHealth = playerObj.GetComponent<PlayerHealth>(); // ⭐ ดึงคอมโพเนนต์ PlayerHealth
         }
         else
         {
             GameObject namedPlayer = GameObject.Find("Player");
 
             if (namedPlayer != null)
+            {
                 playerTransform = namedPlayer.transform;
+                playerHealth = namedPlayer.GetComponent<PlayerHealth>(); // ⭐ ดึงคอมโพเนนต์ PlayerHealth
+            }
         }
     }
 
     void Update()
     {
-        if (isDead || playerTransform == null)
+        // ⭐ ถ้าศัตรูตาย, หา Player ไม่เจอ, หรือตัว Player ตายแล้ว ให้หยุดการทำงานทันที
+        if (isDead || playerTransform == null || (playerHealth != null && playerHealth.currentHealth <= 0))
+        {
+            if (rb != null)
+                rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+            SetMoving(false);
             return;
+        }
 
         float distanceToPlayer =
             Vector2.Distance(transform.position, playerTransform.position);
@@ -129,20 +140,15 @@ public class Enemy : MonoBehaviour
 
     void TryAttackPlayer()
     {
-        PlayerHealth playerHealth = playerTransform.GetComponent<PlayerHealth>();
-        if (playerHealth == null)
-        {
-            playerHealth = playerTransform.GetComponentInParent<PlayerHealth>();
-        }
+        // ⭐ เช็คอีกชั้นว่าผู้เล่นตายไปแล้วหรือยัง ก่อนจะสั่งโจมตี
+        if (playerHealth == null || playerHealth.currentHealth <= 0)
+            return;
 
-        if (playerHealth != null)
+        if (Time.time - lastAttackTime >= attackCooldown)
         {
-            if (Time.time - lastAttackTime >= attackCooldown)
-            {
-                lastAttackTime = Time.time;
-                PlayAttackAnimation();
-                playerHealth.TakeDamage(enemyDamage);
-            }
+            lastAttackTime = Time.time;
+            PlayAttackAnimation();
+            playerHealth.TakeDamage(enemyDamage);
         }
     }
 
