@@ -2,16 +2,15 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // ประเภทของตัวละคร (เลือกได้ 2 ตัว)
     public enum CharacterType { BlueWarrior, RedWarrior }
     [Header("Character Selection")]
     public CharacterType currentCharacter = CharacterType.BlueWarrior;
 
     [Header("Movement Settings")]
     public float walkSpeed = 4f;
-    public float runSpeed = 6.5f; 
+    public float runSpeed = 6.5f;
     public float jumpForce = 12f;
-    
+
     [Header("Dash Settings")]
     public float dashSpeed = 20f;
     public float dashTime = 0.2f;
@@ -24,9 +23,8 @@ public class PlayerController : MonoBehaviour
     [Header("References")]
     private Rigidbody2D rb;
     private Animator animator;
-    private PlayerHealth playerHealth; // <--- เพิ่มตัวแปรอ้างอิงระบบเลือด/อมตะ
+    private PlayerHealth playerHealth;
 
-    // สถานะการเคลื่อนไหว
     private float horizontalInput;
     private bool isRunning;
     private bool isGrounded;
@@ -37,15 +35,21 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        playerHealth = GetComponent<PlayerHealth>(); // <--- ดึงคอมโพเนนต์ PlayerHealth มาใช้งาน
-        
-        // กำหนดค่าความสามารถตามตัวละคร
+        playerHealth = GetComponent<PlayerHealth>();
+
         ApplyCharacterStats();
     }
 
     void Update()
     {
-        // หากกำลังแดชอยู่ ไม่รับอินพุตปกติ
+        // ถ้ากำลังอยู่ในฉาก Finisher QTE ให้หยุดรับปุ่มเดิน/แดชชั่วคราว
+        if (FinisherManager.isQTEActive)
+        {
+            if (rb != null) rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+            if (animator != null) animator.SetFloat("Speed", 0f);
+            return;
+        }
+
         if (isDashing)
         {
             dashTimer -= Time.deltaTime;
@@ -54,7 +58,6 @@ public class PlayerController : MonoBehaviour
                 isDashing = false;
                 rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
 
-                // สั่งปิดสถานะอมตะเมื่อ Dash จบลง
                 if (playerHealth != null)
                 {
                     playerHealth.isInvincible = false;
@@ -64,25 +67,19 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        // รับค่าการเคลื่อนไหวซ้าย-ขวา (A, D หรือ ลูกศร)
         horizontalInput = Input.GetAxisRaw("Horizontal");
-
-        // เปลี่ยนกลับมาเป็น "กด Shift ค้างไว้" เพื่อวิ่ง
         isRunning = Input.GetKey(KeyCode.LeftShift);
 
-        // เช็คการกระโดด (กด Spacebar)
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             Jump();
         }
 
-        // เช็คการพุ่งตัว (Dash - กดปุ่ม Q)
         if (Input.GetKeyDown(KeyCode.Q) && canDash)
         {
             StartDash();
         }
 
-        // คูลดาวน์แดช
         if (!canDash)
         {
             dashCooldownTimer -= Time.deltaTime;
@@ -92,24 +89,19 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        // พลิกด้าน Sprite ตามทิศทางเดิน
         Flip();
-
-        // อัปเดตอนิเมชัน
         UpdateAnimations();
     }
 
     void FixedUpdate()
     {
-        if (isDashing) return;
+        if (FinisherManager.isQTEActive || isDashing) return;
 
-        // เช็คว่าอยู่บนพื้นหรือไม่
         if (groundCheck != null)
         {
             isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
         }
 
-        // คำนวณความเร็ว (เดินหรือวิ่ง)
         float currentSpeed = isRunning ? runSpeed : walkSpeed;
         rb.linearVelocity = new Vector2(horizontalInput * currentSpeed, rb.linearVelocity.y);
     }
@@ -138,7 +130,11 @@ public class PlayerController : MonoBehaviour
         dashTimer = dashTime;
         dashCooldownTimer = dashCooldown;
 
-        // สั่งเปิดสถานะอมตะทันทีที่เริ่มกด Dash (Q)
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlaySFX(AudioManager.instance.dashClip);
+        }
+
         if (playerHealth != null)
         {
             playerHealth.isInvincible = true;

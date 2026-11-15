@@ -4,42 +4,56 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [Header("Stats")]
-    public int maxHealth = 10;
+    public int maxHealth = 12;
     private int currentHealth;
 
+    [Header("Finisher QTE Settings (ต่อคอมโบดีถึงจะขึ้น)")]
+    public int requiredComboHits = 3;
+    [Range(0.1f, 0.9f)]
+    public float finisherHealthPercent = 0.35f;
+    public float finisherInteractRange = 4.5f;  // ขยายระยะกด E ให้ติดง่ายขึ้น
+    private int currentComboReceived = 0;
+    private float lastComboHitTime = 0f;
+    private bool isFinishable = false;
+    private GameObject finishSignObj;
+
     [Header("Movement & AI (Follow Player)")]
-    public float moveSpeed = 2.5f;       // ความเร็วในการเดินตามผู้เล่น
-    public float detectionRange = 6f;    // ระยะที่ศัตรูเริ่มมองเห็นและเดินตามผู้เล่น
+    public float moveSpeed = 2.5f;
+    public float detectionRange = 6f;
     private Transform playerTransform;
     private Rigidbody2D rb;
 
     [Header("Attack Player Settings")]
-    public int enemyDamage = 1;         
-    public float attackCooldown = 1.0f; 
+    public int enemyDamage = 1;
+    public float attackCooldown = 1.0f;
     private float lastAttackTime;
 
-    [Header("Visual Effects")]
+    [Header("Visual & Hit Feel Effects")]
     private SpriteRenderer spriteRenderer;
     public Color damageColor = Color.red;
     private Color originalColor;
     public float flashDuration = 0.15f;
+    public GameObject hitVfxPrefab;
+    public float knockbackForce = 2f;
+    public float knockbackDuration = 0.08f;
+    public float hitStopDuration = 0.04f;
 
     [Header("Hit Cooldown")]
     private float lastHitTime;
     public float hitCooldown = 0.3f;
+    private bool isKnockedBack = false;
 
     void Start()
     {
         currentHealth = maxHealth;
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
-        
+
         if (spriteRenderer != null)
         {
             originalColor = spriteRenderer.color;
         }
 
-        // ค้นหาตำแหน่งตัว Player อัตโนมัติจาก Tag หรือชื่อ
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
         if (playerObj != null)
         {
@@ -59,17 +73,55 @@ public class Enemy : MonoBehaviour
     {
         if (playerTransform == null) return;
 
-        // คำนวณระยะห่างระหว่าง Enemy กับ Player
+        // 1. หากกำลังมีฉาก QTE เกิดขึ้นในเกม ศัตรูทุกตัวต้องหยุดนิ่งและไม่โจมตีผู้เล่น
+        if (FinisherManager.isQTEActive)
+        {
+            if (rb != null) rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+            return;
+        }
+
+        // 2. หากศัตรูตัวนี้ติดสถานะ FINISH HIM! อยู่
+        if (isFinishable)
+        {
+            if (rb != null) rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+
+            if (finishSignObj != null)
+            {
+                finishSignObj.transform.localScale = new Vector3(transform.localScale.x >= 0 ? 1f : -1f, 1f, 1f);
+            }
+
+            // เช็กระยะแนวราบ (แกน X) เพื่อไม่ให้ติดปัญหาความสูงต่างกัน
+            float distX = Mathf.Abs(transform.position.x - playerTransform.position.x);
+            if (distX <= finisherInteractRange && Input.GetKeyDown(KeyCode.E))
+            {
+                // ถ้าในฉากยังไม่มี FinisherManager ให้สร้างขึ้นมาให้อัตโนมัติทันที!
+                if (FinisherManager.instance == null)
+                {
+                    GameObject fmObj = new GameObject("FinisherManager_Auto");
+                    fmObj.AddComponent<FinisherManager>();
+                }
+
+                if (finishSignObj != null) Destroy(finishSignObj);
+                FinisherManager.instance.StartFinisherQTE(
+                    playerTransform.gameObject,
+                    gameObject,
+                    onSuccess: () => Die(),
+                    onFail: () => RecoverFromStun()
+                );
+            }
+            return;
+        }
+
+        if (isKnockedBack) return;
+
         float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
 
-        // ถ้าผู้เล่นเข้ามาอยู่ในระยะตรวจจับ ให้เดินตาม
         if (distanceToPlayer <= detectionRange)
         {
             MoveTowardsPlayer();
         }
         else
         {
-            // ถ้าอยู่นอกระยะ ให้หยุดนิ่งอยู่กับที่
             if (rb != null)
             {
                 rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
@@ -81,13 +133,9 @@ public class Enemy : MonoBehaviour
     {
         if (playerTransform == null || rb == null) return;
 
-        // เช็คทิศทางว่า Player อยู่ซ้ายหรือขวา
         float direction = playerTransform.position.x > transform.position.x ? 1f : -1f;
-
-        // เคลื่อนที่เข้าหาผู้เล่น (รักษาความเร็วแกน Y ไว้สำหรับแรงโน้มถ่วง)
         rb.linearVelocity = new Vector2(direction * moveSpeed, rb.linearVelocity.y);
 
-        // พลิกหน้า Sprite หันตามทิศทางที่เดิน
         if (direction > 0)
         {
             transform.localScale = new Vector3(1f, 1f, 1f);
@@ -98,15 +146,16 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    // --- ระบบตรวจสอบการชนเพื่อทำดาเมจใส่ Player ---
     private void OnCollisionStay2D(Collision2D collision)
     {
+        if (isFinishable || FinisherManager.isQTEActive) return;
         CheckAndDamagePlayer(collision.gameObject);
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        // เช็คกรณีโดนดาบของผู้เล่นฟัน
+        if (FinisherManager.isQTEActive) return;
+
         if (collision.gameObject.name == "AttackPoint" || collision.CompareTag("PlayerAttack"))
         {
             if (Time.time - lastHitTime >= hitCooldown)
@@ -119,18 +168,16 @@ public class Enemy : MonoBehaviour
                     playerAttack = collision.GetComponentInParent<PlayerHitbox>();
                 }
 
-                int damageToTake = 1;
-                if (playerAttack != null)
-                {
-                    damageToTake = playerAttack.currentAttackDamage;
-                }
-
+                int damageToTake = playerAttack != null ? playerAttack.currentAttackDamage : 1;
                 TakeDamage(damageToTake);
             }
             return;
         }
 
-        CheckAndDamagePlayer(collision.gameObject);
+        if (!isFinishable)
+        {
+            CheckAndDamagePlayer(collision.gameObject);
+        }
     }
 
     void CheckAndDamagePlayer(GameObject targetObj)
@@ -153,31 +200,140 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        currentHealth -= damage;
-        Debug.Log("Dummy โดนดาเมจ: " + damage + " | เลือดคงเหลือ: " + currentHealth);
-
-        if (spriteRenderer != null)
+        if (Time.time - lastComboHitTime <= 1.5f)
         {
-            StopAllCoroutines();
+            currentComboReceived++;
+        }
+        else
+        {
+            currentComboReceived = 1;
+        }
+        lastComboHitTime = Time.time;
+
+        currentHealth -= damage;
+
+        bool isHeavyHit = damage >= 3;
+        DamagePopup.Create(transform.position, damage, isHeavyHit);
+
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlaySFX(AudioManager.instance.hitImpactClip);
+        }
+
+        if (CameraFollow.instance != null)
+        {
+            CameraFollow.instance.Shake(0.1f, 0.15f);
+        }
+
+        if (hitVfxPrefab != null)
+        {
+            GameObject vfx = Instantiate(hitVfxPrefab, transform.position, Quaternion.identity);
+            Destroy(vfx, 0.5f);
+        }
+
+        if (!isFinishable && currentHealth > 0 && currentHealth <= maxHealth * finisherHealthPercent && currentComboReceived >= requiredComboHits)
+        {
+            EnterFinishableState();
+            return;
+        }
+
+        if (rb != null && playerTransform != null && !isFinishable)
+        {
+            StopCoroutine(nameof(ApplyKnockback));
+            StartCoroutine(ApplyKnockback());
+        }
+
+        if (spriteRenderer != null && !isFinishable)
+        {
             StartCoroutine(FlashRed());
         }
 
         if (currentHealth <= 0)
         {
+            Time.timeScale = 1f;
             Die();
         }
+        else
+        {
+            StartCoroutine(DoHitStop());
+        }
+    }
+
+    void EnterFinishableState()
+    {
+        isFinishable = true;
+        if (rb != null) rb.linearVelocity = Vector2.zero;
+        if (spriteRenderer != null) spriteRenderer.color = new Color(1f, 0.3f, 0.9f, 1f);
+
+        finishSignObj = new GameObject("FinishHimPrompt");
+        finishSignObj.transform.SetParent(transform);
+        finishSignObj.transform.localPosition = new Vector3(0f, 1.3f, 0f);
+
+        TextMesh tm = finishSignObj.AddComponent<TextMesh>();
+        tm.text = "[E] FINISH HIM!";
+        tm.fontSize = 55;
+        tm.characterSize = 0.08f;
+        tm.fontStyle = FontStyle.Bold;
+        tm.anchor = TextAnchor.MiddleCenter;
+        tm.alignment = TextAlignment.Center;
+        tm.color = new Color(1f, 0.85f, 0.1f, 1f);
+
+        MeshRenderer mr = finishSignObj.GetComponent<MeshRenderer>();
+        if (mr != null) mr.sortingOrder = 110;
+
+        StartCoroutine(StunTimeout());
+    }
+
+    IEnumerator StunTimeout()
+    {
+        yield return new WaitForSeconds(4.0f);
+        if (isFinishable && !FinisherManager.isQTEActive)
+        {
+            RecoverFromStun();
+        }
+    }
+
+    void RecoverFromStun()
+    {
+        isFinishable = false;
+        currentComboReceived = 0;
+        if (finishSignObj != null) Destroy(finishSignObj);
+        if (spriteRenderer != null) spriteRenderer.color = originalColor;
+    }
+
+    IEnumerator ApplyKnockback()
+    {
+        isKnockedBack = true;
+        float knockbackDir = transform.position.x > playerTransform.position.x ? 1f : -1f;
+        rb.linearVelocity = new Vector2(knockbackDir * knockbackForce, 0f);
+
+        yield return new WaitForSeconds(knockbackDuration);
+
+        rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+        isKnockedBack = false;
+    }
+
+    IEnumerator DoHitStop()
+    {
+        Time.timeScale = 0.05f;
+        yield return new WaitForSecondsRealtime(hitStopDuration);
+        Time.timeScale = 1f;
     }
 
     IEnumerator FlashRed()
     {
         spriteRenderer.color = damageColor;
         yield return new WaitForSeconds(flashDuration);
-        spriteRenderer.color = originalColor;
+        if (!isFinishable) spriteRenderer.color = originalColor;
     }
 
     void Die()
     {
-        Debug.Log("Dummy ตายแล้ว!");
+        if (finishSignObj != null) Destroy(finishSignObj);
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlaySFX(AudioManager.instance.enemyDieClip);
+        }
         Destroy(gameObject);
     }
 }
