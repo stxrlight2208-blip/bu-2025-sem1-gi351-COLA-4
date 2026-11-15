@@ -162,29 +162,32 @@ public class Enemy : MonoBehaviour
     {
         if (isDead) return;
 
-        // รองรับการโดนดาเมจจาก Player อาวุธ/Hitbox
-        if (collision.gameObject.name == "AttackPoint" ||
-            collision.CompareTag("PlayerAttack"))
+        // เช็คว่าชนโดน PlayerHitbox หรือมีสคริปต์ PlayerHitbox ติดอยู่ไหม
+        PlayerHitbox playerAttack = collision.GetComponent<PlayerHitbox>();
+        if (playerAttack == null)
+        {
+            playerAttack = collision.GetComponentInParent<PlayerHitbox>();
+        }
+
+        // ถ้าเจอ PlayerHitbox และอยู่ในช่วงเวลาที่รับดาเมจได้
+        if (playerAttack != null && playerAttack.attackCollider != null && playerAttack.attackCollider.enabled)
         {
             if (Time.time - lastHitTime >= hitCooldown)
             {
                 lastHitTime = Time.time;
 
-                PlayerHitbox playerAttack =
-                    collision.GetComponent<PlayerHitbox>();
+                int damageToTake = playerAttack.currentAttackDamage;
 
-                if (playerAttack == null)
-                {
-                    playerAttack =
-                        collision.GetComponentInParent<PlayerHitbox>();
-                }
-
-                int damageToTake = 1;
-
-                if (playerAttack != null)
-                    damageToTake = playerAttack.currentAttackDamage;
-
+                // สั่งลดเลือดศัตรูตามปกติ
                 TakeDamage(damageToTake);
+
+                // ⭐ สั่งบวกแต้มสไตล์เข้า StyleRankManager ทันทีที่ฟันโดน!
+                if (StyleRankManager.Instance != null)
+                {
+                    float stylePoints = damageToTake * 25f;
+                    Debug.Log("🎯 ฟันโดน Enemy สำเร็จ! ส่งแต้มสไตล์: " + stylePoints);
+                    StyleRankManager.Instance.AddStylePoints(stylePoints);
+                }
             }
         }
     }

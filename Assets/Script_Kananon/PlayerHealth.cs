@@ -38,6 +38,12 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= damage;
         Debug.Log("<color=red>Player โดนโจมตี! เลือดเหลือ: " + currentHealth + "</color>");
 
+        // แจ้งเตือนระบบ Style Rank ว่าผู้เล่นโดนตี เพื่อลดแรงก์ลง (สไตล์ DMC เสียเชิง)
+        if (StyleRankManager.Instance != null)
+        {
+            StyleRankManager.Instance.OnPlayerHit();
+        }
+
         if (spriteRenderer != null)
         {
             StopAllCoroutines();
