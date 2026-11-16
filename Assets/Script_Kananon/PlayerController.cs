@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -19,7 +18,7 @@ public class PlayerController : MonoBehaviour
     public float dashCooldown = 1f;
 
     private bool canDash = true;
-    private bool isDashing = false;
+    public bool isDashing = false; // เปลี่ยนเป็น public ให้ PlayerHealth เช็กได้ง่ายขึ้น
     private float dashTimer;
     private float dashCooldownTimer;
 
@@ -35,7 +34,6 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck;
     public LayerMask groundLayer;
 
-    // เก็บขนาดเดิมของ Player
     private Vector3 originalScale;
 
     void Start()
@@ -58,8 +56,7 @@ public class PlayerController : MonoBehaviour
             if (dashTimer <= 0f)
             {
                 isDashing = false;
-                rb.linearVelocity =
-                    new Vector2(0f, rb.linearVelocity.y);
+                rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
 
                 if (playerHealth != null)
                 {
@@ -114,7 +111,6 @@ public class PlayerController : MonoBehaviour
 
         float currentSpeed = isRunning ? runSpeed : walkSpeed;
 
-        // แยกกำหนดความเร็ว X และ Y เพื่อไม่ให้กระทบแรงโน้มถ่วงแนวตั้งเวลาเดินผ่านรอยต่อ
         Vector2 velocity = rb.linearVelocity;
         velocity.x = horizontalInput * currentSpeed;
         rb.linearVelocity = velocity;
@@ -124,8 +120,7 @@ public class PlayerController : MonoBehaviour
     {
         if (animator == null) return;
 
-        float moveSpeed =
-            Mathf.Abs(horizontalInput) * (isRunning ? 1.5f : 1f);
+        float moveSpeed = Mathf.Abs(horizontalInput) * (isRunning ? 1.5f : 1f);
 
         animator.SetFloat("Speed", moveSpeed);
         animator.SetBool("IsGrounded", isGrounded);
@@ -135,8 +130,7 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
-        rb.linearVelocity =
-            new Vector2(rb.linearVelocity.x, jumpForce);
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
     }
 
     void StartDash()
@@ -149,7 +143,7 @@ public class PlayerController : MonoBehaviour
 
         if (playerHealth != null)
         {
-            playerHealth.isInvincible = true;
+            playerHealth.isInvincible = true; // เปิดอมตะตลอดช่วงที่พุ่งหลบ
         }
 
         float dir = transform.localScale.x > 0 ? 1f : -1f;
@@ -185,7 +179,7 @@ public class PlayerController : MonoBehaviour
             runSpeed = 6.5f;
         }
         else
-        {
+            {
             dashSpeed = 16f;
             runSpeed = 5.5f;
         }

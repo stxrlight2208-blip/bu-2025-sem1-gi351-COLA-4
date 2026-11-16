@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 8218336660600055680}
   - component: {fileID: 3033987459866711323}
   - component: {fileID: 531744865908382376}
-  - component: {fileID: 2224949283441665503}
   - component: {fileID: 5528941080332858299}
+  - component: {fileID: 2224949283441665503}
   m_Layer: 7
   m_Name: Dummy_Normal
   m_TagString: Enemy
@@ -169,28 +169,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &2224949283441665503
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8767942882628471365}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 754f345e0894548439d30a2f2c8d46e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  maxHealth: 10
-  moveSpeed: 2.5
-  detectionRange: 10
-  attackRange: 1.2
-  enemyDamage: 1
-  attackCooldown: 1
-  damageColor: {r: 1, g: 0, b: 0, a: 1}
-  flashDuration: 0.15
-  hitCooldown: 0.2
-  deathAnimationDuration: 1
 --- !u!95 &5528941080332858299
 Animator:
   serializedVersion: 7
@@ -213,3 +191,26 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2224949283441665503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8767942882628471365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 754f345e0894548439d30a2f2c8d46e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  maxHealth: 10
+  moveSpeed: 2.5
+  detectionRange: 10
+  attackRange: 1.2
+  enemyDamage: 1
+  attackCooldown: 1
+  attackCollider: {fileID: 0}
+  damageColor: {r: 1, g: 0, b: 0, a: 1}
+  flashDuration: 0.15
+  hitCooldown: 0.2
+  deathAnimationDuration: 1

@@ -129,7 +129,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 130
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -256,15 +256,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 4159d9fb-9536-472f-a21d-708f3b6db7a1_5
+      name: Overdrive3
       rect:
         serializedVersion: 2
-        x: 901
-        y: 1198
-        width: 11
-        height: 14
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 814
+        y: 648
+        width: 425
+        height: 237
+      alignment: 9
+      pivot: {x: 0.5000003, y: 0.7387672}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -278,111 +278,243 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 4159d9fb-9536-472f-a21d-708f3b6db7a1_18
+      name: Slash
       rect:
         serializedVersion: 2
-        x: 30
-        y: 306
-        width: 16
-        height: 19
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 33
+        y: 951
+        width: 278
+        height: 258
+      alignment: 9
+      pivot: {x: 0.5162843, y: 0.7631992}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: eabedb655f136f5a0800000000000000
-      internalID: -6487943283388585042
+      spriteID: 91fa38feab98687468af2e354366a945
+      internalID: 1070644549
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 4159d9fb-9536-472f-a21d-708f3b6db7a1_19
+      name: Slash2
       rect:
         serializedVersion: 2
-        x: 43
-        y: 313
-        width: 7
-        height: 10
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 390
+        y: 951
+        width: 322
+        height: 249
+      alignment: 9
+      pivot: {x: 0.52811843, y: 0.76362234}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 849f7e04391fc9ad0800000000000000
-      internalID: -2694012862322968248
+      spriteID: 3f3d2e6a2e9f33940a21ab15a6efb4b8
+      internalID: -874519369
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 4159d9fb-9536-472f-a21d-708f3b6db7a1_20
+      name: Slash3
       rect:
         serializedVersion: 2
-        x: 281
-        y: 332
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 796
+        y: 946
+        width: 445
+        height: 261
+      alignment: 9
+      pivot: {x: 0.4949139, y: 0.72548443}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 58fcac297360b8aa0800000000000000
-      internalID: -6157821229743288443
+      spriteID: 0acaf801ee712fa4aab03883af509cc8
+      internalID: -1706853418
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 4159d9fb-9536-472f-a21d-708f3b6db7a1_21
+      name: Overdrive
       rect:
         serializedVersion: 2
-        x: 289
-        y: 346
-        width: 6
-        height: 7
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 8
+        y: 634
+        width: 285
+        height: 242
+      alignment: 9
+      pivot: {x: 0.49205792, y: 0.7806008}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: aa483bca75b8cc2d0800000000000000
-      internalID: -3257075221819849558
+      spriteID: 8dba32732890e5341b4941ee462a82b1
+      internalID: 2037472835
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 4159d9fb-9536-472f-a21d-708f3b6db7a1_25
+      name: Overdrive2
       rect:
         serializedVersion: 2
-        x: 346
-        y: 282
-        width: 9
-        height: 15
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 438
+        y: 641
+        width: 370
+        height: 248
+      alignment: 9
+      pivot: {x: 0.4877651, y: 0.7646851}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4526476df4ebe3420800000000000000
-      internalID: 2611734084031111764
+      spriteID: aa39ecf0817d0904181fdb9a9ddb922b
+      internalID: -449556210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cut
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 362
+        width: 295
+        height: 226
+      alignment: 9
+      pivot: {x: 0.50000006, y: 0.7804352}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10399164506d5f8458a7cedc483be9dd
+      internalID: -1609146227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cut2
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 360
+        width: 415
+        height: 215
+      alignment: 9
+      pivot: {x: 0.48909175, y: 0.8053109}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 293891a477dffe245aa750e4e1ddcf78
+      internalID: -93278798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cut3
+      rect:
+        serializedVersion: 2
+        x: 805
+        y: 354
+        width: 435
+        height: 203
+      alignment: 9
+      pivot: {x: 0.50520384, y: 0.7341564}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 167cfbda61f9d6c4fb30fe6e94c408a9
+      internalID: -1073060023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rush
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 52
+        width: 319
+        height: 244
+      alignment: 9
+      pivot: {x: 0.49077666, y: 0.7833721}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09383279865021b48b8a2cf0ab794743
+      internalID: -229641638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rush2
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 40
+        width: 364
+        height: 229
+      alignment: 9
+      pivot: {x: 0.5, y: 0.756965}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7652b3962fb52634f80c02c4bcd1ff2f
+      internalID: -1125765703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rush3
+      rect:
+        serializedVersion: 2
+        x: 783
+        y: 46
+        width: 460
+        height: 237
+      alignment: 9
+      pivot: {x: 0.44883052, y: 0.72966903}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08aacf743087679499f512f26f2ec9d5
+      internalID: -278398896
       vertices: []
       indices: 
       edges: []
@@ -401,10 +533,6 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      4159d9fb-9536-472f-a21d-708f3b6db7a1_0: 1690582039081889420
-      4159d9fb-9536-472f-a21d-708f3b6db7a1_1: 6224193973395592184
-      4159d9fb-9536-472f-a21d-708f3b6db7a1_10: 6407007052828675843
-      4159d9fb-9536-472f-a21d-708f3b6db7a1_11: 1567932062790518977
       4159d9fb-9536-472f-a21d-708f3b6db7a1_12: -2991560645878676429
       4159d9fb-9536-472f-a21d-708f3b6db7a1_13: 1280233475182279715
       4159d9fb-9536-472f-a21d-708f3b6db7a1_14: 5801690362715235003
@@ -413,7 +541,6 @@ TextureImporter:
       4159d9fb-9536-472f-a21d-708f3b6db7a1_17: -5729686829707448759
       4159d9fb-9536-472f-a21d-708f3b6db7a1_18: -6487943283388585042
       4159d9fb-9536-472f-a21d-708f3b6db7a1_19: -2694012862322968248
-      4159d9fb-9536-472f-a21d-708f3b6db7a1_2: -8799662152387514377
       4159d9fb-9536-472f-a21d-708f3b6db7a1_20: -6157821229743288443
       4159d9fb-9536-472f-a21d-708f3b6db7a1_21: -3257075221819849558
       4159d9fb-9536-472f-a21d-708f3b6db7a1_22: -6554037054717096405
@@ -421,13 +548,18 @@ TextureImporter:
       4159d9fb-9536-472f-a21d-708f3b6db7a1_24: -5587213580569474135
       4159d9fb-9536-472f-a21d-708f3b6db7a1_25: 2611734084031111764
       4159d9fb-9536-472f-a21d-708f3b6db7a1_26: -8335485733417243490
-      4159d9fb-9536-472f-a21d-708f3b6db7a1_3: 1913841277758631493
-      4159d9fb-9536-472f-a21d-708f3b6db7a1_4: -5789817583943393601
-      4159d9fb-9536-472f-a21d-708f3b6db7a1_5: 4654884887342839620
-      4159d9fb-9536-472f-a21d-708f3b6db7a1_6: -8724391291079430187
-      4159d9fb-9536-472f-a21d-708f3b6db7a1_7: -7185562034101771256
-      4159d9fb-9536-472f-a21d-708f3b6db7a1_8: 8120038379633427887
-      4159d9fb-9536-472f-a21d-708f3b6db7a1_9: -1671146289890368363
+      Cut: -8724391291079430187
+      Cut2: -7185562034101771256
+      Cut3: 8120038379633427887
+      Overdrive: 1913841277758631493
+      Overdrive2: -5789817583943393601
+      Overdrive3: 4654884887342839620
+      Rush: -1671146289890368363
+      Rush2: 6407007052828675843
+      Rush3: 1567932062790518977
+      Slash: 1690582039081889420
+      Slash2: 6224193973395592184
+      Slash3: -8799662152387514377
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

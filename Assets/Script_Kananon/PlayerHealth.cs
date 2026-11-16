@@ -8,23 +8,27 @@ public class PlayerHealth : MonoBehaviour
     public int currentHealth;
     private bool isDead = false;
 
-    [Header("Invincibility (Dash / Hit Feedback)")]
+    [Header("Invincibility & Dodge")]
     public bool isInvincible = false; 
-    public float iFrameDuration = 0.5f; 
+    public bool isHitInvincible = false; 
+    public float iFrameDuration = 0.8f; 
 
     [Header("Visual Feedback")]
     private SpriteRenderer spriteRenderer;
     public Color damageColor = Color.red;
+    public Color dodgeColor = new Color(0.3f, 0.9f, 1f, 1f); // ⭐ สีฟ้าสว่างสดใสสำหรับ Perfect Dodge
     private Color originalColor;
 
     [Header("Animation")]
     private Animator animator;
+    private PlayerController playerController;
 
     void Start()
     {
         currentHealth = maxHealth;
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        playerController = GetComponent<PlayerController>();
 
         if (spriteRenderer != null)
         {
@@ -34,15 +38,32 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if (isDead || isInvincible)
+        if (isDead || isHitInvincible)
         {
-            if (isInvincible)
-            {
-                Debug.Log("<color=cyan>★ DODGE / INVINCIBLE! หลบการโจมตีได้!</color>");
-            }
             return;
         }
 
+        bool isDashingNow = (playerController != null && playerController.isDashing);
+
+        if (isInvincible || isDashingNow)
+        {
+            Debug.Log("<color=cyan>★ Perfect Dodge! หลบการโจมตีได้อย่างสมบูรณ์แบบ!</color>");
+            
+            // ⭐ สั่งให้ตัวละคร/สไปรต์กระพริบเป็นสีฟ้าทันทีที่เกิด Perfect Dodge
+            if (spriteRenderer != null)
+            {
+                StopAllCoroutines();
+                StartCoroutine(FlashPerfectDodgeVisual());
+            }
+
+            if (StyleRankManager.Instance != null)
+            {
+                StyleRankManager.Instance.AddStylePoints(50f); 
+            }
+            return; 
+        }
+
+        // กรณีโดนตีปกติ -> เลือดลดและกระพริบแดง
         currentHealth -= damage;
         
         if (currentHealth < 0)
@@ -73,6 +94,23 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    // ⭐ โครูทีนกะพริบสีฟ้าแบบรัวๆ หรือกะพริบเน้นๆ ตอนติด Perfect Dodge
+    IEnumerator FlashPerfectDodgeVisual()
+    {
+        if (spriteRenderer != null)
+        {
+            // กระพริบสลับสีฟ้ากับสีเดิม 2 รอบเพื่อให้เห็นชัดเจน
+            for (int i = 0; i < 2; i++)
+            {
+                spriteRenderer.color = dodgeColor;
+                yield return new WaitForSeconds(0.08f);
+                spriteRenderer.color = originalColor;
+                yield return new WaitForSeconds(0.08f);
+            }
+            spriteRenderer.color = originalColor;
+        }
+    }
+
     IEnumerator FlashDamage()
     {
         spriteRenderer.color = damageColor;
@@ -82,11 +120,30 @@ public class PlayerHealth : MonoBehaviour
 
     IEnumerator TemporaryInvincibility(float duration)
     {
-        isInvincible = true;
-        yield return new WaitForSeconds(duration);
+        isHitInvincible = true; 
+
+        float elapsed = 0f;
+        float flashInterval = 0.1f; 
+
+        while (elapsed < duration)
+        {
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.color = (spriteRenderer.color == originalColor) ? damageColor : originalColor;
+            }
+
+            yield return new WaitForSeconds(flashInterval);
+            elapsed += flashInterval;
+        }
+
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.color = originalColor;
+        }
+
         if (!isDead)
         {
-            isInvincible = false;
+            isHitInvincible = false; 
         }
     }
 
@@ -97,20 +154,17 @@ public class PlayerHealth : MonoBehaviour
 
         Debug.Log("Player ตายแล้ว!");
 
-        // 1. สั่งเล่นอนิเมชันตาย
         if (animator != null)
         {
             animator.SetTrigger("Death");
         }
 
-        // 2. ปิดการควบคุม
         PlayerController controller = GetComponent<PlayerController>();
         if (controller != null)
         {
             controller.enabled = false;
         }
 
-        // 3. ปิด Hitbox และสคริปต์โจมตี
         PlayerHitbox hitbox = GetComponentInChildren<PlayerHitbox>();
         if (hitbox != null)
         {
@@ -124,15 +178,10 @@ public class PlayerHealth : MonoBehaviour
             attackScript.enabled = false;
         }
 
-        // 4. ให้ Rigidbody ยังจำลองฟิสิกส์อยู่ (เพื่อให้แรงโน้มถ่วงดึงลงพื้น) แต่หยุดความเร็วพุ่ง
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         if (rb != null)
         {
             rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
-            // ไม่ปิด rb.simulated เพื่อให้ตกลงพื้นได้
         }
-
-        // ⚠️ หมายเหตุ: เราเอาคำสั่งปิด Collider ออกแล้ว เพื่อให้ตัวละครตกลงมาชนพื้นจริง ๆ 
-        // (ถ้า Collider ถูกปิด ตัวละครจะค้างกลางอากาศตามที่เห็นครับ)
     }
 }

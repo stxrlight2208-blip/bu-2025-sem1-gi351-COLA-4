@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public class ParallaxBackground : MonoBehaviour
@@ -12,12 +11,36 @@ public class ParallaxBackground : MonoBehaviour
     void Start()
     {
         startPosition = transform.position;
-        playerStartX = player.position.x;
+
+        // ถ้าไม่ได้ลากตัวละครใส่ช่อง Inspector ไว้ ให้ระบบช่วยค้นหาจาก Tag "Player" อัตโนมัติ
+        if (player == null)
+        {
+            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+            if (playerObj != null)
+            {
+                player = playerObj.transform;
+            }
+        }
+
+        if (player != null)
+        {
+            playerStartX = player.position.x;
+        }
     }
 
     void LateUpdate()
     {
-        if (player == null) return;
+        // ถ้ายังหาตัวละครไม่พบ ให้ลองหาใหม่อีกครั้ง (เผื่อตัวละครเกิดทีหลังตอนกดเริ่มเกม)
+        if (player == null)
+        {
+            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+            if (playerObj != null)
+            {
+                player = playerObj.transform;
+                playerStartX = player.position.x;
+            }
+            return;
+        }
 
         float distance = player.position.x - playerStartX;
 

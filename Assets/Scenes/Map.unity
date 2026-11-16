@@ -263,7 +263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fba80d3c70c13124da531a5881ae6b7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ParallaxBackground
-  player: {fileID: 47220624}
+  player: {fileID: 0}
   parallaxEffect: 1
 --- !u!212 &9804392
 SpriteRenderer:
@@ -370,7 +370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fba80d3c70c13124da531a5881ae6b7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ParallaxBackground
-  player: {fileID: 47220624}
+  player: {fileID: 0}
   parallaxEffect: 1
 --- !u!212 &33532975
 SpriteRenderer:
@@ -615,13 +615,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fba80d3c70c13124da531a5881ae6b7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ParallaxBackground
-  player: {fileID: 47220624}
+  player: {fileID: 0}
   parallaxEffect: 1
---- !u!4 &47220624 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5094626570930037902, guid: e581c3164b1a25c4a92366c83d8655b2, type: 3}
-  m_PrefabInstance: {fileID: 1363802966}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &63402231
 GameObject:
   m_ObjectHideFlags: 0
@@ -667,7 +662,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fba80d3c70c13124da531a5881ae6b7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ParallaxBackground
-  player: {fileID: 47220624}
+  player: {fileID: 0}
   parallaxEffect: 1
 --- !u!212 &63402234
 SpriteRenderer:
@@ -1547,7 +1542,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fba80d3c70c13124da531a5881ae6b7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ParallaxBackground
-  player: {fileID: 47220624}
+  player: {fileID: 0}
   parallaxEffect: 1
 --- !u!212 &252908600
 SpriteRenderer:
@@ -1934,7 +1929,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fba80d3c70c13124da531a5881ae6b7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ParallaxBackground
-  player: {fileID: 47220624}
+  player: {fileID: 0}
   parallaxEffect: 1
 --- !u!1 &321016867
 GameObject:
@@ -2446,7 +2441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fba80d3c70c13124da531a5881ae6b7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ParallaxBackground
-  player: {fileID: 47220624}
+  player: {fileID: 0}
   parallaxEffect: 1
 --- !u!212 &389055745
 SpriteRenderer:
@@ -3578,7 +3573,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fba80d3c70c13124da531a5881ae6b7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ParallaxBackground
-  player: {fileID: 47220624}
+  player: {fileID: 0}
   parallaxEffect: 1
 --- !u!212 &754554845
 SpriteRenderer:
@@ -3936,7 +3931,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fba80d3c70c13124da531a5881ae6b7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ParallaxBackground
-  player: {fileID: 47220624}
+  player: {fileID: 0}
   parallaxEffect: 0.8
 --- !u!1 &788464676
 GameObject:
@@ -4075,7 +4070,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fba80d3c70c13124da531a5881ae6b7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ParallaxBackground
-  player: {fileID: 47220624}
+  player: {fileID: 0}
   parallaxEffect: 1
 --- !u!212 &793255466
 SpriteRenderer:
@@ -4343,7 +4338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fba80d3c70c13124da531a5881ae6b7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ParallaxBackground
-  player: {fileID: 47220624}
+  player: {fileID: 0}
   parallaxEffect: 0.8
 --- !u!212 &819789985
 SpriteRenderer:
@@ -4608,7 +4603,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69fa4ad2a09c50345af22cf19f9aa8bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraFollow
-  target: {fileID: 47220624}
+  target: {fileID: 0}
   smoothSpeed: 5
   offset: {x: 2, y: 3.7, z: -10}
 --- !u!114 &855043784
@@ -4781,6 +4776,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1089583459}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &981278833
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 981278834}
+  - component: {fileID: 981278835}
+  m_Layer: 0
+  m_Name: PlayerSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &981278834
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 981278833}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.82, y: -3.99, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &981278835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 981278833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8999bc00336bdb345b6aaf0bc6a020a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerSpawner
 --- !u!1 &999648007
 GameObject:
   m_ObjectHideFlags: 0
@@ -4886,7 +4925,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fba80d3c70c13124da531a5881ae6b7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ParallaxBackground
-  player: {fileID: 47220624}
+  player: {fileID: 0}
   parallaxEffect: 0.9
 --- !u!1 &1000195566
 GameObject:
@@ -6092,91 +6131,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1089583459}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1363802966
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2641682970785531562, guid: e581c3164b1a25c4a92366c83d8655b2, type: 3}
-      propertyPath: m_Size.y
-      value: 1.8732934
-      objectReference: {fileID: 0}
-    - target: {fileID: 2641682970785531562, guid: e581c3164b1a25c4a92366c83d8655b2, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.009452105
-      objectReference: {fileID: 0}
-    - target: {fileID: 5094626570930037902, guid: e581c3164b1a25c4a92366c83d8655b2, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -8.19
-      objectReference: {fileID: 0}
-    - target: {fileID: 5094626570930037902, guid: e581c3164b1a25c4a92366c83d8655b2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -3.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5094626570930037902, guid: e581c3164b1a25c4a92366c83d8655b2, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5094626570930037902, guid: e581c3164b1a25c4a92366c83d8655b2, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5094626570930037902, guid: e581c3164b1a25c4a92366c83d8655b2, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5094626570930037902, guid: e581c3164b1a25c4a92366c83d8655b2, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5094626570930037902, guid: e581c3164b1a25c4a92366c83d8655b2, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5094626570930037902, guid: e581c3164b1a25c4a92366c83d8655b2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5094626570930037902, guid: e581c3164b1a25c4a92366c83d8655b2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5094626570930037902, guid: e581c3164b1a25c4a92366c83d8655b2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5492743851245986682, guid: e581c3164b1a25c4a92366c83d8655b2, type: 3}
-      propertyPath: m_SortingLayer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 5492743851245986682, guid: e581c3164b1a25c4a92366c83d8655b2, type: 3}
-      propertyPath: m_SortingOrder
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5492743851245986682, guid: e581c3164b1a25c4a92366c83d8655b2, type: 3}
-      propertyPath: m_SortingLayerID
-      value: -580189903
-      objectReference: {fileID: 0}
-    - target: {fileID: 8183683538225538255, guid: e581c3164b1a25c4a92366c83d8655b2, type: 3}
-      propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 8336097665143584737, guid: e581c3164b1a25c4a92366c83d8655b2, type: 3}
-      propertyPath: maxHealth
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 8336097665143584737, guid: e581c3164b1a25c4a92366c83d8655b2, type: 3}
-      propertyPath: currentHealth
-      value: 100
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: e581c3164b1a25c4a92366c83d8655b2, type: 3}
 --- !u!1 &1375871061
 GameObject:
   m_ObjectHideFlags: 0
@@ -6514,6 +6468,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: df42db1b6322c3946844e1d16a067dd2, type: 2}
+    - target: {fileID: 3033987459866711323, guid: 8322a87c4bda336428c5dd4467865497, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8218336660600055680, guid: 8322a87c4bda336428c5dd4467865497, type: 3}
       propertyPath: m_SortingLayer
       value: 11
@@ -6870,7 +6828,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fba80d3c70c13124da531a5881ae6b7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ParallaxBackground
-  player: {fileID: 47220624}
+  player: {fileID: 0}
   parallaxEffect: 1
 --- !u!1001 &1644797142
 PrefabInstance:
@@ -6932,6 +6890,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: df42db1b6322c3946844e1d16a067dd2, type: 2}
+    - target: {fileID: 3033987459866711323, guid: 8322a87c4bda336428c5dd4467865497, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8218336660600055680, guid: 8322a87c4bda336428c5dd4467865497, type: 3}
       propertyPath: m_SortingLayer
       value: 11
@@ -7135,6 +7097,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: df42db1b6322c3946844e1d16a067dd2, type: 2}
+    - target: {fileID: 3033987459866711323, guid: 8322a87c4bda336428c5dd4467865497, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8218336660600055680, guid: 8322a87c4bda336428c5dd4467865497, type: 3}
       propertyPath: m_SortingLayer
       value: 11
@@ -7676,7 +7642,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fba80d3c70c13124da531a5881ae6b7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ParallaxBackground
-  player: {fileID: 47220624}
+  player: {fileID: 0}
   parallaxEffect: 1
 --- !u!212 &1877981415
 SpriteRenderer:
@@ -7967,7 +7933,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fba80d3c70c13124da531a5881ae6b7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ParallaxBackground
-  player: {fileID: 47220624}
+  player: {fileID: 0}
   parallaxEffect: 1
 --- !u!212 &1949520017
 SpriteRenderer:
@@ -8855,7 +8821,6 @@ SceneRoots:
   - {fileID: 855043782}
   - {fileID: 1089583459}
   - {fileID: 541851506}
-  - {fileID: 1363802966}
   - {fileID: 1053003062}
   - {fileID: 5981888}
   - {fileID: 761182696}
@@ -8869,3 +8834,4 @@ SceneRoots:
   - {fileID: 1678028553}
   - {fileID: 2124482608}
   - {fileID: 810903142}
+  - {fileID: 981278834}
