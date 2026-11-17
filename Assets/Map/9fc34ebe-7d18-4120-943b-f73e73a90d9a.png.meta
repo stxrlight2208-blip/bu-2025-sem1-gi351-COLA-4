@@ -520,9 +520,9 @@ TextureImporter:
       name: 9fc34ebe-7d18-4120-943b-f73e73a90d9a_12
       rect:
         serializedVersion: 2
-        x: 12
+        x: 22
         y: 361
-        width: 376
+        width: 356
         height: 44
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -767,7 +767,7 @@ TextureImporter:
         width: 134
         height: 121
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
