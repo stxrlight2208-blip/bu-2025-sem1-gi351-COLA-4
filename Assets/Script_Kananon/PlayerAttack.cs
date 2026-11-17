@@ -5,6 +5,7 @@ public class PlayerAttack : MonoBehaviour
 {
     private Animator animator;
     private SpriteRenderer spriteRenderer;
+    private PlayerHealth playerHealth;
     private Color originalColor;
 
     [Header("Combo Settings")]
@@ -39,6 +40,8 @@ public class PlayerAttack : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        playerHealth = GetComponent<PlayerHealth>();
+
         if (spriteRenderer != null)
         {
             originalColor = spriteRenderer.color;
@@ -47,6 +50,19 @@ public class PlayerAttack : MonoBehaviour
 
     void Update()
     {
+        // ห้ามโจมตีหรือชาร์จพลังหากผู้เล่นตายแล้ว หรือกำลังอยู่ในคัตซีน QTE
+        if ((playerHealth != null && playerHealth.currentHealth <= 0) || FinisherManager.isQTEActive)
+        {
+            if (isCharging)
+            {
+                if (CameraFollow.instance != null) CameraFollow.instance.ResetZoom();
+                if (spriteRenderer != null) spriteRenderer.color = originalColor;
+                isCharging = false;
+                isChargeReady = false;
+            }
+            return;
+        }
+
         // 1. เริ่มกดคลิกซ้ายลง
         if (Input.GetMouseButtonDown(0))
         {
@@ -148,7 +164,7 @@ public class PlayerAttack : MonoBehaviour
             CameraFollow.instance.Shake(0.28f, 0.35f);
         }
 
-        // สร้างวงคลื่นระเบิดให้เห็นภาพชัดเจน (ทำงานอัตโนมัติแม้ยังไม่ได้ใส่ Prefab)
+        // สร้างวงคลื่นระเบิดให้เห็นภาพชัดเจน
         StartCoroutine(SpawnShockwaveRing());
 
         if (explosionVfxPrefab != null)
@@ -163,7 +179,6 @@ public class PlayerAttack : MonoBehaviour
         {
             if (target.gameObject == gameObject) continue;
 
-            // เช็กศัตรูทั่วไป (Enemy)
             Enemy normalEnemy = target.GetComponent<Enemy>();
             if (normalEnemy != null)
             {
@@ -171,7 +186,6 @@ public class PlayerAttack : MonoBehaviour
                 PushTargetAway(target.transform, 8f);
             }
 
-            // เช็กบอส (BossEnemy)
             BossEnemy bossEnemy = target.GetComponent<BossEnemy>();
             if (bossEnemy != null)
             {
@@ -181,7 +195,6 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    // ผลักศัตรูกระเด็นออกจากศูนย์กลางระเบิด
     void PushTargetAway(Transform targetTransform, float force)
     {
         Rigidbody2D targetRb = targetTransform.GetComponent<Rigidbody2D>();
@@ -192,7 +205,6 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    // สร้างวงแหวนคลื่นกระแทกขยายออกรอบตัวอัตโนมัติ
     IEnumerator SpawnShockwaveRing()
     {
         GameObject ringObj = new GameObject("ExplosionShockwave");
@@ -253,22 +265,22 @@ public class PlayerAttack : MonoBehaviour
 
         if (comboStep == 1)
         {
-            animator.SetTrigger("Slash");
+            if (animator != null) animator.SetTrigger("Slash");
             TriggerCameraShake(normalShakeDuration, normalShakeStrength);
         }
         else if (comboStep == 2)
         {
-            animator.SetTrigger("Upper");
+            if (animator != null) animator.SetTrigger("Upper");
             TriggerCameraShake(normalShakeDuration, normalShakeStrength);
         }
         else if (comboStep == 3)
         {
-            animator.SetTrigger("Heavy");
+            if (animator != null) animator.SetTrigger("Heavy");
             TriggerCameraShake(normalShakeDuration, normalShakeStrength * 1.2f);
         }
         else if (comboStep >= 4)
         {
-            animator.SetTrigger("Combo");
+            if (animator != null) animator.SetTrigger("Combo");
             TriggerCameraShake(finisherShakeDuration, finisherShakeStrength);
             comboStep = 0;
         }
@@ -296,7 +308,6 @@ public class PlayerAttack : MonoBehaviour
         Destroy(vfx, 0.4f);
     }
 
-    // วาดเส้นวงกลมแสดงรัศมีระเบิดในหน้า Scene เพื่อช่วยกะระยะง่ายๆ
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.cyan;

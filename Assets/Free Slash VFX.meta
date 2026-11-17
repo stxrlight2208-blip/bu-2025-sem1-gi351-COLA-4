@@ -1,7 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Free Slash VFX.meta
 guid: 5cb7d27fccd15b84b9d492ba29723ec0
 folderAsset: yes
 DefaultImporter:
+========
+guid: 2425343187065c546b0901995d4da375
+NativeFormatImporter:
+>>>>>>>> KananonV2:Assets/Dummy_Normal.controller.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
