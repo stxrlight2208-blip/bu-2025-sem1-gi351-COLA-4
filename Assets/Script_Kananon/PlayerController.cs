@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     public float dashTime = 0.2f;
     public float dashCooldown = 1f;
     private bool canDash = true;
-    private bool isDashing = false;
+    public bool isDashing = false;
     private float dashTimer;
     private float dashCooldownTimer;
 
@@ -31,11 +31,20 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck;
     public LayerMask groundLayer;
 
+    private Vector3 originalScale; // เก็บขนาดตัวละครเดิมที่ตั้งไว้ใน Inspector
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         playerHealth = GetComponent<PlayerHealth>();
+
+        // จำขนาด Scale เริ่มต้นเอาไว้ไม่ให้หดกลับเป็น 1 ตอนเดินพลิกตัว
+        originalScale = new Vector3(
+            Mathf.Abs(transform.localScale.x) > 0.01f ? Mathf.Abs(transform.localScale.x) : 1f,
+            Mathf.Abs(transform.localScale.y) > 0.01f ? transform.localScale.y : 1f,
+            transform.localScale.z
+        );
 
         ApplyCharacterStats();
     }
@@ -46,7 +55,17 @@ public class PlayerController : MonoBehaviour
         if (FinisherManager.isQTEActive)
         {
             if (rb != null) rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
-            if (animator != null) animator.SetFloat("Speed", 0f);
+            if (animator != null && animator.runtimeAnimatorController != null)
+            {
+                animator.SetFloat("Speed", 0f);
+            }
+            return;
+        }
+
+        // ห้ามควบคุมหากผู้เล่นตายแล้ว
+        if (playerHealth != null && playerHealth.currentHealth <= 0)
+        {
+            if (rb != null) rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
             return;
         }
 
@@ -96,6 +115,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         if (FinisherManager.isQTEActive || isDashing) return;
+        if (playerHealth != null && playerHealth.currentHealth <= 0) return;
 
         if (groundCheck != null)
         {
@@ -108,7 +128,7 @@ public class PlayerController : MonoBehaviour
 
     void UpdateAnimations()
     {
-        if (animator == null) return;
+        if (animator == null || animator.runtimeAnimatorController == null) return;
 
         float moveSpeed = Mathf.Abs(horizontalInput) * (isRunning ? 1.5f : 1f);
 
@@ -137,7 +157,7 @@ public class PlayerController : MonoBehaviour
 
         if (playerHealth != null)
         {
-            playerHealth.isInvincible = true;
+            playerHealth.isInvincible = true; // เปิดอมตะตลอดช่วงที่พุ่งหลบ
         }
 
         float dir = transform.localScale.x > 0 ? 1f : -1f;
@@ -148,11 +168,11 @@ public class PlayerController : MonoBehaviour
     {
         if (horizontalInput > 0.01f)
         {
-            transform.localScale = new Vector3(1f, 1f, 1f);
+            transform.localScale = new Vector3(originalScale.x, originalScale.y, originalScale.z);
         }
         else if (horizontalInput < -0.01f)
         {
-            transform.localScale = new Vector3(-1f, 1f, 1f);
+            transform.localScale = new Vector3(-originalScale.x, originalScale.y, originalScale.z);
         }
     }
 
