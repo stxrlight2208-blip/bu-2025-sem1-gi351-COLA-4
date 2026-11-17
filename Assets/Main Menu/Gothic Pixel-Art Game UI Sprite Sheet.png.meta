@@ -274,12 +274,12 @@ TextureImporter:
       name: Gothic Pixel-Art Game UI Sprite Sheet_0
       rect:
         serializedVersion: 2
-        x: 21
+        x: 19
         y: 696
         width: 799
         height: 245
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -296,12 +296,12 @@ TextureImporter:
       name: Gothic Pixel-Art Game UI Sprite Sheet_1
       rect:
         serializedVersion: 2
-        x: 862
+        x: 854
         y: 696
         width: 799
         height: 245
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -323,7 +323,7 @@ TextureImporter:
         width: 463
         height: 140
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -345,7 +345,7 @@ TextureImporter:
         width: 463
         height: 140
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -354,6 +354,28 @@ TextureImporter:
       bones: []
       spriteID: 6f3b8f9b67f1dc550800000000000000
       internalID: 6182632458236244982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gothic Pixel-Art Game UI Sprite Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 450
+        width: 708
+        height: 245
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32f67742c7bdd5b43b83c703be3872aa
+      internalID: -1229672024724261578
       vertices: []
       indices: 
       edges: []
