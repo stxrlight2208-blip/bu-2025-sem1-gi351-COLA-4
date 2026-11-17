@@ -232,7 +232,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.38, y: 0.53}
+  m_Size: {x: 1.49, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -326,7 +326,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1.49, y: 2}
-    newSize: {x: 0.38, y: 0.53}
+    newSize: {x: 1.49, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -389,6 +389,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAttack
   comboResetTimer: 0.7
+  holdThreshold: 0.2
+  maxChargeTime: 1
+  zoomInAmount: -1.6
+  explosionRadius: 4
+  explosionDamage: 8
+  chargingColor: {r: 0.4, g: 0.9, b: 1, a: 1}
+  explosionVfxPrefab: {fileID: 0}
+  normalShakeDuration: 0.08
+  normalShakeStrength: 0.08
+  finisherShakeDuration: 0.15
+  finisherShakeStrength: 0.22
+  attackPoint: {fileID: 0}
+  slashVfxPrefab: {fileID: 0}
 --- !u!114 &1881342429049001445
 MonoBehaviour:
   m_ObjectHideFlags: 0
