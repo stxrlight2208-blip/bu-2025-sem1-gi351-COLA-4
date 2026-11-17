@@ -90,7 +90,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.42, y: 2.92}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -135,7 +135,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 3.42, y: 2.92}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 3.42, y: 2.92}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -204,13 +204,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   maxHealth: 10
+  requiredComboHits: 3
+  finisherHealthPercent: 0.35
+  finisherInteractRange: 4.5
   moveSpeed: 2.5
   detectionRange: 10
   attackRange: 1.2
   enemyDamage: 1
   attackCooldown: 1
-  attackCollider: {fileID: 0}
   damageColor: {r: 1, g: 0, b: 0, a: 1}
   flashDuration: 0.15
+  hitVfxPrefab: {fileID: 0}
+  knockbackForce: 2
+  knockbackDuration: 0.08
+  hitStopDuration: 0.04
   hitCooldown: 0.2
   deathAnimationDuration: 1
