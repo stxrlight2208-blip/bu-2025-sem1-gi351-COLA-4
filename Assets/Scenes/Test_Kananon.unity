@@ -1749,45 +1749,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 878441774774904708, guid: 8322a87c4bda336428c5dd4467865497, type: 3}
   m_PrefabInstance: {fileID: 3034288691853586234}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2118231529}
-  - component: {fileID: 2118231528}
-  - component: {fileID: 2118231527}
-  - component: {fileID: 2118231530}
-  - component: {fileID: 2118231526}
-  m_Layer: 7
-  m_Name: Dummy_Normal
-  m_TagString: Enemy
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2118231526
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2118231525}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 754f345e0894548439d30a2f2c8d46e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  maxHealth: 30
-  moveSpeed: 2.5
-  detectionRange: 6
-  enemyDamage: 1
-  attackCooldown: 1
-  damageColor: {r: 1, g: 0, b: 0, a: 1}
-  flashDuration: 0.15
-  hitCooldown: 0.2
---- !u!61 &2118231527
-=======
 --- !u!61 &2118199089 stripped
->>>>>>> KananonV2
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 4564996884174797826, guid: 8322a87c4bda336428c5dd4467865497, type: 3}
   m_PrefabInstance: {fileID: 3034288691853586234}
