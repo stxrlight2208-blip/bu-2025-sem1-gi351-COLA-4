@@ -203,7 +203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 754f345e0894548439d30a2f2c8d46e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  maxHealth: 10
+  maxHealth: 90
   requiredComboHits: 3
   finisherHealthPercent: 0.35
   finisherInteractRange: 4.5
@@ -212,11 +212,16 @@ MonoBehaviour:
   attackRange: 1.2
   enemyDamage: 1
   attackCooldown: 1
+  telegraphColor: {r: 1, g: 0.7, b: 0.1, a: 1}
   damageColor: {r: 1, g: 0, b: 0, a: 1}
   flashDuration: 0.15
-  hitVfxPrefab: {fileID: 0}
-  knockbackForce: 2
+  hitVfxPrefab: {fileID: 8782009059513614302, guid: 171dda363e9efd94ca9bc63e38ca9658, type: 3}
+  knockbackForce: 6.5
   knockbackDuration: 0.08
   hitStopDuration: 0.04
+  heavyLaunchMultiplier: 5
+  bowlingCollisionDamage: 3
+  chainCollisionRadius: 1.1
+  airPogoBounceForce: 11
   hitCooldown: 0.2
   deathAnimationDuration: 1

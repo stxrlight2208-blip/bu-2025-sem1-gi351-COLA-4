@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -20,16 +21,18 @@ public class Enemy : MonoBehaviour
     [Header("Movement & AI")]
     public float moveSpeed = 2.5f;
     public float detectionRange = 6f;
-    public float attackRange = 1.2f; // ระยะที่จะหยุดเดินแล้วเตรียมฟัน
+    public float attackRange = 1.65f;
     private Transform playerTransform;
     private PlayerHealth playerHealth;
     private Rigidbody2D rb;
-    private Vector3 baseScale; // จำขนาดตัวละครเดิมที่ตั้งไว้ใน Inspector
+    private Vector3 baseScale;
 
     [Header("Attack Player Settings")]
     public int enemyDamage = 1;
     public float attackCooldown = 1.5f;
+    public Color telegraphColor = new Color(1f, 0.7f, 0.1f, 1f);
     private float lastAttackTime;
+    private bool isAttacking = false;
 
     [Header("Visual & Hit Feel Effects")]
     private SpriteRenderer spriteRenderer;
@@ -37,9 +40,18 @@ public class Enemy : MonoBehaviour
     private Color originalColor;
     public float flashDuration = 0.15f;
     public GameObject hitVfxPrefab;
-    public float knockbackForce = 2f;
-    public float knockbackDuration = 0.08f;
+    public float knockbackForce = 6.5f;      // เพิ่มแรงกระเด็นพื้นฐานให้ถอยไกลขึ้น
+    public float knockbackDuration = 0.18f;  // เพิ่มระยะเวลาไถลถอยหลัง
     public float hitStopDuration = 0.04f;
+
+    [Header("Chain Knockback / Enemy Bowling (ชนเพื่อนกระเด็นต่อ)")]
+    public float heavyLaunchMultiplier = 2.0f; // ตัวคูณเมื่อโดนท่าแรง
+    public int bowlingCollisionDamage = 2;     // ดาเมจเมื่อกระเด็นไปชนเพื่อน
+    public float chainCollisionRadius = 1.1f;  // รัศมีตรวจจับตอนปลิวไปชนเพื่อน
+    public float airPogoBounceForce = 11f;
+    private bool isKnockbackProjectile = false;
+    private float currentKnockbackDir = 0f;
+    private HashSet<Enemy> hitFriendsThisLaunch = new HashSet<Enemy>();
 
     [Header("Hit Cooldown")]
     private float lastHitTime;
@@ -59,7 +71,6 @@ public class Enemy : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
-        // จำขนาด Scale เริ่มต้นไว้ไม่ให้หดกลับเป็น 1 หรือ 0.5
         baseScale = new Vector3(
             Mathf.Abs(transform.localScale.x) > 0.01f ? Mathf.Abs(transform.localScale.x) : 1f,
             Mathf.Abs(transform.localScale.y) > 0.01f ? transform.localScale.y : 1f,
@@ -85,24 +96,26 @@ public class Enemy : MonoBehaviour
 
         if (isDead || playerTransform == null || (playerHealth != null && playerHealth.currentHealth <= 0))
         {
-            if (rb != null) rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
-            SetMoving(false);
+            StopMovement();
             return;
         }
 
-        // หยุดนิ่งระหว่างทำ Finisher QTE
         if (FinisherManager.isQTEActive)
         {
-            if (rb != null) rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
-            SetMoving(false);
+            StopMovement();
             return;
+        }
+
+        // ระหว่างกำลังปลิวถอยหลัง เช็กว่าไปชนเพื่อนด้านหลังหรือไม่
+        if (isKnockbackProjectile)
+        {
+            CheckChainKnockbackToFriends();
         }
 
         // สถานะติดสตันรอปิดฉาก [E] FINISH
         if (isFinishable)
         {
-            if (rb != null) rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
-            SetMoving(false);
+            StopMovement();
 
             if (finishSignObj != null)
             {
@@ -137,75 +150,137 @@ public class Enemy : MonoBehaviour
             return;
         }
 
-        float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
+        float diffX = playerTransform.position.x - transform.position.x;
+        if (!isAttacking && Mathf.Abs(diffX) > 0.1f)
+        {
+            transform.localScale = new Vector3(diffX > 0 ? baseScale.x : -baseScale.x, baseScale.y, baseScale.z);
+        }
+
+        if (isAttacking)
+        {
+            StopMovement();
+            return;
+        }
+
+        float distanceToPlayer = Mathf.Abs(diffX);
+        float effectiveStopRange = Mathf.Max(attackRange, 1.55f);
 
         if (distanceToPlayer <= detectionRange)
         {
-            if (distanceToPlayer > attackRange)
+            if (distanceToPlayer > effectiveStopRange)
             {
-                MoveTowardsPlayer();
+                MoveTowardsPlayer(diffX);
             }
             else
             {
-                if (rb != null) rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
-                SetMoving(false);
+                StopMovement();
                 TryAttackPlayer();
             }
         }
         else
         {
-            if (rb != null) rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
-            SetMoving(false);
+            StopMovement();
         }
     }
 
-    void MoveTowardsPlayer()
+    // ตรวจจับการกระเด็นไปชนมอนสเตอร์ตัวอื่น (ทำงานทะลุแม้ปิด Collider ระหว่างมอนไว้)
+    void CheckChainKnockbackToFriends()
     {
-        if (playerTransform == null || rb == null || isDead) return;
-
-        float distanceX = playerTransform.position.x - transform.position.x;
-        float direction = Mathf.Abs(distanceX) > 0.05f ? (distanceX > 0f ? 1f : -1f) : 0f;
-
-        rb.linearVelocity = new Vector2(direction * moveSpeed, rb.linearVelocity.y);
-        SetMoving(true);
-
-        if (Mathf.Abs(distanceX) > 0.2f)
+        Collider2D[] nearby = Physics2D.OverlapCircleAll(transform.position, chainCollisionRadius);
+        foreach (Collider2D col in nearby)
         {
-            transform.localScale = new Vector3(direction > 0 ? baseScale.x : -baseScale.x, baseScale.y, baseScale.z);
-        }
-    }
+            Enemy friend = col.GetComponent<Enemy>();
+            if (friend == null) friend = col.GetComponentInParent<Enemy>();
 
-    void TryAttackPlayer()
-    {
-        if (isFinishable || FinisherManager.isQTEActive) return;
-        if (playerHealth == null || playerHealth.currentHealth <= 0) return;
-
-        if (Time.time - lastAttackTime >= attackCooldown)
-        {
-            lastAttackTime = Time.time;
-            TriggerAnim("Attack");
-            StartCoroutine(CheckAttackHitWithDelay());
-        }
-    }
-
-    IEnumerator CheckAttackHitWithDelay()
-    {
-        yield return new WaitForSeconds(0.3f);
-
-        if (playerTransform != null && !isDead && !isFinishable && !FinisherManager.isQTEActive)
-        {
-            float hitCheckDistance = 1.8f;
-            if (Vector2.Distance(transform.position, playerTransform.position) <= hitCheckDistance)
+            if (friend != null && friend != this && !friend.isDead && !hitFriendsThisLaunch.Contains(friend))
             {
-                if (playerHealth != null)
+                // เช็กว่าเพื่อนยืนอยู่ด้านหน้าทิศทางที่เรากำลังกระเด็นไป
+                float dirToFriend = friend.transform.position.x - transform.position.x;
+                if (Mathf.Sign(dirToFriend) == Mathf.Sign(currentKnockbackDir))
                 {
-                    playerHealth.TakeDamage(enemyDamage);
+                    hitFriendsThisLaunch.Add(friend);
+                    friend.ReceiveChainKnockback(bowlingCollisionDamage, currentKnockbackDir, knockbackForce * 0.9f);
+
+                    if (CameraFollow.instance != null)
+                        CameraFollow.instance.Shake(0.12f, 0.18f);
+
+                    if (StyleRankManager.Instance != null)
+                        StyleRankManager.Instance.AddStylePoints(80f);
                 }
             }
         }
     }
 
-    // เช็กตอนที่ผู้เล่นใช้ดาบฟันโดนตัวมอนสเตอร์ (รองรับทั้งรูปแบบของเพื่อนและของ Tan)
+    // รับแรงกระแทกต่อจากเพื่อนที่ปลิวมาชน
+    public void ReceiveChainKnockback(int damage, float pushDirection, float inheritedForce)
+    {
+        if (isDead || isFinishable) return;
+
+        TakeDamage(damage, isHeavyHit: false, overrideKnockbackDir: pushDirection, overrideForce: inheritedForce);
+    }
+
+    void StopMovement()
+    {
+        if (rb != null) rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+        SetMoving(false);
+    }
+
+    void MoveTowardsPlayer(float distanceX)
+    {
+        if (playerTransform == null || rb == null || isDead) return;
+
+        float direction = distanceX > 0f ? 1f : -1f;
+        rb.linearVelocity = new Vector2(direction * moveSpeed, rb.linearVelocity.y);
+        SetMoving(true);
+    }
+
+    void TryAttackPlayer()
+    {
+        if (isFinishable || FinisherManager.isQTEActive || isAttacking) return;
+        if (playerHealth == null || playerHealth.currentHealth <= 0) return;
+
+        if (Time.time - lastAttackTime >= attackCooldown)
+        {
+            lastAttackTime = Time.time;
+            StartCoroutine(TelegraphAndAttack());
+        }
+    }
+
+    IEnumerator TelegraphAndAttack()
+    {
+        isAttacking = true;
+        StopMovement();
+
+        if (spriteRenderer != null && !isDead && !isFinishable)
+            spriteRenderer.color = telegraphColor;
+
+        yield return new WaitForSeconds(0.25f);
+
+        if (spriteRenderer != null && !isDead && !isFinishable)
+            spriteRenderer.color = originalColor;
+
+        if (!isDead && !isFinishable && !FinisherManager.isQTEActive)
+        {
+            TriggerAnim("Attack");
+            yield return new WaitForSeconds(0.15f);
+
+            if (playerTransform != null && !isDead && !isFinishable && !FinisherManager.isQTEActive)
+            {
+                float hitCheckDistance = Mathf.Max(attackRange, 1.55f) + 0.55f;
+                if (Vector2.Distance(transform.position, playerTransform.position) <= hitCheckDistance)
+                {
+                    if (playerHealth != null)
+                    {
+                        playerHealth.TakeDamage(enemyDamage);
+                    }
+                }
+            }
+        }
+
+        yield return new WaitForSeconds(0.25f);
+        isAttacking = false;
+    }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (isDead || FinisherManager.isQTEActive) return;
@@ -222,7 +297,17 @@ public class Enemy : MonoBehaviour
             {
                 lastHitTime = Time.time;
                 int damageToTake = playerAttack != null ? playerAttack.currentAttackDamage : 1;
-                TakeDamage(damageToTake);
+
+                if (playerTransform != null && playerTransform.position.y > transform.position.y + 0.65f)
+                {
+                    Rigidbody2D playerRb = playerTransform.GetComponent<Rigidbody2D>();
+                    if (playerRb != null)
+                    {
+                        playerRb.linearVelocity = new Vector2(playerRb.linearVelocity.x, airPogoBounceForce);
+                    }
+                }
+
+                TakeDamage(damageToTake, damageToTake >= 3);
 
                 if (StyleRankManager.Instance != null)
                 {
@@ -232,9 +317,11 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, bool isHeavyHit = false, float overrideKnockbackDir = 0f, float overrideForce = 0f)
     {
         if (isDead) return;
+
+        isAttacking = false;
 
         if (Time.time - lastComboHitTime <= 1.5f)
             currentComboReceived++;
@@ -244,22 +331,26 @@ public class Enemy : MonoBehaviour
         lastComboHitTime = Time.time;
         currentHealth -= damage;
 
-        // เอฟเฟกต์ตัวเลขเด้ง + เสียง + จอสั่น
-        DamagePopup.Create(transform.position, damage, damage >= 3);
+        DamagePopup.Create(transform.position, damage, isHeavyHit || damage >= 3);
 
         if (AudioManager.instance != null)
             AudioManager.instance.PlaySFX(AudioManager.instance.hitImpactClip);
 
         if (CameraFollow.instance != null)
-            CameraFollow.instance.Shake(0.1f, 0.15f);
+            CameraFollow.instance.Shake(0.1f, isHeavyHit ? 0.22f : 0.15f);
 
         if (hitVfxPrefab != null)
         {
             GameObject vfx = Instantiate(hitVfxPrefab, transform.position, Quaternion.identity);
+            SpriteRenderer vfxSr = vfx.GetComponentInChildren<SpriteRenderer>();
+            if (vfxSr != null)
+            {
+                vfxSr.sortingLayerName = "New Layer 3";
+                vfxSr.sortingOrder = 120;
+            }
             Destroy(vfx, 0.5f);
         }
 
-        // เช็กเงื่อนไขเข้าสถานะ Finisher QTE
         if (!isFinishable && currentHealth > 0 && currentHealth <= maxHealth * finisherHealthPercent && currentComboReceived >= requiredComboHits)
         {
             EnterFinishableState();
@@ -276,23 +367,57 @@ public class Enemy : MonoBehaviour
         if (rb != null && playerTransform != null && !isFinishable)
         {
             StopCoroutine(nameof(ApplyKnockback));
-            StartCoroutine(ApplyKnockback());
+            StartCoroutine(ApplyKnockback(isHeavyHit, overrideKnockbackDir, overrideForce));
         }
 
         if (spriteRenderer != null && !isFinishable)
         {
-            StopCoroutine(nameof(FlashRed));
-            StartCoroutine(FlashRed());
+            StopCoroutine(nameof(FlashDamage));
+            StartCoroutine(FlashDamage());
         }
 
         StartCoroutine(DoHitStop());
     }
+    public void LaunchIntoAir(int slamDamage, float upwardForce = 9.5f, float floatDuration = 0.85f)
+    {
+        if (isDead || FinisherManager.isQTEActive) return;
 
+        TakeDamage(slamDamage, isHeavyHit: false);
+
+        if (!isDead && !isFinishable && rb != null)
+        {
+            StopCoroutine(nameof(ApplyKnockback));
+            StopCoroutine(nameof(AirFloatRoutine));
+            StartCoroutine(AirFloatRoutine(upwardForce, floatDuration));
+        }
+    }
+
+    IEnumerator AirFloatRoutine(float upwardForce, float floatDuration)
+    {
+        isKnockedBack = true;
+        float originalGravity = rb.gravityScale;
+
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x * 0.3f, upwardForce);
+        yield return new WaitForSeconds(0.18f);
+
+        if (!isDead && !isFinishable)
+        {
+            rb.linearVelocity = new Vector2(0f, 0.5f);
+            rb.gravityScale = 0.12f;
+        }
+
+        yield return new WaitForSeconds(floatDuration);
+
+        if (rb != null)
+            rb.gravityScale = originalGravity;
+
+        isKnockedBack = false;
+    }
     void EnterFinishableState()
     {
         isFinishable = true;
-        if (rb != null) rb.linearVelocity = Vector2.zero;
-        SetMoving(false);
+        isKnockbackProjectile = false;
+        StopMovement();
 
         if (spriteRenderer != null) spriteRenderer.color = new Color(1f, 0.3f, 0.9f, 1f);
 
@@ -311,7 +436,11 @@ public class Enemy : MonoBehaviour
         tm.color = new Color(1f, 0.85f, 0.1f, 1f);
 
         MeshRenderer mr = finishSignObj.GetComponent<MeshRenderer>();
-        if (mr != null) mr.sortingOrder = 110;
+        if (mr != null)
+        {
+            mr.sortingLayerName = "New Layer 3";
+            mr.sortingOrder = 150;
+        }
 
         StartCoroutine(StunTimeout());
     }
@@ -333,16 +462,30 @@ public class Enemy : MonoBehaviour
         if (spriteRenderer != null) spriteRenderer.color = originalColor;
     }
 
-    IEnumerator ApplyKnockback()
+    IEnumerator ApplyKnockback(bool isHeavyHit, float overrideDir = 0f, float overrideForce = 0f)
     {
         isKnockedBack = true;
-        float knockbackDir = transform.position.x > playerTransform.position.x ? 1f : -1f;
-        rb.linearVelocity = new Vector2(knockbackDir * knockbackForce, 0f);
+        isKnockbackProjectile = true;
+        hitFriendsThisLaunch.Clear();
 
-        yield return new WaitForSeconds(knockbackDuration);
+        currentKnockbackDir = overrideDir != 0f
+            ? Mathf.Sign(overrideDir)
+            : (transform.position.x > playerTransform.position.x ? 1f : -1f);
 
-        rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+        float basePush = overrideForce > 0f ? overrideForce : Mathf.Max(knockbackForce, 6.0f);
+        float finalForce = isHeavyHit ? basePush * heavyLaunchMultiplier : basePush;
+        float finalDuration = isHeavyHit ? knockbackDuration * 1.6f : knockbackDuration;
+        float bounceUp = isHeavyHit ? 3.5f : 2.2f;
+
+        rb.linearVelocity = new Vector2(currentKnockbackDir * finalForce, bounceUp);
+
+        yield return new WaitForSeconds(finalDuration);
+
+        if (!isDead)
+            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+
         isKnockedBack = false;
+        isKnockbackProjectile = false;
     }
 
     IEnumerator DoHitStop()
@@ -352,17 +495,25 @@ public class Enemy : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    IEnumerator FlashRed()
+    IEnumerator FlashDamage()
     {
-        spriteRenderer.color = damageColor;
+        spriteRenderer.color = Color.white;
+        yield return new WaitForSecondsRealtime(0.03f);
+
+        if (!isDead && !isFinishable && spriteRenderer != null)
+            spriteRenderer.color = damageColor;
+
         yield return new WaitForSeconds(flashDuration);
-        if (!isDead && !isFinishable && spriteRenderer != null) spriteRenderer.color = originalColor;
+
+        if (!isDead && !isFinishable && spriteRenderer != null)
+            spriteRenderer.color = originalColor;
     }
 
     void Die()
     {
         if (isDead) return;
         isDead = true;
+        isKnockbackProjectile = false;
 
         if (finishSignObj != null) Destroy(finishSignObj);
 
@@ -395,7 +546,6 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
 
-    // --- ฟังก์ชันช่วยสั่ง Animator อย่างปลอดภัย ---
     void SetMoving(bool moving)
     {
         if (animator != null && animator.runtimeAnimatorController != null && HasParameter("IsMoving"))

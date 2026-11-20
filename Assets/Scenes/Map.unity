@@ -4291,8 +4291,30 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2840861490424607354, guid: bd616eef3facafc4191768dd18707fac, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 810903144}
   m_SourcePrefab: {fileID: 100100000, guid: bd616eef3facafc4191768dd18707fac, type: 3}
+--- !u!1 &810903143 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2840861490424607354, guid: bd616eef3facafc4191768dd18707fac, type: 3}
+  m_PrefabInstance: {fileID: 810903142}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &810903144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 810903143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5749594c3a063f84381dd53cf68cfd2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ForceAllVFXFront
+  targetSortingLayer: New Layer 3
+  targetSortingOrder: 100
 --- !u!1 &819789982
 GameObject:
   m_ObjectHideFlags: 0
@@ -4606,6 +4628,7 @@ MonoBehaviour:
   target: {fileID: 0}
   smoothSpeed: 5
   offset: {x: 2, y: 3.7, z: -10}
+  zoomSpeed: 6
 --- !u!114 &855043784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8819,6 +8842,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 855043782}
+  - {fileID: 981278834}
   - {fileID: 1089583459}
   - {fileID: 541851506}
   - {fileID: 1053003062}
@@ -8834,4 +8858,3 @@ SceneRoots:
   - {fileID: 1678028553}
   - {fileID: 2124482608}
   - {fileID: 810903142}
-  - {fileID: 981278834}

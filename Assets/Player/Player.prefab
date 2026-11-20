@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 4408289097212324240}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.27999997, y: 0, z: 0}
+  m_LocalPosition: {x: 0.78, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -154,6 +154,10 @@ GameObject:
   - component: {fileID: 8336097665143584737}
   - component: {fileID: 8665111876731716135}
   - component: {fileID: 1881342429049001445}
+  - component: {fileID: -1830326241538636384}
+  - component: {fileID: 1404058468188678029}
+  - component: {fileID: 5330883608802525283}
+  - component: {fileID: -9008061674670355243}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -349,9 +353,9 @@ MonoBehaviour:
   walkSpeed: 4
   runSpeed: 8
   jumpForce: 6
-  dashSpeed: 15
+  dashSpeed: 10
   dashTime: 0.5
-  dashCooldown: 1
+  dashCooldown: 0.4
   isDashing: 0
   groundCheck: {fileID: 8716035027098163307}
   groundLayer:
@@ -389,6 +393,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAttack
   comboResetTimer: 0.7
+  holdThreshold: 0.2
+  maxChargeTime: 1
+  zoomInAmount: -0.6
+  explosionRadius: 4
+  explosionDamage: 8
+  chargingColor: {r: 0.4, g: 0.9, b: 1, a: 1}
+  explosionVfxPrefab: {fileID: 4306488877223958017, guid: ecb38e0319a6ad44cbca52d7b5add7a6, type: 3}
+  normalShakeDuration: 0.08
+  normalShakeStrength: 0.08
+  finisherShakeDuration: 0.15
+  finisherShakeStrength: 0.22
+  attackPoint: {fileID: 4480491827764932410}
+  slashVfxPrefab: {fileID: 4364062416287365583, guid: fe2205740225ab04bb07d3c6308b7c8b, type: 3}
 --- !u!114 &1881342429049001445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -407,3 +424,89 @@ MonoBehaviour:
   heavyDamage: 3
   comboDamage: 4
   currentAttackDamage: 0
+--- !u!114 &-1830326241538636384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8183683538225538255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6627587b1ce45d4eb45782dfced2e44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChargeAuraVFX
+  holdThreshold: 0.2
+  maxChargeTime: 1
+  startChargeColor: {r: 0.2, g: 0.85, b: 1, a: 0.9}
+  fullChargeColor: {r: 1, g: 0.85, b: 0.1, a: 1}
+  lightningColor: {r: 0.9, g: 0.98, b: 1, a: 1}
+  sortingLayer: New Layer 3
+  baseSortingOrder: 60
+--- !u!114 &1404058468188678029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8183683538225538255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b1833ebfb285054c8dda930f6937570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAirSlash
+  launcherHoldKey: 119
+  followEnemyIntoAir: 1
+  launcherDamage: 2
+  launchForce: 11.5
+  airHangDuration: 0.95
+  playerFollowJumpForce: 10.5
+  launcherRange: 2.4
+  cooldown: 0.5
+  launcherVfxPrefab: {fileID: 0}
+  vfxSortingLayer: New Layer 3
+  vfxSortingOrder: 120
+--- !u!114 &5330883608802525283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8183683538225538255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e987b0bad2fd624e8ce0f563b12ed03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerGroundSlam
+  slamKey: 115
+  minAirHeight: 0.8
+  diveSpeed: 26
+  shockwaveRadius: 3.8
+  slamDamage: 3
+  enemyLaunchForce: 9.5
+  enemyAirHangTime: 0.85
+  cooldown: 0.8
+  vfxSortingLayer: New Layer 3
+  vfxSortingOrder: 130
+--- !u!114 &-9008061674670355243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8183683538225538255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 929d2e4b06e7ec247930ee958e9f6a59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAirHover
+  jumpAndHoverKey: 32
+  maxAirJumps: 1
+  doubleJumpForce: 5
+  maxHoverTime: 1.6
+  hoverGravityScale: 0.08
+  holdDelayBeforeHover: 0.16
+  showHoverTint: 1
+  hoverTint: {r: 0.75, g: 0.92, b: 1, a: 1}
+  vfxSortingLayer: New Layer 3
+  vfxSortingOrder: 120

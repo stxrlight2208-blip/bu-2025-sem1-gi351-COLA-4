@@ -42,11 +42,12 @@ public class DamagePopup : MonoBehaviour
 
         textMesh.color = textColor;
 
-        // ดัน Sorting Order ให้แสดงอยู่หน้าสุดไม่โดนฉากบัง
+        // ดัน Sorting Layer และ Order ให้แสดงอยู่หน้าสุดเหนือฉาก New Layer 3
         MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
         if (meshRenderer != null)
         {
-            meshRenderer.sortingOrder = 100;
+            meshRenderer.sortingLayerName = "New Layer 3";
+            meshRenderer.sortingOrder = 150;
         }
 
         // ทิศทางการพุ่งเด้งขึ้นด้านบน

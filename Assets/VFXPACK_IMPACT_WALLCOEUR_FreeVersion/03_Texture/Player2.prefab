@@ -400,8 +400,8 @@ MonoBehaviour:
   normalShakeStrength: 0.08
   finisherShakeDuration: 0.15
   finisherShakeStrength: 0.22
-  attackPoint: {fileID: 0}
-  slashVfxPrefab: {fileID: 0}
+  attackPoint: {fileID: 2745605295508436152}
+  slashVfxPrefab: {fileID: 500345726442012828, guid: 50a810bfd70577b41a2d43ae0241ea2d, type: 3}
 --- !u!114 &6131115895224336525
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -148,7 +148,7 @@ public class FinisherManager : MonoBehaviour
 
         if (CameraFollow.instance != null)
         {
-            CameraFollow.instance.SetZoomOffset(isBoss ? -2.2f : -1.4f);
+            CameraFollow.instance.SetZoomOffset(isBoss ? -0.9f : -0.55f);
             CameraFollow.instance.Shake(0.12f, isBoss ? 0.18f : 0.1f);
         }
 
@@ -317,7 +317,8 @@ public class FinisherManager : MonoBehaviour
         lr.endWidth = 0.02f;
         lr.startColor = isBoss ? new Color(1f, 0.3f, 0.2f, 1f) : Color.cyan;
         lr.endColor = Color.white;
-        lr.sortingOrder = 95;
+        lr.sortingLayerName = "New Layer 3";
+        lr.sortingOrder = 140;
         lr.positionCount = 2;
 
         float radius = isBoss ? 2.0f : 1.3f;
@@ -338,7 +339,8 @@ public class FinisherManager : MonoBehaviour
         lr.endWidth = 0.05f;
         lr.startColor = new Color(1f, 0.85f, 0.1f, 1f);
         lr.endColor = Color.white;
-        lr.sortingOrder = 100;
+        lr.sortingLayerName = "New Layer 3";
+        lr.sortingOrder = 145;
         lr.positionCount = 2;
 
         float length = isBoss ? 5.0f : 3.5f;

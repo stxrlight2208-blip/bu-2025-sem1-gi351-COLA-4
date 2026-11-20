@@ -149,8 +149,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterManager
   characterPrefabs:
-  - {fileID: 8183683538225538255, guid: e581c3164b1a25c4a92366c83d8655b2, type: 3}
-  - {fileID: 2565559876233381823, guid: 4edbc1b68537d134cb94bcff569f2a5b, type: 3}
+  - {fileID: 8183683538225538255, guid: fd5532b94e33d7243919212ff2811054, type: 3}
+  - {fileID: 2565559876233381823, guid: 01f57ade343cfbf42b85f163c299db2e, type: 3}
   selectedCharacterIndex: -1
   warningText: {fileID: 1878981677}
   warningDuration: 1
