@@ -158,6 +158,7 @@ GameObject:
   - component: {fileID: 1404058468188678029}
   - component: {fileID: 5330883608802525283}
   - component: {fileID: -9008061674670355243}
+  - component: {fileID: 5938381338455814272}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -378,6 +379,10 @@ MonoBehaviour:
   isInvincible: 0
   isHitInvincible: 0
   iFrameDuration: 0.5
+  perfectDodgeVfxPrefab: {fileID: 2957842864923083962, guid: ace9fc22d4885204fad19db7b31cf379, type: 3}
+  dodgeVfxLifetime: 0.6
+  vfxSortingLayer: New Layer 3
+  vfxSortingOrder: 135
   damageColor: {r: 1, g: 0, b: 0, a: 1}
   dodgeColor: {r: 1, g: 0.6583851, b: 0, a: 0.6}
 --- !u!114 &8665111876731716135
@@ -510,3 +515,39 @@ MonoBehaviour:
   hoverTint: {r: 0.75, g: 0.92, b: 1, a: 1}
   vfxSortingLayer: New Layer 3
   vfxSortingOrder: 120
+--- !u!114 &5938381338455814272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8183683538225538255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ff5c73b5d234994dafd2c32a646c0a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerParry
+  parryKey: 324
+  parryWindowDuration: 0.25
+  parryCooldown: 0.45
+  parryCounterDamage: 3
+  parryCounterRadius: 2.8
+  counterKnockbackForce: 2
+  stylePointsReward: 100
+  slowTimeScale: 0.9
+  slowDuration: 3
+  playerSpeedMultiplierInSlow: 2
+  playerAnimSpeedInSlow: 2
+  paleOverlayColor: {r: 0.46635816, g: 0.61288536, b: 0.754717, a: 0.20784314}
+  overlayFadeSpeed: 8
+  parryStartVfxPrefab: {fileID: 8782009059513614302, guid: 171dda363e9efd94ca9bc63e38ca9658, type: 3}
+  perfectParryVfxPrefab: {fileID: 5669246471909640947, guid: bfd016bff164dfc4aac33a0563922772, type: 3}
+  spawnLineRingWhenNoPrefab: 1
+  vfxLifetime: 0.7
+  parryFlashColor: {r: 1, g: 0.9, b: 0.25, a: 1}
+  blockHoldColor: {r: 0.75, g: 0.85, b: 1, a: 0.9}
+  vfxSortingLayer: New Layer 3
+  vfxSortingOrder: 135
+  isParryWindowActive: 0
+  isHoldingBlock: 0
+  isSlowMoActive: 0

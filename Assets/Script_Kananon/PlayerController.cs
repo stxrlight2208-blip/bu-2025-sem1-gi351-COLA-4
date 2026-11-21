@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private Animator animator;
     private PlayerHealth playerHealth;
+    private PlayerParry playerParry;
 
     private float horizontalInput;
     private bool isRunning;
@@ -31,27 +32,35 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck;
     public LayerMask groundLayer;
 
-    private Vector3 originalScale; // เก็บขนาดตัวละครเดิมที่ตั้งไว้ใน Inspector
+    private Vector3 originalScale;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         playerHealth = GetComponent<PlayerHealth>();
+        playerParry = GetComponent<PlayerParry>();
 
-        // จำขนาด Scale เริ่มต้นเอาไว้ไม่ให้หดกลับเป็น 1 ตอนเดินพลิกตัว
         originalScale = new Vector3(
             Mathf.Abs(transform.localScale.x) > 0.01f ? Mathf.Abs(transform.localScale.x) : 1f,
-            Mathf.Abs(transform.localScale.y) > 0.01f ? transform.localScale.y : 1f,
+            Mathf.Abs(transform.localScale.y) > 0.01f ? Mathf.Abs(transform.localScale.y) : 1f,
             transform.localScale.z
         );
 
         ApplyCharacterStats();
     }
 
+    float GetSlowSpeedMultiplier()
+    {
+        if (playerParry != null && playerParry.isSlowMoActive)
+        {
+            return playerParry.playerSpeedMultiplierInSlow;
+        }
+        return 1f;
+    }
+
     void Update()
     {
-        // ถ้ากำลังอยู่ในฉาก Finisher QTE ให้หยุดรับปุ่มเดิน/แดชชั่วคราว
         if (FinisherManager.isQTEActive)
         {
             if (rb != null) rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
@@ -62,16 +71,25 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        // ห้ามควบคุมหากผู้เล่นตายแล้ว
         if (playerHealth != null && playerHealth.currentHealth <= 0)
         {
             if (rb != null) rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
             return;
         }
 
+        if (playerParry != null && playerParry.isHoldingBlock)
+        {
+            if (rb != null) rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+            if (animator != null && animator.runtimeAnimatorController != null)
+            {
+                animator.SetFloat("Speed", 0f);
+            }
+            return;
+        }
+
         if (isDashing)
         {
-            dashTimer -= Time.deltaTime;
+            dashTimer -= Time.unscaledDeltaTime;
             if (dashTimer <= 0f)
             {
                 isDashing = false;
@@ -101,7 +119,7 @@ public class PlayerController : MonoBehaviour
 
         if (!canDash)
         {
-            dashCooldownTimer -= Time.deltaTime;
+            dashCooldownTimer -= Time.unscaledDeltaTime;
             if (dashCooldownTimer <= 0f)
             {
                 canDash = true;
@@ -116,6 +134,7 @@ public class PlayerController : MonoBehaviour
     {
         if (FinisherManager.isQTEActive || isDashing) return;
         if (playerHealth != null && playerHealth.currentHealth <= 0) return;
+        if (playerParry != null && playerParry.isHoldingBlock) return;
 
         if (groundCheck != null)
         {
@@ -123,7 +142,8 @@ public class PlayerController : MonoBehaviour
         }
 
         float currentSpeed = isRunning ? runSpeed : walkSpeed;
-        rb.linearVelocity = new Vector2(horizontalInput * currentSpeed, rb.linearVelocity.y);
+        float mult = GetSlowSpeedMultiplier();
+        rb.linearVelocity = new Vector2(horizontalInput * currentSpeed * mult, rb.linearVelocity.y);
     }
 
     void UpdateAnimations()
@@ -140,7 +160,8 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
-        rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+        float mult = GetSlowSpeedMultiplier();
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce * Mathf.Lerp(1f, mult, 0.35f));
     }
 
     void StartDash()
@@ -157,11 +178,12 @@ public class PlayerController : MonoBehaviour
 
         if (playerHealth != null)
         {
-            playerHealth.isInvincible = true; // เปิดอมตะตลอดช่วงที่พุ่งหลบ
+            playerHealth.isInvincible = true;
         }
 
         float dir = transform.localScale.x > 0 ? 1f : -1f;
-        rb.linearVelocity = new Vector2(dir * dashSpeed, 0f);
+        float mult = GetSlowSpeedMultiplier();
+        rb.linearVelocity = new Vector2(dir * dashSpeed * mult, 0f);
     }
 
     void Flip()

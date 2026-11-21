@@ -62,6 +62,7 @@ public class FlyingSwoopEnemy : MonoBehaviour
 
     private Transform playerTransform;
     private PlayerHealth playerHealth;
+    private PlayerParry playerParry;
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
@@ -96,6 +97,7 @@ public class FlyingSwoopEnemy : MonoBehaviour
         {
             playerTransform = playerObj.transform;
             playerHealth = playerObj.GetComponent<PlayerHealth>();
+            playerParry = playerObj.GetComponent<PlayerParry>();
         }
     }
 
@@ -115,7 +117,6 @@ public class FlyingSwoopEnemy : MonoBehaviour
             return;
         }
 
-        // สถานะติดสตันรอปิดฉาก [E] FINISH
         if (isFinishable)
         {
             if (rb != null)
@@ -360,7 +361,7 @@ public class FlyingSwoopEnemy : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            Time.timeScale = 1f;
+            Time.timeScale = (playerParry != null && playerParry.isSlowMoActive) ? playerParry.slowTimeScale : 1f;
             Die();
             return;
         }
@@ -465,7 +466,11 @@ public class FlyingSwoopEnemy : MonoBehaviour
     {
         Time.timeScale = 0.05f;
         yield return new WaitForSecondsRealtime(hitStopDuration);
-        Time.timeScale = 1f;
+
+        if (playerParry != null && playerParry.isSlowMoActive)
+            Time.timeScale = playerParry.slowTimeScale;
+        else
+            Time.timeScale = 1f;
     }
 
     IEnumerator FlashDamage()
@@ -495,7 +500,7 @@ public class FlyingSwoopEnemy : MonoBehaviour
         if (rb != null)
         {
             rb.linearVelocity = Vector2.zero;
-            rb.gravityScale = 0.6f; // ร่วงช้าๆ ให้ดูหน่วงตอนตาย
+            rb.gravityScale = 0.6f;
         }
 
         foreach (Collider2D col in GetComponents<Collider2D>())

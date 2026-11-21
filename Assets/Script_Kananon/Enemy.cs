@@ -24,6 +24,7 @@ public class Enemy : MonoBehaviour
     public float attackRange = 1.65f;
     private Transform playerTransform;
     private PlayerHealth playerHealth;
+    private PlayerParry playerParry;
     private Rigidbody2D rb;
     private Vector3 baseScale;
 
@@ -40,14 +41,14 @@ public class Enemy : MonoBehaviour
     private Color originalColor;
     public float flashDuration = 0.15f;
     public GameObject hitVfxPrefab;
-    public float knockbackForce = 6.5f;      // เพิ่มแรงกระเด็นพื้นฐานให้ถอยไกลขึ้น
-    public float knockbackDuration = 0.18f;  // เพิ่มระยะเวลาไถลถอยหลัง
+    public float knockbackForce = 6.5f;
+    public float knockbackDuration = 0.18f;
     public float hitStopDuration = 0.04f;
 
     [Header("Chain Knockback / Enemy Bowling (ชนเพื่อนกระเด็นต่อ)")]
-    public float heavyLaunchMultiplier = 2.0f; // ตัวคูณเมื่อโดนท่าแรง
-    public int bowlingCollisionDamage = 2;     // ดาเมจเมื่อกระเด็นไปชนเพื่อน
-    public float chainCollisionRadius = 1.1f;  // รัศมีตรวจจับตอนปลิวไปชนเพื่อน
+    public float heavyLaunchMultiplier = 2.0f;
+    public int bowlingCollisionDamage = 2;
+    public float chainCollisionRadius = 1.1f;
     public float airPogoBounceForce = 11f;
     private bool isKnockbackProjectile = false;
     private float currentKnockbackDir = 0f;
@@ -87,6 +88,7 @@ public class Enemy : MonoBehaviour
         {
             playerTransform = playerObj.transform;
             playerHealth = playerObj.GetComponent<PlayerHealth>();
+            playerParry = playerObj.GetComponent<PlayerParry>();
         }
     }
 
@@ -106,13 +108,11 @@ public class Enemy : MonoBehaviour
             return;
         }
 
-        // ระหว่างกำลังปลิวถอยหลัง เช็กว่าไปชนเพื่อนด้านหลังหรือไม่
         if (isKnockbackProjectile)
         {
             CheckChainKnockbackToFriends();
         }
 
-        // สถานะติดสตันรอปิดฉาก [E] FINISH
         if (isFinishable)
         {
             StopMovement();
@@ -183,7 +183,6 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    // ตรวจจับการกระเด็นไปชนมอนสเตอร์ตัวอื่น (ทำงานทะลุแม้ปิด Collider ระหว่างมอนไว้)
     void CheckChainKnockbackToFriends()
     {
         Collider2D[] nearby = Physics2D.OverlapCircleAll(transform.position, chainCollisionRadius);
@@ -194,7 +193,6 @@ public class Enemy : MonoBehaviour
 
             if (friend != null && friend != this && !friend.isDead && !hitFriendsThisLaunch.Contains(friend))
             {
-                // เช็กว่าเพื่อนยืนอยู่ด้านหน้าทิศทางที่เรากำลังกระเด็นไป
                 float dirToFriend = friend.transform.position.x - transform.position.x;
                 if (Mathf.Sign(dirToFriend) == Mathf.Sign(currentKnockbackDir))
                 {
@@ -211,7 +209,6 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    // รับแรงกระแทกต่อจากเพื่อนที่ปลิวมาชน
     public void ReceiveChainKnockback(int damage, float pushDirection, float inheritedForce)
     {
         if (isDead || isFinishable) return;
@@ -359,7 +356,7 @@ public class Enemy : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            Time.timeScale = 1f;
+            Time.timeScale = (playerParry != null && playerParry.isSlowMoActive) ? playerParry.slowTimeScale : 1f;
             Die();
             return;
         }
@@ -378,6 +375,7 @@ public class Enemy : MonoBehaviour
 
         StartCoroutine(DoHitStop());
     }
+
     public void LaunchIntoAir(int slamDamage, float upwardForce = 9.5f, float floatDuration = 0.85f)
     {
         if (isDead || FinisherManager.isQTEActive) return;
@@ -413,6 +411,7 @@ public class Enemy : MonoBehaviour
 
         isKnockedBack = false;
     }
+
     void EnterFinishableState()
     {
         isFinishable = true;
@@ -492,7 +491,12 @@ public class Enemy : MonoBehaviour
     {
         Time.timeScale = 0.05f;
         yield return new WaitForSecondsRealtime(hitStopDuration);
-        Time.timeScale = 1f;
+
+        // ไม่ให้ทับโหมด Slow-Mo ของ PlayerParry หากกำลังสโลว์อยู่
+        if (playerParry != null && playerParry.isSlowMoActive)
+            Time.timeScale = playerParry.slowTimeScale;
+        else
+            Time.timeScale = 1f;
     }
 
     IEnumerator FlashDamage()

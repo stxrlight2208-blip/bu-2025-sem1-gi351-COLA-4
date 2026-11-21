@@ -158,6 +158,7 @@ GameObject:
   - component: {fileID: 362290834840833267}
   - component: {fileID: 9045111296545126223}
   - component: {fileID: -5444017285388941517}
+  - component: {fileID: 7372135528984150255}
   m_Layer: 8
   m_Name: Player2
   m_TagString: Player
@@ -378,6 +379,10 @@ MonoBehaviour:
   isInvincible: 0
   isHitInvincible: 0
   iFrameDuration: 0.5
+  perfectDodgeVfxPrefab: {fileID: 0}
+  dodgeVfxLifetime: 0.6
+  vfxSortingLayer: New Layer 3
+  vfxSortingOrder: 135
   damageColor: {r: 1, g: 0, b: 0, a: 1}
   dodgeColor: {r: 0.3, g: 0.9, b: 1, a: 1}
 --- !u!114 &3429301355806088696
@@ -510,3 +515,39 @@ MonoBehaviour:
   hoverTint: {r: 0.75, g: 0.92, b: 1, a: 1}
   vfxSortingLayer: New Layer 3
   vfxSortingOrder: 120
+--- !u!114 &7372135528984150255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2565559876233381823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ff5c73b5d234994dafd2c32a646c0a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerParry
+  parryKey: 324
+  parryWindowDuration: 0.25
+  parryCooldown: 0.45
+  parryCounterDamage: 3
+  parryCounterRadius: 2.8
+  counterKnockbackForce: 8
+  stylePointsReward: 100
+  slowTimeScale: 0.3
+  slowDuration: 4
+  playerSpeedMultiplierInSlow: 2
+  playerAnimSpeedInSlow: 2
+  paleOverlayColor: {r: 0.6320754, g: 0.25342646, b: 0.2904875, a: 0.32}
+  overlayFadeSpeed: 10
+  parryStartVfxPrefab: {fileID: 3042519775331041172, guid: 841004c4c6a39e244abe2257394de913, type: 3}
+  perfectParryVfxPrefab: {fileID: 4306488877223958017, guid: ecb38e0319a6ad44cbca52d7b5add7a6, type: 3}
+  spawnLineRingWhenNoPrefab: 1
+  vfxLifetime: 0.7
+  parryFlashColor: {r: 1, g: 0.9, b: 0.25, a: 1}
+  blockHoldColor: {r: 0.75, g: 0.85, b: 1, a: 0.9}
+  vfxSortingLayer: New Layer 3
+  vfxSortingOrder: 135
+  isParryWindowActive: 0
+  isHoldingBlock: 0
+  isSlowMoActive: 0
