@@ -93,6 +93,8 @@ public class PlayerHitbox : MonoBehaviour
             return;
         }
 
+       
+
         // 3. กรณีเป้าหมายเป็น Dummy ที่ยังไม่ได้ติดสคริปต์ Enemy แต่มี Tag "Enemy" หรือชื่อ Dummy
         if (other.CompareTag("Enemy") || other.transform.root.name.Contains("Dummy"))
         {

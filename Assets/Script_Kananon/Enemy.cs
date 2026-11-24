@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IDamageable
 {
     [Header("Stats")]
     public int maxHealth = 12;
@@ -374,6 +374,11 @@ public class Enemy : MonoBehaviour
         }
 
         StartCoroutine(DoHitStop());
+    }
+    
+    public void TakeDamage(int amount)
+    {
+        TakeDamage(amount, isHeavyHit: true);
     }
 
     public void LaunchIntoAir(int slamDamage, float upwardForce = 9.5f, float floatDuration = 0.85f)

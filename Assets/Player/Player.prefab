@@ -159,6 +159,7 @@ GameObject:
   - component: {fileID: 5330883608802525283}
   - component: {fileID: -9008061674670355243}
   - component: {fileID: 5938381338455814272}
+  - component: {fileID: -5373211638506475580}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -551,3 +552,30 @@ MonoBehaviour:
   isParryWindowActive: 0
   isHoldingBlock: 0
   isSlowMoActive: 0
+--- !u!114 &-5373211638506475580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8183683538225538255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 262fbdefabd5b0642b1dae96b8f19066, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerSFX
+  audioSource: {fileID: 0}
+  walkClip: {fileID: 8300000, guid: 6b03450eab85bb84d9216a731631d764, type: 3}
+  jumpClip: {fileID: 8300000, guid: 9df3da5e8f8eb4b4ebe01a986e70e3c2, type: 3}
+  dashClip: {fileID: 8300000, guid: ff172f285e349824085eacdb5b25c24c, type: 3}
+  clickAttackClip: {fileID: 8300000, guid: c395a90ef9b3ba5408d56e280a85851a, type: 3}
+  chargeHoldClip: {fileID: 8300000, guid: a703fea9e7aac9f4fa3bbc81292d5dd3, type: 3}
+  chargeReleaseClip: {fileID: 8300000, guid: ca1d1c88aed655b4ca236bd15cfb19cb, type: 3}
+  stepInterval: 0.35
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  groundCheckDistance: 0.2
+  jumpKey: 32
+  dashKey: 113
+  holdThreshold: 0.2
