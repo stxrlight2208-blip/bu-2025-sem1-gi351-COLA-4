@@ -1,0 +1,1950 @@
+fileFormatVersion: 2
+guid: ce6b91af87dd6234da17f1a422587293
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7578358115608070310
+    second: Neon Blue Energy Slash Spritesheet_0
+  - first:
+      213: 3587355183818831861
+    second: Neon Blue Energy Slash Spritesheet_1
+  - first:
+      213: 6078744339521748909
+    second: Neon Blue Energy Slash Spritesheet_2
+  - first:
+      213: -1799880397958551874
+    second: Neon Blue Energy Slash Spritesheet_3
+  - first:
+      213: 7910825041497245316
+    second: Neon Blue Energy Slash Spritesheet_4
+  - first:
+      213: -1152318142748828575
+    second: Neon Blue Energy Slash Spritesheet_5
+  - first:
+      213: -8676090949982223039
+    second: Neon Blue Energy Slash Spritesheet_6
+  - first:
+      213: -7849142632301533475
+    second: Neon Blue Energy Slash Spritesheet_7
+  - first:
+      213: -3605853390949112270
+    second: Neon Blue Energy Slash Spritesheet_8
+  - first:
+      213: 2658623706429239532
+    second: Neon Blue Energy Slash Spritesheet_9
+  - first:
+      213: -8807485585079257023
+    second: Neon Blue Energy Slash Spritesheet_10
+  - first:
+      213: -1318729724722214605
+    second: Neon Blue Energy Slash Spritesheet_11
+  - first:
+      213: -3602364499508465057
+    second: Neon Blue Energy Slash Spritesheet_12
+  - first:
+      213: 1324754719082477474
+    second: Neon Blue Energy Slash Spritesheet_13
+  - first:
+      213: 8464362079229634526
+    second: Neon Blue Energy Slash Spritesheet_14
+  - first:
+      213: 6890821585328348569
+    second: Neon Blue Energy Slash Spritesheet_15
+  - first:
+      213: -5924248105495179579
+    second: Neon Blue Energy Slash Spritesheet_16
+  - first:
+      213: 62157553730463382
+    second: Neon Blue Energy Slash Spritesheet_17
+  - first:
+      213: 7488995935419224162
+    second: Neon Blue Energy Slash Spritesheet_18
+  - first:
+      213: 5351142791615082873
+    second: Neon Blue Energy Slash Spritesheet_19
+  - first:
+      213: -2420236994528285671
+    second: Neon Blue Energy Slash Spritesheet_20
+  - first:
+      213: -6426433357988907642
+    second: Neon Blue Energy Slash Spritesheet_21
+  - first:
+      213: 1737708754472595784
+    second: Neon Blue Energy Slash Spritesheet_22
+  - first:
+      213: 7989152233298617784
+    second: Neon Blue Energy Slash Spritesheet_23
+  - first:
+      213: -6001792599051716625
+    second: Neon Blue Energy Slash Spritesheet_24
+  - first:
+      213: 2799421829313537179
+    second: Neon Blue Energy Slash Spritesheet_25
+  - first:
+      213: 5640608776418198074
+    second: Neon Blue Energy Slash Spritesheet_26
+  - first:
+      213: -197294377655510703
+    second: Neon Blue Energy Slash Spritesheet_27
+  - first:
+      213: -4671047312985523949
+    second: Neon Blue Energy Slash Spritesheet_28
+  - first:
+      213: 133054618400697581
+    second: Neon Blue Energy Slash Spritesheet_29
+  - first:
+      213: -5619756592707872451
+    second: Neon Blue Energy Slash Spritesheet_30
+  - first:
+      213: 6171532915705303916
+    second: Neon Blue Energy Slash Spritesheet_31
+  - first:
+      213: 3491322858178385072
+    second: Neon Blue Energy Slash Spritesheet_32
+  - first:
+      213: 5894902570661619671
+    second: Neon Blue Energy Slash Spritesheet_33
+  - first:
+      213: 3459552934917116224
+    second: Neon Blue Energy Slash Spritesheet_34
+  - first:
+      213: 9000253168909087583
+    second: Neon Blue Energy Slash Spritesheet_35
+  - first:
+      213: 8129567623365816824
+    second: Neon Blue Energy Slash Spritesheet_36
+  - first:
+      213: -3466581148228707259
+    second: Neon Blue Energy Slash Spritesheet_37
+  - first:
+      213: 818363935825089486
+    second: Neon Blue Energy Slash Spritesheet_38
+  - first:
+      213: 5400638292963925502
+    second: Neon Blue Energy Slash Spritesheet_39
+  - first:
+      213: -6083775588519827353
+    second: Neon Blue Energy Slash Spritesheet_40
+  - first:
+      213: -6963247090389636322
+    second: Neon Blue Energy Slash Spritesheet_41
+  - first:
+      213: 5721439186848134785
+    second: Neon Blue Energy Slash Spritesheet_42
+  - first:
+      213: 6240794547904022245
+    second: Neon Blue Energy Slash Spritesheet_43
+  - first:
+      213: -2164237297652403772
+    second: Neon Blue Energy Slash Spritesheet_44
+  - first:
+      213: 7935905280569403463
+    second: Neon Blue Energy Slash Spritesheet_45
+  - first:
+      213: 3890394128478533900
+    second: Neon Blue Energy Slash Spritesheet_46
+  - first:
+      213: 8030404120137061177
+    second: Neon Blue Energy Slash Spritesheet_47
+  - first:
+      213: 9081635268518718754
+    second: Neon Blue Energy Slash Spritesheet_48
+  - first:
+      213: -1403844294516606562
+    second: Neon Blue Energy Slash Spritesheet_49
+  - first:
+      213: 7768182948085861888
+    second: Neon Blue Energy Slash Spritesheet_50
+  - first:
+      213: 4926763823073722548
+    second: Neon Blue Energy Slash Spritesheet_51
+  - first:
+      213: 6404161561845348613
+    second: Neon Blue Energy Slash Spritesheet_52
+  - first:
+      213: 6068857992971302349
+    second: Neon Blue Energy Slash Spritesheet_53
+  - first:
+      213: 445487005939658520
+    second: Neon Blue Energy Slash Spritesheet_54
+  - first:
+      213: -383621855300382616
+    second: Neon Blue Energy Slash Spritesheet_55
+  - first:
+      213: -31699290123489091
+    second: Neon Blue Energy Slash Spritesheet_56
+  - first:
+      213: -6520322640594396545
+    second: Neon Blue Energy Slash Spritesheet_57
+  - first:
+      213: 4324233083475293900
+    second: Neon Blue Energy Slash Spritesheet_58
+  - first:
+      213: -529754208432184288
+    second: Neon Blue Energy Slash Spritesheet_59
+  - first:
+      213: 5900839949244780249
+    second: Neon Blue Energy Slash Spritesheet_60
+  - first:
+      213: 4875371056921245268
+    second: Neon Blue Energy Slash Spritesheet_61
+  - first:
+      213: 3468756451362420903
+    second: Neon Blue Energy Slash Spritesheet_62
+  - first:
+      213: 6966945141698179697
+    second: Neon Blue Energy Slash Spritesheet_63
+  - first:
+      213: 8986114043843886493
+    second: Neon Blue Energy Slash Spritesheet_64
+  - first:
+      213: -8684729519485987274
+    second: Neon Blue Energy Slash Spritesheet_65
+  - first:
+      213: -4176074000984121851
+    second: Neon Blue Energy Slash Spritesheet_66
+  - first:
+      213: -7326523188148582710
+    second: Neon Blue Energy Slash Spritesheet_67
+  - first:
+      213: -4721491200582104298
+    second: Neon Blue Energy Slash Spritesheet_68
+  - first:
+      213: -8392039775386392089
+    second: Neon Blue Energy Slash Spritesheet_69
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 451
+        width: 582
+        height: 466
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a88485ed8cbb2960800000000000000
+      internalID: 7578358115608070310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 837
+        y: 393
+        width: 408
+        height: 524
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f77da67888d8c130800000000000000
+      internalID: 3587355183818831861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 879
+        y: 887
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: daf3c9d25c90c5450800000000000000
+      internalID: 6078744339521748909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 885
+        y: 888
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb6ed71705a8507e0800000000000000
+      internalID: -1799880397958551874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 895
+        y: 887
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48645be3675e8cd60800000000000000
+      internalID: 7910825041497245316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 908
+        y: 887
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16cd73121c42200f0800000000000000
+      internalID: -1152318142748828575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 1248
+        y: 342
+        width: 430
+        height: 577
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1450457bf35589780800000000000000
+      internalID: -8676090949982223039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 1297
+        y: 887
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd6ea4acc5e321390800000000000000
+      internalID: -7849142632301533475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 652
+        y: 823
+        width: 23
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2362750127f65fdc0800000000000000
+      internalID: -3605853390949112270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 1202
+        y: 859
+        width: 11
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce0b52dcc2455e420800000000000000
+      internalID: 2658623706429239532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 862
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1483af0468685c580800000000000000
+      internalID: -8807485585079257023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 1246
+        y: 858
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3390f236d4ee2bde0800000000000000
+      internalID: -1318729724722214605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 402
+        width: 400
+        height: 456
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f52f157e294d10ec0800000000000000
+      internalID: -3602364499508465057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 807
+        width: 37
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a7fe6de569726210800000000000000
+      internalID: 1324754719082477474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 829
+        y: 823
+        width: 15
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed7e4c60774777570800000000000000
+      internalID: 8464362079229634526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_15
+      rect:
+        serializedVersion: 2
+        x: 1246
+        y: 823
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99d171409bd11af50800000000000000
+      internalID: 6890821585328348569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_16
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 566
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5cecdae6cb7d8cda0800000000000000
+      internalID: -5924248105495179579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_17
+      rect:
+        serializedVersion: 2
+        x: 1236
+        y: 512
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 696263e37f3dcd000800000000000000
+      internalID: 62157553730463382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_18
+      rect:
+        serializedVersion: 2
+        x: 829
+        y: 478
+        width: 29
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 260d107ff124ee760800000000000000
+      internalID: 7488995935419224162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_19
+      rect:
+        serializedVersion: 2
+        x: 1184
+        y: 484
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 971fb947404134a40800000000000000
+      internalID: 5351142791615082873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_20
+      rect:
+        serializedVersion: 2
+        x: 1595
+        y: 475
+        width: 9
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91ce1e4c647996ed0800000000000000
+      internalID: -2420236994528285671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_21
+      rect:
+        serializedVersion: 2
+        x: 377
+        y: 425
+        width: 21
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 685b95cd8e8b0d6a0800000000000000
+      internalID: -6426433357988907642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_22
+      rect:
+        serializedVersion: 2
+        x: 458
+        y: 429
+        width: 32
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 841fc69c7e49d1810800000000000000
+      internalID: 1737708754472595784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_23
+      rect:
+        serializedVersion: 2
+        x: 758
+        y: 448
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b5684ab0ab2fde60800000000000000
+      internalID: 7989152233298617784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_24
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 453
+        width: 8
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe734f51e6955bca0800000000000000
+      internalID: -6001792599051716625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_25
+      rect:
+        serializedVersion: 2
+        x: 859
+        y: 433
+        width: 13
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9425b0625b89d620800000000000000
+      internalID: 2799421829313537179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_26
+      rect:
+        serializedVersion: 2
+        x: 933
+        y: 435
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a328b530cc7774e40800000000000000
+      internalID: 5640608776418198074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_27
+      rect:
+        serializedVersion: 2
+        x: 1539
+        y: 437
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15959af0fc1134df0800000000000000
+      internalID: -197294377655510703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_28
+      rect:
+        serializedVersion: 2
+        x: 1547
+        y: 447
+        width: 33
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3197474973b1d2fb0800000000000000
+      internalID: -4671047312985523949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_29
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 8
+        width: 441
+        height: 420
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: decaf717874b8d100800000000000000
+      internalID: 133054618400697581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_30
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 424
+        width: 47
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d39dc77572d9202b0800000000000000
+      internalID: -5619756592707872451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_31
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 420
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c63de381d70b5a550800000000000000
+      internalID: 6171532915705303916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_32
+      rect:
+        serializedVersion: 2
+        x: 458
+        y: 419
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b49ce544aba37030800000000000000
+      internalID: 3491322858178385072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_33
+      rect:
+        serializedVersion: 2
+        x: 964
+        y: 421
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d7a2ddc7a6eec150800000000000000
+      internalID: 5894902570661619671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_34
+      rect:
+        serializedVersion: 2
+        x: 1158
+        y: 403
+        width: 35
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0411567901dc20030800000000000000
+      internalID: 3459552934917116224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_35
+      rect:
+        serializedVersion: 2
+        x: 1557
+        y: 425
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f53f86d529257ec70800000000000000
+      internalID: 9000253168909087583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_36
+      rect:
+        serializedVersion: 2
+        x: 885
+        y: 411
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f17c306ea602d070800000000000000
+      internalID: 8129567623365816824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_37
+      rect:
+        serializedVersion: 2
+        x: 1539
+        y: 403
+        width: 13
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54c13caffca34efc0800000000000000
+      internalID: -3466581148228707259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_38
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 20
+        width: 427
+        height: 371
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec358dbe9a96b5b00800000000000000
+      internalID: 818363935825089486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_39
+      rect:
+        serializedVersion: 2
+        x: 859
+        y: 0
+        width: 431
+        height: 398
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efd9c74e9ebe2fa40800000000000000
+      internalID: 5400638292963925502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_40
+      rect:
+        serializedVersion: 2
+        x: 930
+        y: 384
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7682511e556129ba0800000000000000
+      internalID: -6083775588519827353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_41
+      rect:
+        serializedVersion: 2
+        x: 1287
+        y: 259
+        width: 219
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1bad060aa39d5f90800000000000000
+      internalID: -6963247090389636322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_42
+      rect:
+        serializedVersion: 2
+        x: 1513
+        y: 319
+        width: 33
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 186351080a2a66f40800000000000000
+      internalID: 5721439186848134785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_43
+      rect:
+        serializedVersion: 2
+        x: 1575
+        y: 330
+        width: 27
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e683008391cb9650800000000000000
+      internalID: 6240794547904022245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_44
+      rect:
+        serializedVersion: 2
+        x: 1335
+        y: 217
+        width: 54
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c1f6c7f4a517f1e0800000000000000
+      internalID: -2164237297652403772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_45
+      rect:
+        serializedVersion: 2
+        x: 1396
+        y: 247
+        width: 27
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7486c737ecff12e60800000000000000
+      internalID: 7935905280569403463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_46
+      rect:
+        serializedVersion: 2
+        x: 1404
+        y: 0
+        width: 182
+        height: 261
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c097a3009d47df530800000000000000
+      internalID: 3890394128478533900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_47
+      rect:
+        serializedVersion: 2
+        x: 1498
+        y: 104
+        width: 159
+        height: 223
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9335a97100ab17f60800000000000000
+      internalID: 8030404120137061177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_48
+      rect:
+        serializedVersion: 2
+        x: 1293
+        y: 169
+        width: 104
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22da7bff823780e70800000000000000
+      internalID: 9081635268518718754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_49
+      rect:
+        serializedVersion: 2
+        x: 1299
+        y: 0
+        width: 146
+        height: 198
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e99f0615d0b848ce0800000000000000
+      internalID: -1403844294516606562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_50
+      rect:
+        serializedVersion: 2
+        x: 1289
+        y: 125
+        width: 37
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00e87e2db312ecb60800000000000000
+      internalID: 7768182948085861888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_51
+      rect:
+        serializedVersion: 2
+        x: 1619
+        y: 134
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b00e8e08916f5440800000000000000
+      internalID: 4926763823073722548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_52
+      rect:
+        serializedVersion: 2
+        x: 1652
+        y: 126
+        width: 11
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 509b002820720e850800000000000000
+      internalID: 6404161561845348613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_53
+      rect:
+        serializedVersion: 2
+        x: 1650
+        y: 76
+        width: 23
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc5385fb03ae83450800000000000000
+      internalID: 6068857992971302349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_54
+      rect:
+        serializedVersion: 2
+        x: 1668
+        y: 118
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81fe5155210be2600800000000000000
+      internalID: 445487005939658520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_55
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 40
+        width: 9
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8609eb284f91daaf0800000000000000
+      internalID: -383621855300382616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_56
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 39
+        width: 17
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db0be80e9a16f8ff0800000000000000
+      internalID: -31699290123489091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_57
+      rect:
+        serializedVersion: 2
+        x: 1063
+        y: 47
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7a1f62ca192385a0800000000000000
+      internalID: -6520322640594396545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_58
+      rect:
+        serializedVersion: 2
+        x: 1071
+        y: 47
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc679822413c20c30800000000000000
+      internalID: 4324233083475293900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_59
+      rect:
+        serializedVersion: 2
+        x: 1522
+        y: 62
+        width: 26
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 024a12caa5fe5a8f0800000000000000
+      internalID: -529754208432184288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_60
+      rect:
+        serializedVersion: 2
+        x: 1555
+        y: 59
+        width: 9
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9de4b2b7baef3e150800000000000000
+      internalID: 5900839949244780249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_61
+      rect:
+        serializedVersion: 2
+        x: 1593
+        y: 55
+        width: 22
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 456f20c352cc8a340800000000000000
+      internalID: 4875371056921245268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_62
+      rect:
+        serializedVersion: 2
+        x: 1603
+        y: 51
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a83dcf3d9f732030800000000000000
+      internalID: 3468756451362420903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_63
+      rect:
+        serializedVersion: 2
+        x: 1619
+        y: 32
+        width: 42
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 172bd84a1bf8fa060800000000000000
+      internalID: 6966945141698179697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_64
+      rect:
+        serializedVersion: 2
+        x: 1619
+        y: 49
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9db676cc1715bc70800000000000000
+      internalID: 8986114043843886493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_65
+      rect:
+        serializedVersion: 2
+        x: 653
+        y: 41
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63650b40484a97780800000000000000
+      internalID: -8684729519485987274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_66
+      rect:
+        serializedVersion: 2
+        x: 1226
+        y: 31
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50ed89762da9b06c0800000000000000
+      internalID: -4176074000984121851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_67
+      rect:
+        serializedVersion: 2
+        x: 635
+        y: 15
+        width: 9
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac6cdbb5af5f25a90800000000000000
+      internalID: -7326523188148582710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_68
+      rect:
+        serializedVersion: 2
+        x: 1234
+        y: 33
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61bcb23c4c4e97eb0800000000000000
+      internalID: -4721491200582104298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Neon Blue Energy Slash Spritesheet_69
+      rect:
+        serializedVersion: 2
+        x: 1529
+        y: 17
+        width: 25
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e92527894c798b80800000000000000
+      internalID: -8392039775386392089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Neon Blue Energy Slash Spritesheet_0: 7578358115608070310
+      Neon Blue Energy Slash Spritesheet_1: 3587355183818831861
+      Neon Blue Energy Slash Spritesheet_10: -8807485585079257023
+      Neon Blue Energy Slash Spritesheet_11: -1318729724722214605
+      Neon Blue Energy Slash Spritesheet_12: -3602364499508465057
+      Neon Blue Energy Slash Spritesheet_13: 1324754719082477474
+      Neon Blue Energy Slash Spritesheet_14: 8464362079229634526
+      Neon Blue Energy Slash Spritesheet_15: 6890821585328348569
+      Neon Blue Energy Slash Spritesheet_16: -5924248105495179579
+      Neon Blue Energy Slash Spritesheet_17: 62157553730463382
+      Neon Blue Energy Slash Spritesheet_18: 7488995935419224162
+      Neon Blue Energy Slash Spritesheet_19: 5351142791615082873
+      Neon Blue Energy Slash Spritesheet_2: 6078744339521748909
+      Neon Blue Energy Slash Spritesheet_20: -2420236994528285671
+      Neon Blue Energy Slash Spritesheet_21: -6426433357988907642
+      Neon Blue Energy Slash Spritesheet_22: 1737708754472595784
+      Neon Blue Energy Slash Spritesheet_23: 7989152233298617784
+      Neon Blue Energy Slash Spritesheet_24: -6001792599051716625
+      Neon Blue Energy Slash Spritesheet_25: 2799421829313537179
+      Neon Blue Energy Slash Spritesheet_26: 5640608776418198074
+      Neon Blue Energy Slash Spritesheet_27: -197294377655510703
+      Neon Blue Energy Slash Spritesheet_28: -4671047312985523949
+      Neon Blue Energy Slash Spritesheet_29: 133054618400697581
+      Neon Blue Energy Slash Spritesheet_3: -1799880397958551874
+      Neon Blue Energy Slash Spritesheet_30: -5619756592707872451
+      Neon Blue Energy Slash Spritesheet_31: 6171532915705303916
+      Neon Blue Energy Slash Spritesheet_32: 3491322858178385072
+      Neon Blue Energy Slash Spritesheet_33: 5894902570661619671
+      Neon Blue Energy Slash Spritesheet_34: 3459552934917116224
+      Neon Blue Energy Slash Spritesheet_35: 9000253168909087583
+      Neon Blue Energy Slash Spritesheet_36: 8129567623365816824
+      Neon Blue Energy Slash Spritesheet_37: -3466581148228707259
+      Neon Blue Energy Slash Spritesheet_38: 818363935825089486
+      Neon Blue Energy Slash Spritesheet_39: 5400638292963925502
+      Neon Blue Energy Slash Spritesheet_4: 7910825041497245316
+      Neon Blue Energy Slash Spritesheet_40: -6083775588519827353
+      Neon Blue Energy Slash Spritesheet_41: -6963247090389636322
+      Neon Blue Energy Slash Spritesheet_42: 5721439186848134785
+      Neon Blue Energy Slash Spritesheet_43: 6240794547904022245
+      Neon Blue Energy Slash Spritesheet_44: -2164237297652403772
+      Neon Blue Energy Slash Spritesheet_45: 7935905280569403463
+      Neon Blue Energy Slash Spritesheet_46: 3890394128478533900
+      Neon Blue Energy Slash Spritesheet_47: 8030404120137061177
+      Neon Blue Energy Slash Spritesheet_48: 9081635268518718754
+      Neon Blue Energy Slash Spritesheet_49: -1403844294516606562
+      Neon Blue Energy Slash Spritesheet_5: -1152318142748828575
+      Neon Blue Energy Slash Spritesheet_50: 7768182948085861888
+      Neon Blue Energy Slash Spritesheet_51: 4926763823073722548
+      Neon Blue Energy Slash Spritesheet_52: 6404161561845348613
+      Neon Blue Energy Slash Spritesheet_53: 6068857992971302349
+      Neon Blue Energy Slash Spritesheet_54: 445487005939658520
+      Neon Blue Energy Slash Spritesheet_55: -383621855300382616
+      Neon Blue Energy Slash Spritesheet_56: -31699290123489091
+      Neon Blue Energy Slash Spritesheet_57: -6520322640594396545
+      Neon Blue Energy Slash Spritesheet_58: 4324233083475293900
+      Neon Blue Energy Slash Spritesheet_59: -529754208432184288
+      Neon Blue Energy Slash Spritesheet_6: -8676090949982223039
+      Neon Blue Energy Slash Spritesheet_60: 5900839949244780249
+      Neon Blue Energy Slash Spritesheet_61: 4875371056921245268
+      Neon Blue Energy Slash Spritesheet_62: 3468756451362420903
+      Neon Blue Energy Slash Spritesheet_63: 6966945141698179697
+      Neon Blue Energy Slash Spritesheet_64: 8986114043843886493
+      Neon Blue Energy Slash Spritesheet_65: -8684729519485987274
+      Neon Blue Energy Slash Spritesheet_66: -4176074000984121851
+      Neon Blue Energy Slash Spritesheet_67: -7326523188148582710
+      Neon Blue Energy Slash Spritesheet_68: -4721491200582104298
+      Neon Blue Energy Slash Spritesheet_69: -8392039775386392089
+      Neon Blue Energy Slash Spritesheet_7: -7849142632301533475
+      Neon Blue Energy Slash Spritesheet_8: -3605853390949112270
+      Neon Blue Energy Slash Spritesheet_9: 2658623706429239532
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
