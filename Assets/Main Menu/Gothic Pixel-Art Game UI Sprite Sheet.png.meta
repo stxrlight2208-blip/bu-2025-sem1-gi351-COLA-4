@@ -1,0 +1,433 @@
+fileFormatVersion: 2
+guid: 778d18d204a24a442a822c5b455d5f42
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3309222367466937131
+    second: Gothic Pixel-Art Game UI Sprite Sheet_0
+  - first:
+      213: -3022540583918141289
+    second: Gothic Pixel-Art Game UI Sprite Sheet_1
+  - first:
+      213: 7654446395915948004
+    second: Gothic Pixel-Art Game UI Sprite Sheet_2
+  - first:
+      213: 6182632458236244982
+    second: Gothic Pixel-Art Game UI Sprite Sheet_3
+  - first:
+      213: -1229672024724261578
+    second: Gothic Pixel-Art Game UI Sprite Sheet_4
+  - first:
+      213: 4476084722448322189
+    second: Gothic Pixel-Art Game UI Sprite Sheet_5
+  - first:
+      213: -6553767600761020543
+    second: Gothic Pixel-Art Game UI Sprite Sheet_6
+  - first:
+      213: -4250379340885426309
+    second: Gothic Pixel-Art Game UI Sprite Sheet_7
+  - first:
+      213: -2366857563789958617
+    second: Gothic Pixel-Art Game UI Sprite Sheet_8
+  - first:
+      213: -936513968081640482
+    second: Gothic Pixel-Art Game UI Sprite Sheet_9
+  - first:
+      213: -1657013660240015180
+    second: Gothic Pixel-Art Game UI Sprite Sheet_10
+  - first:
+      213: 3276238938018846256
+    second: Gothic Pixel-Art Game UI Sprite Sheet_11
+  - first:
+      213: 6658901382493400741
+    second: Gothic Pixel-Art Game UI Sprite Sheet_12
+  - first:
+      213: 4328931185283664195
+    second: Gothic Pixel-Art Game UI Sprite Sheet_13
+  - first:
+      213: -8993661903860128241
+    second: Gothic Pixel-Art Game UI Sprite Sheet_14
+  - first:
+      213: 280122484146398157
+    second: Gothic Pixel-Art Game UI Sprite Sheet_15
+  - first:
+      213: -5101977033103138760
+    second: Gothic Pixel-Art Game UI Sprite Sheet_16
+  - first:
+      213: 2123043045063054678
+    second: Gothic Pixel-Art Game UI Sprite Sheet_17
+  - first:
+      213: -2123458866100054613
+    second: Gothic Pixel-Art Game UI Sprite Sheet_18
+  - first:
+      213: 8391623878971939103
+    second: Gothic Pixel-Art Game UI Sprite Sheet_19
+  - first:
+      213: -1873290847628417007
+    second: Gothic Pixel-Art Game UI Sprite Sheet_20
+  - first:
+      213: -5944187647291041563
+    second: Gothic Pixel-Art Game UI Sprite Sheet_21
+  - first:
+      213: -4296285057517269938
+    second: Gothic Pixel-Art Game UI Sprite Sheet_22
+  - first:
+      213: 1998958634159549093
+    second: Gothic Pixel-Art Game UI Sprite Sheet_23
+  - first:
+      213: -4957992501548781753
+    second: Gothic Pixel-Art Game UI Sprite Sheet_24
+  - first:
+      213: 6950206542616273882
+    second: Gothic Pixel-Art Game UI Sprite Sheet_25
+  - first:
+      213: -1247587452341642948
+    second: Gothic Pixel-Art Game UI Sprite Sheet_26
+  - first:
+      213: -1442989755769865610
+    second: Gothic Pixel-Art Game UI Sprite Sheet_27
+  - first:
+      213: -1466074509273662275
+    second: Gothic Pixel-Art Game UI Sprite Sheet_28
+  - first:
+      213: -2946243902434243954
+    second: Gothic Pixel-Art Game UI Sprite Sheet_29
+  - first:
+      213: 1134807527819013414
+    second: Gothic Pixel-Art Game UI Sprite Sheet_30
+  - first:
+      213: -6359809520364524003
+    second: Gothic Pixel-Art Game UI Sprite Sheet_31
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: VisionOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: tvOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Gothic Pixel-Art Game UI Sprite Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 696
+        width: 799
+        height: 245
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d42b503ac74312d0800000000000000
+      internalID: -3309222367466937131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gothic Pixel-Art Game UI Sprite Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 854
+        y: 696
+        width: 799
+        height: 245
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7908b506a57cd06d0800000000000000
+      internalID: -3022540583918141289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gothic Pixel-Art Game UI Sprite Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 317
+        width: 463
+        height: 140
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4efc6dc217e0a3a60800000000000000
+      internalID: 7654446395915948004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gothic Pixel-Art Game UI Sprite Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 1022
+        y: 317
+        width: 463
+        height: 140
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f3b8f9b67f1dc550800000000000000
+      internalID: 6182632458236244982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gothic Pixel-Art Game UI Sprite Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 450
+        width: 708
+        height: 245
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32f67742c7bdd5b43b83c703be3872aa
+      internalID: -1229672024724261578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 6dfa9249ce68c034aaeed743652353dc
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Gothic Pixel-Art Game UI Sprite Sheet_0: -3309222367466937131
+      Gothic Pixel-Art Game UI Sprite Sheet_1: -3022540583918141289
+      Gothic Pixel-Art Game UI Sprite Sheet_10: -1657013660240015180
+      Gothic Pixel-Art Game UI Sprite Sheet_11: 3276238938018846256
+      Gothic Pixel-Art Game UI Sprite Sheet_12: 6658901382493400741
+      Gothic Pixel-Art Game UI Sprite Sheet_13: 4328931185283664195
+      Gothic Pixel-Art Game UI Sprite Sheet_14: -8993661903860128241
+      Gothic Pixel-Art Game UI Sprite Sheet_15: 280122484146398157
+      Gothic Pixel-Art Game UI Sprite Sheet_16: -5101977033103138760
+      Gothic Pixel-Art Game UI Sprite Sheet_17: 2123043045063054678
+      Gothic Pixel-Art Game UI Sprite Sheet_18: -2123458866100054613
+      Gothic Pixel-Art Game UI Sprite Sheet_19: 8391623878971939103
+      Gothic Pixel-Art Game UI Sprite Sheet_2: 7654446395915948004
+      Gothic Pixel-Art Game UI Sprite Sheet_20: -1873290847628417007
+      Gothic Pixel-Art Game UI Sprite Sheet_21: -5944187647291041563
+      Gothic Pixel-Art Game UI Sprite Sheet_22: -4296285057517269938
+      Gothic Pixel-Art Game UI Sprite Sheet_23: 1998958634159549093
+      Gothic Pixel-Art Game UI Sprite Sheet_24: -4957992501548781753
+      Gothic Pixel-Art Game UI Sprite Sheet_25: 6950206542616273882
+      Gothic Pixel-Art Game UI Sprite Sheet_26: -1247587452341642948
+      Gothic Pixel-Art Game UI Sprite Sheet_27: -1442989755769865610
+      Gothic Pixel-Art Game UI Sprite Sheet_28: -1466074509273662275
+      Gothic Pixel-Art Game UI Sprite Sheet_29: -2946243902434243954
+      Gothic Pixel-Art Game UI Sprite Sheet_3: 6182632458236244982
+      Gothic Pixel-Art Game UI Sprite Sheet_30: 1134807527819013414
+      Gothic Pixel-Art Game UI Sprite Sheet_31: -6359809520364524003
+      Gothic Pixel-Art Game UI Sprite Sheet_4: -1229672024724261578
+      Gothic Pixel-Art Game UI Sprite Sheet_5: 4476084722448322189
+      Gothic Pixel-Art Game UI Sprite Sheet_6: -6553767600761020543
+      Gothic Pixel-Art Game UI Sprite Sheet_7: -4250379340885426309
+      Gothic Pixel-Art Game UI Sprite Sheet_8: -2366857563789958617
+      Gothic Pixel-Art Game UI Sprite Sheet_9: -936513968081640482
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
