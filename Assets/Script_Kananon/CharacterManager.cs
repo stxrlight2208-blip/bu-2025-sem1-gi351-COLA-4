@@ -11,6 +11,10 @@ public class CharacterManager : MonoBehaviour
     public GameObject[] characterPrefabs;
     public int selectedCharacterIndex = -1;
 
+    [Header("Character Animators")]
+    public Animator blueAnimator;
+    public Animator redAnimator;
+
     [Header("UI Warning")]
     public TMP_Text warningText;
     public float warningDuration = 2.0f; // ⭐ ระยะเวลาที่ข้อความจะโชว์ (วินาที)
@@ -31,27 +35,47 @@ public class CharacterManager : MonoBehaviour
 
     void Start()
     {
+        // หยุด Animation ตอนเข้าหน้าเลือกตัวละคร
+        if (blueAnimator != null)
+            blueAnimator.speed = 0;
+
+        if (redAnimator != null)
+            redAnimator.speed = 0;
+
         if (warningText != null)
-        {
             warningText.gameObject.SetActive(false);
-        }
     }
+
 
     public void SelectCharacter(int index)
     {
         selectedCharacterIndex = index;
-        Debug.Log("เลือกตัวละครหมายเลข: " + index);
 
-        // ถ้ากดเลือกตัวละครปุ๊บ ให้หยุดจับเวลาและซ่อนข้อความเตือนทันที
-        if (warningCoroutine != null)
+        // หยุด Animation ทั้งสองตัวก่อน
+        if (blueAnimator != null)
+            blueAnimator.speed = 0;
+
+        if (redAnimator != null)
+            redAnimator.speed = 0;
+
+        // เลือกตัวละครสีน้ำเงิน
+        if (index == 0)
         {
-            StopCoroutine(warningCoroutine);
+            blueAnimator.Play("Blue", 0, 0f);
+            blueAnimator.speed = 1;
         }
+
+        // เลือกตัวละครสีแดง
+        else if (index == 1)
+        {
+            redAnimator.speed = 1;
+        }
+
+        if (warningCoroutine != null)
+            StopCoroutine(warningCoroutine);
 
         if (warningText != null)
-        {
             warningText.gameObject.SetActive(false);
-        }
     }
 
     public GameObject GetSelectedCharacter()
