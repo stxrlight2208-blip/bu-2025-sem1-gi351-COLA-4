@@ -6,6 +6,7 @@ public class BackgroundGenerator : MonoBehaviour
 {
     [Header("Player")]
     public Transform player;
+    public Transform player1;
 
     [Header("Ground Reference")]
     public Transform groundLine;

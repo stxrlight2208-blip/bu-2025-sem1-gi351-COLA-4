@@ -2937,7 +2937,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9453e1961629c80439bfa887eed110c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BackgroundGenerator
-  player: {fileID: 0}
+  player: {fileID: 5094626570930037902, guid: fd5532b94e33d7243919212ff2811054, type: 3}
+  player1: {fileID: 2003897270421206525, guid: 01f57ade343cfbf42b85f163c299db2e, type: 3}
   groundLine: {fileID: 689142656}
   backgroundPrefabs:
   - {fileID: 7064365230716335282, guid: f81d84b04dbd525438a021435e1b7ea5, type: 3}
