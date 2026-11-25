@@ -58,8 +58,8 @@ Transform:
   m_GameObject: {fileID: 2308200016520657304}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.01, y: -0.3384614, z: 0}
-  m_LocalScale: {x: 1.0769231, y: 1.0769231, z: 1}
+  m_LocalPosition: {x: 0.95463, y: -0.34594, z: 0}
+  m_LocalScale: {x: 2.002411, y: 2.004081, z: 1.4097971}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2003897270421206525}
@@ -577,7 +577,7 @@ MonoBehaviour:
   playerHurtClip: {fileID: 0}
   qteStartClip: {fileID: 8300000, guid: a6fba338c3603344aac558aa779a1ce8, type: 3}
   qteTapClip: {fileID: 8300000, guid: a6fba338c3603344aac558aa779a1ce8, type: 3}
-  qteSuccessClip: {fileID: 8300000, guid: c508bcb2754ade840ab58b51548732a7, type: 3}
+  qteSuccessClip: {fileID: 8300000, guid: 567da90732d1942448c8d181a9c35bb5, type: 3}
   qteFailClip: {fileID: 0}
   qteKeys: 65000000200000006600000077000000610000007300000064000000
   stepInterval: 0.35

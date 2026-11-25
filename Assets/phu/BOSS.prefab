@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5528941080332858299}
   - component: {fileID: -1771602339291644600}
   - component: {fileID: 139120671496559373}
+  - component: {fileID: 4049740490652124876}
   m_Layer: 7
   m_Name: BOSS
   m_TagString: Enemy
@@ -287,3 +288,26 @@ MonoBehaviour:
   animator: {fileID: 0}
   bossScriptsToStop: []
   bossDialogue: {fileID: 0}
+--- !u!114 &4049740490652124876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8767942882628471365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31b4d865d93863b4db1859463661af57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossSFX
+  audioSource: {fileID: 0}
+  bossAttackClip: {fileID: 0}
+  bossHeavySkillClip: {fileID: 0}
+  bossHurtClip: {fileID: 0}
+  bossDeathClip: {fileID: 0}
+  qteStartClip: {fileID: 8300000, guid: 2efb1765d8a40fd478024338073e6242, type: 3}
+  qteTapClip: {fileID: 8300000, guid: 602539c1b52de6f4eac2df203638e635, type: 3}
+  qteSuccessClip: {fileID: 8300000, guid: c6ad777715f095b4db015ecbbee91d62, type: 3}
+  qteFailClip: {fileID: 0}
+  qteKeys: 650000002000000066000000710000007200000077000000610000007300000064000000
+  attackSoundCooldown: 0.6
