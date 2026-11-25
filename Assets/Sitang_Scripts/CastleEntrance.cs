@@ -6,6 +6,7 @@ using TMPro;
 public class CastleEntrance : MonoBehaviour
 {
     public GameObject enterPrompt;
+    public SceneFade sceneFade;
     public string bossSceneName = "BossScene";
 
     private bool playerNear = false;
@@ -19,7 +20,7 @@ public class CastleEntrance : MonoBehaviour
     {
         if (playerNear && Input.GetKeyDown(KeyCode.E))
         {
-            SceneManager.LoadScene(bossSceneName);
+            sceneFade.FadeToScene(bossSceneName);
         }
     }
 

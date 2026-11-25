@@ -14,8 +14,9 @@ GameObject:
   - component: {fileID: 531744865908382376}
   - component: {fileID: 5528941080332858299}
   - component: {fileID: -1771602339291644600}
+  - component: {fileID: 139120671496559373}
   m_Layer: 7
-  m_Name: Dummy_Normal
+  m_Name: BOSS
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -264,3 +265,19 @@ MonoBehaviour:
   hitStopDuration: 0.03
   hitCooldown: 0.22
   deathAnimationDuration: 1.5
+--- !u!114 &139120671496559373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8767942882628471365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cfa2db3e9ffb514085baf37b9c967bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossHealth
+  maxHealth: 120
+  currentHealth: 0
+  healthSlider: {fileID: 0}
+  healthText: {fileID: 0}
