@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 531744865908382376}
   - component: {fileID: 5528941080332858299}
   - component: {fileID: 2224949283441665503}
+  - component: {fileID: 7399348767301046842}
   m_Layer: 7
   m_Name: Dummy_Normal
   m_TagString: Enemy
@@ -203,7 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 754f345e0894548439d30a2f2c8d46e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  maxHealth: 90
+  maxHealth: 1
   requiredComboHits: 3
   finisherHealthPercent: 0.35
   finisherInteractRange: 4.5
@@ -225,3 +226,21 @@ MonoBehaviour:
   airPogoBounceForce: 11
   hitCooldown: 0.2
   deathAnimationDuration: 1
+--- !u!114 &7399348767301046842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8767942882628471365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd1ea706da8ef784e871bdd82e3da74d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemySFX
+  audioSource: {fileID: 0}
+  attackSwingClip: {fileID: 0}
+  hurtClip: {fileID: 0}
+  deathClip: {fileID: 0}
+  attackSoundCooldown: 0.7
+  telegraphDetectColor: {r: 1, g: 0.7, b: 0.1, a: 1}

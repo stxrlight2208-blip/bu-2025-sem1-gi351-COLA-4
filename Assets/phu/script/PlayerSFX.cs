@@ -2,10 +2,12 @@ using UnityEngine;
 
 public class PlayerSFX : MonoBehaviour
 {
+    public static PlayerSFX Instance;
+
     [Header("Audio Source")]
     public AudioSource audioSource;
 
-    [Header("Clips (ลากไฟล์เสียงมาใส่ใน Inspector)")]
+    [Header("Movement & Basic Attack Clips")]
     public AudioClip walkClip;
     public AudioClip jumpClip;
     public AudioClip dashClip;
@@ -13,10 +15,17 @@ public class PlayerSFX : MonoBehaviour
     public AudioClip chargeHoldClip;
     public AudioClip chargeReleaseClip;
 
-    [Header("Walk Settings")]
+    [Header("Combat & QTE Clips (เสียงใหม่ที่เพิ่มเข้ามา)")]
+    public AudioClip slamGroundClip;      // เสียงตอน Slam กระแทกพื้น
+    public AudioClip enemyHitClip;        // เสียงตอนฟันโดน Enemy
+    public AudioClip playerHurtClip;      // เสียงตอนเราโดนฟัน/โดนดาเมจ
+    public AudioClip qteStartClip;        // เสียงตอนเริ่ม Quick Time Event (กด E)
+
+    [Header("Walk & Slam Settings")]
     public float stepInterval = 0.35f;
     public LayerMask groundLayer;
     public float groundCheckDistance = 0.2f;
+    public float slamDownwardSpeedThreshold = -12f; // ความเร็วพุ่งลงพื้นขั้นต่ำที่จะนับว่า Slam
 
     [Header("Input Keys (ปรับให้ตรงกับปุ่มในเกม)")]
     public KeyCode jumpKey = KeyCode.Space;
@@ -25,15 +34,25 @@ public class PlayerSFX : MonoBehaviour
 
     private Rigidbody2D rb;
     private Collider2D col;
+    private PlayerHealth playerHealth;
     private Vector3 lastPosition;
     private float stepTimer = 0f;
     private float holdTimer = 0f;
     private bool playedHoldSound = false;
 
+    // ตัวแปรจับสถานะ Slam, Hurt และ QTE
+    private bool wasGrounded = true;
+    private bool isSlammingDown = false;
+    private int lastKnownHealth = -1;
+    private bool wasQTEActive = false;
+
     void Awake()
     {
+        Instance = this;
+
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
+        playerHealth = GetComponent<PlayerHealth>();
         lastPosition = transform.position;
 
         audioSource = GetComponent<AudioSource>();
@@ -43,17 +62,25 @@ public class PlayerSFX : MonoBehaviour
         audioSource.playOnAwake = false;
     }
 
+    void Start()
+    {
+        if (playerHealth != null)
+            lastKnownHealth = playerHealth.currentHealth;
+    }
+
     void Update()
     {
-        HandleWalkAndJump();
+        HandleWalkJumpAndSlam();
         HandleDash();
         HandleClickAndHoldAttack();
+        HandlePlayerHurtCheck();
+        HandleQTECheck();
+
         lastPosition = transform.position;
     }
 
     bool CheckGrounded()
     {
-        // ถ้าตั้ง Ground Layer ไว้ใน Inspector จะยิง Raycast เช็กพื้นได้แม่นที่สุด
         if (groundLayer.value != 0 && col != null)
         {
             Vector2 origin = new Vector2(col.bounds.center.x, col.bounds.min.y + 0.05f);
@@ -61,24 +88,46 @@ public class PlayerSFX : MonoBehaviour
             return hit.collider != null;
         }
 
-        // กรณียังไม่ได้ตั้ง Ground Layer ให้เช็กจากความเร็วแกน Y แบบผ่อนปรนขึ้น
         if (rb != null)
             return Mathf.Abs(rb.linearVelocity.y) < 0.2f;
 
         return true;
     }
 
-    void HandleWalkAndJump()
+    void HandleWalkJumpAndSlam()
     {
         bool isGrounded = CheckGrounded();
 
-        // เสียงกระโดด
+        // 1. เช็กจังหวะกด S + คลิกซ้ายกลางอากาศ หรือพุ่งดิ่งลงพื้นอย่างเร็ว (Slam)
+        if (!isGrounded)
+        {
+            if (Input.GetKey(KeyCode.S) && Input.GetMouseButtonDown(0))
+                isSlammingDown = true;
+
+            if (rb != null && rb.linearVelocity.y <= slamDownwardSpeedThreshold)
+                isSlammingDown = true;
+        }
+
+        // จังหวะตัวละครกระแทกถึงพื้นหลังจากพุ่งลงมา -> เล่นเสียง Slam พื้น
+        if (isGrounded && !wasGrounded && isSlammingDown)
+        {
+            PlaySlamSound();
+            isSlammingDown = false;
+        }
+        else if (isGrounded)
+        {
+            isSlammingDown = false;
+        }
+
+        wasGrounded = isGrounded;
+
+        // 2. เสียงกระโดด
         if (Input.GetKeyDown(jumpKey) && isGrounded)
         {
             PlaySound(jumpClip);
         }
 
-        // เช็กการเดินจากทั้งปุ่มซ้าย-ขวา (A/D หรือลูกศร) และการเปลี่ยนตำแหน่งแกน X จริง
+        // 3. เสียงเดิน
         float moveInput = Input.GetAxisRaw("Horizontal");
         float movedX = Mathf.Abs(transform.position.x - lastPosition.x) / Mathf.Max(Time.deltaTime, 0.0001f);
         bool isMoving = Mathf.Abs(moveInput) > 0.1f || movedX > 0.2f;
@@ -94,7 +143,6 @@ public class PlayerSFX : MonoBehaviour
         }
         else
         {
-            // รีเซ็ตให้ก้าวแรกดังทันทีเมื่อเริ่มเดินครั้งถัดไป
             stepTimer = 0f;
         }
     }
@@ -140,6 +188,50 @@ public class PlayerSFX : MonoBehaviour
             holdTimer = 0f;
             playedHoldSound = false;
         }
+    }
+
+    // ตรวจจับอัตโนมัติเมื่อเลือด Player ลดลง -> เล่นเสียงโดนฟัน
+    void HandlePlayerHurtCheck()
+    {
+        if (playerHealth == null) return;
+
+        if (lastKnownHealth != -1 && playerHealth.currentHealth < lastKnownHealth)
+        {
+            PlayPlayerHurtSound();
+        }
+        lastKnownHealth = playerHealth.currentHealth;
+    }
+
+    // ตรวจจับอัตโนมัติเมื่อเข้าสู่โหมด Finisher QTE -> เล่นเสียง QTE
+    void HandleQTECheck()
+    {
+        bool qteNow = FinisherManager.isQTEActive;
+        if (qteNow && !wasQTEActive)
+        {
+            PlayQTESound();
+        }
+        wasQTEActive = qteNow;
+    }
+
+    // --- ฟังก์ชันสาธารณะสำหรับให้สคริปต์อื่นเรียกใช้ได้โดยตรง ---
+    public void PlaySlamSound()
+    {
+        PlaySound(slamGroundClip, 0.95f, 1.05f);
+    }
+
+    public void PlayEnemyHitSound()
+    {
+        PlaySound(enemyHitClip, 0.92f, 1.12f);
+    }
+
+    public void PlayPlayerHurtSound()
+    {
+        PlaySound(playerHurtClip, 0.95f, 1.05f);
+    }
+
+    public void PlayQTESound()
+    {
+        PlaySound(qteStartClip, 1f, 1f);
     }
 
     void PlaySound(AudioClip clip, float minPitch = 0.95f, float maxPitch = 1.05f)
