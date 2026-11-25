@@ -425,10 +425,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHitbox
   attackCollider: {fileID: 8259568512526441447}
-  slashDamage: 1
-  upperDamage: 2
-  heavyDamage: 3
-  comboDamage: 4
+  slashDamage: 3
+  upperDamage: 4
+  heavyDamage: 5
+  comboDamage: 7
   currentAttackDamage: 0
 --- !u!114 &-1830326241538636384
 MonoBehaviour:

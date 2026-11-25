@@ -8,6 +8,11 @@ public class BossSpawner : MonoBehaviour
     public Transform spawnPoint;
     public Slider bossHPBar;
     public GameObject bossHUD;
+    public BossDialogue bossDialogue;
+
+    [Header("Boss Defeat UI")]
+    public GameObject continuePrompt;
+    public SceneFade sceneFade;
 
     private bool hasSpawned = false;
 
@@ -38,6 +43,10 @@ public class BossSpawner : MonoBehaviour
         {
             bossHealth.healthSlider = bossHPBar;
             bossHealth.bossHUD = bossHUD;
+            bossHealth.bossDialogue = bossDialogue;
+
+            bossHealth.continuePrompt = continuePrompt;
+            bossHealth.sceneFade = sceneFade;
         }
         else
         {

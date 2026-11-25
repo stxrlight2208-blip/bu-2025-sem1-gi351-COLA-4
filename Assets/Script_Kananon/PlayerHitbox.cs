@@ -6,10 +6,10 @@ public class PlayerHitbox : MonoBehaviour
     public Collider2D attackCollider;
 
     [Header("Damage Settings for Each Move")]
-    public int slashDamage = 1;
-    public int upperDamage = 2;
-    public int heavyDamage = 3;
-    public int comboDamage = 4;
+    public int slashDamage = 3;
+    public int upperDamage = 4;
+    public int heavyDamage = 5;
+    public int comboDamage = 7;
 
     [HideInInspector] public int currentAttackDamage;
 

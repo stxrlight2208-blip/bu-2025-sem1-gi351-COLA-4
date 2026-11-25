@@ -277,7 +277,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cfa2db3e9ffb514085baf37b9c967bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossHealth
-  maxHealth: 120
+  maxHealth: 300
   currentHealth: 0
   healthSlider: {fileID: 0}
-  healthText: {fileID: 0}
+  bossHUD: {fileID: 0}
+  continuePrompt: {fileID: 0}
+  sceneFade: {fileID: 0}
+  nextSceneName: Boss_Defeat
+  animator: {fileID: 0}
+  bossScriptsToStop: []
+  bossDialogue: {fileID: 0}

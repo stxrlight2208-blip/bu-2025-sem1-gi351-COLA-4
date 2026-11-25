@@ -22,6 +22,7 @@ public class BossEnemy : MonoBehaviour
     public float attackRange = 4.5f;
     private Transform playerTransform;
     private Rigidbody2D rb;
+    private BossHealth bossHealth;
 
     [Header("Boss Dash Attack & Telegraph")]
     public int dashDamage = 2;
@@ -48,6 +49,7 @@ public class BossEnemy : MonoBehaviour
         currentHealth = maxHealth;
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
+        bossHealth = GetComponent<BossHealth>();
 
         if (spriteRenderer != null)
         {
@@ -102,7 +104,7 @@ public class BossEnemy : MonoBehaviour
                     playerTransform.gameObject,
                     gameObject,
                     isBoss: true,
-                    onSuccess: () => Die(),
+                    onSuccess: () => FinishBoss(),
                     onFail: () => RecoverBossFromStun()
                 );
             }
@@ -269,6 +271,14 @@ public class BossEnemy : MonoBehaviour
         if (isFinishable) return;
 
         currentHealth -= damage;
+        currentHealth = Mathf.Max(0, currentHealth);
+
+        // ส่งดาเมจไปยังระบบหลอด HP
+        if (bossHealth != null)
+        {
+            bossHealth.TakeDamage(damage);
+        }
+
         ComboCounterUI.RegisterHit(damage);
         DamagePopup.Create(transform.position + Vector3.up * 0.5f, damage, damage >= 3);
 
@@ -288,7 +298,18 @@ public class BossEnemy : MonoBehaviour
             Destroy(vfx, 0.5f);
         }
 
-        if (!hasTriggeredFinisherStun && currentHealth > 0 && currentHealth <= maxHealth * bossFinisherPercent)
+        if (currentHealth <= 0)
+        {
+            Time.timeScale = 1f;
+
+            if (bossHealth == null)
+                Die();
+
+            return;
+        }
+
+        if (!hasTriggeredFinisherStun &&
+            currentHealth <= maxHealth * bossFinisherPercent)
         {
             EnterBossFinishableState();
             return;
@@ -302,12 +323,6 @@ public class BossEnemy : MonoBehaviour
         if (spriteRenderer != null && !isAttacking)
         {
             StartCoroutine(FlashHit());
-        }
-
-        if (currentHealth <= 0)
-        {
-            Time.timeScale = 1f;
-            Die();
         }
     }
 
@@ -394,5 +409,21 @@ public class BossEnemy : MonoBehaviour
         }
 
         Destroy(gameObject);
+    }
+    void FinishBoss()
+    {
+        isFinishable = false;
+
+        if (finishSignObj != null)
+            Destroy(finishSignObj);
+
+        if (bossHealth != null)
+        {
+            bossHealth.TakeDamage(999999f);
+        }
+        else
+        {
+            Die();
+        }
     }
 }
