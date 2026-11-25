@@ -160,6 +160,7 @@ GameObject:
   - component: {fileID: -9008061674670355243}
   - component: {fileID: 5938381338455814272}
   - component: {fileID: -5373211638506475580}
+  - component: {fileID: 4712574453194983049}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -579,3 +580,20 @@ MonoBehaviour:
   jumpKey: 32
   dashKey: 113
   holdThreshold: 0.2
+--- !u!114 &4712574453194983049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8183683538225538255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e698143e07654f842b40b16032e3d6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHUDBuilder
+  hudOffset: {x: 30, y: -30}
+  hpBarWidth: 340
+  hpBarHeight: 24
+  hpColor: {r: 0.88, g: 0.16, b: 0.22, a: 1}
+  damageLagColor: {r: 1, g: 0.85, b: 0.35, a: 1}
