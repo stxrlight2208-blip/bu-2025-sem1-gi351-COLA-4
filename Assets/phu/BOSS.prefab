@@ -204,7 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bd1a5ee691c2d9489d6ff8b36252aae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Boss
-  maxHealth: 120
+  maxHealth: 350
   bossAudioSource: {fileID: 0}
   telegraphClip: {fileID: 0}
   meleeAttackClip: {fileID: 8300000, guid: f5b9a961c71a56646842c603ebab4a29, type: 3}

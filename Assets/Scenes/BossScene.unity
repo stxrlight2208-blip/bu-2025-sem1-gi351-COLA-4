@@ -137,7 +137,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 139120671496559373, guid: 063cb49ce2a48de42b61329e0e6f22ec, type: 3}
       propertyPath: currentHealth
-      value: 120
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 139120671496559373, guid: 063cb49ce2a48de42b61329e0e6f22ec, type: 3}
       propertyPath: continuePrompt
@@ -1184,7 +1184,6 @@ GameObject:
   - component: {fileID: 1700755431}
   - component: {fileID: 1700755434}
   - component: {fileID: 1700755435}
-  - component: {fileID: 1700755436}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1323,21 +1322,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossDefeatSceneTrigger
   defeatSceneName: Boss_Defeat
-  delayBeforeSwitch: 2
---- !u!114 &1700755436
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1700755430}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f02aeed915b75144a3ee998c16da2b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerDeathSceneTrigger
-  characterSelectSceneName: MainMenu
-  delayBeforeSwitch: 1.5
+  delayBeforeLoadScene: 2
+  bossObject: {fileID: 2144299387}
 --- !u!1 &2032710358
 GameObject:
   m_ObjectHideFlags: 0
@@ -1504,6 +1490,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2062771059}
   m_CullTransparentMesh: 1
+--- !u!1 &2144299387 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8767942882628471365, guid: 063cb49ce2a48de42b61329e0e6f22ec, type: 3}
+  m_PrefabInstance: {fileID: 86395698}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
