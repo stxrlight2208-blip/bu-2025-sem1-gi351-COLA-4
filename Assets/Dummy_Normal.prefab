@@ -210,8 +210,8 @@ MonoBehaviour:
   moveSpeed: 2.5
   detectionRange: 10
   attackRange: 1.2
-  enemyDamage: 50
-  attackCooldown: 0.15
+  enemyDamage: 3
+  attackCooldown: 0.25
   telegraphColor: {r: 1, g: 0.7, b: 0.1, a: 1}
   damageColor: {r: 1, g: 0, b: 0, a: 1}
   flashDuration: 0.15
