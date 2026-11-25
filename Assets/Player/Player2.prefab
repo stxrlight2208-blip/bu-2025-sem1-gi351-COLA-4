@@ -572,11 +572,20 @@ MonoBehaviour:
   clickAttackClip: {fileID: 8300000, guid: c395a90ef9b3ba5408d56e280a85851a, type: 3}
   chargeHoldClip: {fileID: 8300000, guid: a703fea9e7aac9f4fa3bbc81292d5dd3, type: 3}
   chargeReleaseClip: {fileID: 8300000, guid: ca1d1c88aed655b4ca236bd15cfb19cb, type: 3}
+  slamGroundClip: {fileID: 8300000, guid: ea3349a7aa01fc14db16547ddd4c2dab, type: 3}
+  enemyHitClip: {fileID: 8300000, guid: 81eea9ac7e7577241bedd63f27de3a56, type: 3}
+  playerHurtClip: {fileID: 0}
+  qteStartClip: {fileID: 8300000, guid: a6fba338c3603344aac558aa779a1ce8, type: 3}
+  qteTapClip: {fileID: 8300000, guid: 374dca0ef5c861b4b9040b4d4d630180, type: 3}
+  qteSuccessClip: {fileID: 8300000, guid: c508bcb2754ade840ab58b51548732a7, type: 3}
+  qteFailClip: {fileID: 0}
+  qteKeys: 65000000200000006600000077000000610000007300000064000000
   stepInterval: 0.35
   groundLayer:
     serializedVersion: 2
     m_Bits: 1
   groundCheckDistance: 0.2
+  slamDownwardSpeedThreshold: -12
   jumpKey: 32
   dashKey: 113
   holdThreshold: 0.2

@@ -239,8 +239,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySFX
   audioSource: {fileID: 0}
-  attackSwingClip: {fileID: 0}
-  hurtClip: {fileID: 0}
+  attackSwingClip: {fileID: 8300000, guid: 5cb7ef30b273704478246deaf3c20e26, type: 3}
+  hurtClip: {fileID: 8300000, guid: 9bc985371761bd5479b5fe6a665197e7, type: 3}
   deathClip: {fileID: 0}
   attackSoundCooldown: 0.7
   telegraphDetectColor: {r: 1, g: 0.7, b: 0.1, a: 1}
